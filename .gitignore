@@ -9,6 +9,7 @@ ehthumbs.db
 Thumbs.db
 
 /static/*
+/static/
 *.codekit
 please
 installer.php
