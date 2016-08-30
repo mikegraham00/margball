@@ -1,0 +1,24 @@
+title: Homepage Fields
+hide: true
+fields:
+  header:
+    type: section
+    display: Header
+  header_fields:
+    type: partial
+    display: Header Fields
+    fieldset: home_header
+  content:
+    type: section
+    display: Content
+  page_content:
+    type: partial
+    display: Page Content
+    fieldset: content_fields
+  seo:
+    type: section
+    display: SEO
+  seo_fields:
+    type: partial
+    display: SEO Fields
+    fieldset: seo-fields

@@ -1,0 +1,10 @@
+title: Display Control
+hide: true
+fields:
+  in_main_nav:
+    type: toggle
+    display: Display in Main Navigation
+  nav_title:
+    type: text
+    display: Nav Title
+    instructions: Enter a value if you would like the navigation label to be different than the page title above.

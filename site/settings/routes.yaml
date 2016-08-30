@@ -1,0 +1,4 @@
+collections:
+  events: '/events/{ slug }'
+taxonomies: [ ]
+routes: [ ]

@@ -1,0 +1,8 @@
+title: Events
+order: number
+fieldset: event_fields
+template: event_detail
+columns:
+  - title
+  - event_venue
+  - event_date

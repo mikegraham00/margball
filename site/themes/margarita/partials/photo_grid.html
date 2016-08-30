@@ -1,0 +1,13 @@
+<h2>{{ heading}}</h2>
+{{ if subheading }}
+<h3>{{ subheading }}</h3>
+{{ /if }}
+<div class="photo-grid">
+    {{ grid_items }}
+    <div class="grid-item">
+        {{ asset:photo }}<img src="{{ url }}" alt="{{ alt }}">{{ /asset:photo }}
+        <h3>{{ photo_title }}</h3>
+        <h4>{{ photo_subtitle }}</h4>
+    </div>
+    {{ /grid_items }}
+</div>

@@ -1,0 +1,15 @@
+<h2>{{ heading }}</h2>
+<div class="contain">
+    {{ if subheading }}
+    <h3>{{ subheading }}</h3>
+    {{ /if }}
+    <div class="block-50">
+        {{ asset:image }}<img src="{{ url }}" alt="{{ alt }}">{{ /asset:image }}
+    </div>
+    <div class="block-50">
+        {{ text }}
+        {{ if cta }}
+		<p class="cta"><a href="{{ cta_url }}" class="button plain" {{if cta_new_window }}target="_blank"{{ /if }}>{{ cta }}</a></p>
+		{{ /if }}
+    </div>
+</div>

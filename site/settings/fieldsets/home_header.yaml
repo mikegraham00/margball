@@ -1,0 +1,71 @@
+title: Home Header Fields
+hide: true
+fields:
+  background_image:
+    type: assets
+    display: Background Image
+    container: images
+    folder: /
+    max_files: 1
+  featured_event:
+    type: grid
+    display: Featured Event
+    fields:
+      background_image:
+        type: assets
+        display: Background Image
+        instructions: null
+        container: images
+        folder: /
+        max_files: 1
+      logo:
+        type: assets
+        display: Logo
+        instructions: null
+        container: images
+        folder: /
+        max_files: 1
+      date:
+        type: text
+        display: Date
+        instructions: null
+      tagline:
+        type: text
+        display: Tagline
+        instructions: null
+      call_to_action_url:
+        type: text
+        display: Call to Action URL
+        instructions: null
+      call_to_action_text:
+        type: text
+        display: Call to Action Text
+        instructions: null
+      cta_new_window:
+        type: toggle
+        display: Open Call to Action in New Window?
+        instructions: null
+    mode: stacked
+    max_rows: 1
+  single_link_block:
+    type: grid
+    display: Single Link Block
+    instructions: Block with a background image and a single call-to-action button.
+    fields:
+      background_image:
+        type: assets
+        display: Background Image
+        instructions: null
+        container: images
+        folder: /
+        max_files: 1
+      call_to_action_url:
+        type: text
+        display: Call to Action URL
+        instructions: null
+      call_to_action_text:
+        type: text
+        display: Call to Action Text
+        instructions: null
+    mode: table
+    max_rows: 1

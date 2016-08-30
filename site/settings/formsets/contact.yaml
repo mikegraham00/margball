@@ -1,0 +1,21 @@
+title: Contact Us
+honeypot: emailaddress
+fields:
+  name:
+    display: Name
+    validate: required | string
+  email:
+    display: Email
+    validate: email | required
+  message:
+    display: Message
+    validate: string
+columns:
+  - name
+  - email
+  - message
+email:
+  - 
+    to: mike@backbeatweb.com
+    subject: Margarita Society Contact
+    from: mike@ftw.org

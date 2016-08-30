@@ -1,0 +1,8 @@
+title: Simple Page
+fields:
+  content:
+    type: redactor
+    display: Content
+    settings: Standard
+    container: images
+    folder: /

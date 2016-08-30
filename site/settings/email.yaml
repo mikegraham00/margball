@@ -1,0 +1,9 @@
+driver: mailgun
+from_email: admin@example.com
+from_name: Website Administrator
+port: 587
+encryption: tls
+username:
+password:
+mailgun_secret: key-ad45a2d36b6ecfbcda49b7012c299409
+mailgun_domain: sandboxf959353afadf460c932b056024ffa8f1.mailgun.org

@@ -1,0 +1,9 @@
+<h2>{{ heading }}</h2>
+{{ if subheading }}
+<h3>{{ subheading }}</h3>
+{{ /if }}
+<div class="image-grid flex">
+	{{ assets:logos }}
+    <img src="{{ url }}" alt="{{ alt }}">
+    {{ /assets:logos }}
+</div>

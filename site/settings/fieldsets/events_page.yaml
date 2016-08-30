@@ -1,0 +1,17 @@
+title: Events Page
+fields:
+  display:
+    type: partial
+    display: Display
+    fieldset: display_control
+  header:
+    type: partial
+    display: Header
+    fieldset: page_header_fields
+  seo:
+    type: section
+    display: SEO
+  seo_fields:
+    type: partial
+    display: SEO Fields
+    fieldset: seo-fields

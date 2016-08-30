@@ -1,0 +1,12 @@
+<nav class="main">
+    {{ nav from="/" max_depth="1" in_main_nav:is="true" scope="item" }}
+        <a href="{{ url }}">{{ item:nav_title or title }}</a>
+    {{ /nav }}
+    {{ company_info }}
+    <div class="social">
+        <a href="{{ facebook_url }}" target="_blank">{{ theme:output src="svg/facebook-logo.svg" }}</a>
+        <a href="{{ twitter_url }}" target="_blank">{{ theme:output src="svg/twitter-logo.svg" }}</a>
+        {{ if flickr_url }}<a href="{{ flickr_url }}" target="_blank">{{ theme:output src="svg/flickr-logo.svg" }}</a>{{ /if }}
+    </div>
+    {{ /company_info }}
+</nav>

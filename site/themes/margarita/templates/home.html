@@ -1,0 +1,58 @@
+<div class="hero home" {{ asset:background_image }} style="background-image: url( {{ url }}); "{{ /asset:background_image }}>
+    <div class="blocks flex">
+    	{{ featured_event }}
+        <div class="hero-block half-width bg-hov flex all-center hue" >
+        	
+            <div class="bg" style="background-image: url({{ asset:background_image }}{{ url }}{{ /asset:background_image }});"></div>
+            
+            <div class="hero-block-content">
+                <a href="{{ call_to_action_url }}" {{ if cta_new_window }}target="_blank"{{ /if }}>
+                    {{ asset:logo }}<img src="{{ url }}" alt="{{ alt }}" class="flexible" />{{ /asset:logo }}
+                    <div class="initial">
+                        <h3>{{ date }}</h3>
+                    </div>
+                    <div class="reveal">
+                        <h4>{{ tagline }}</h4>
+                        <a href="{{ call_to_action_url }}" class="button clear bold" {{ if cta_new_window }}target="_blank"{{ /if }}>{{ call_to_action_text }}</a>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {{ /featured_event }}
+        <div class="hero-block half-width ">
+        	{{ single_link_block }}
+            <div class="hero-block-content half-height flex all-center bg-hov desat" style="background-image: url({{ asset:background_image }}{{ url }}{{ /asset:background_image }});">
+                
+                <a href="{{ call_to_action_url }}" class="button clear bold dyn">{{ call_to_action_text }}</a>
+            </div>
+            {{ /single_link_block }}
+            <div class="hero-block-content event-slider half-height">
+            	{{ collection:events featured_event:is="true" }}
+            	{{ if !event_date | is_past }}
+                <div class="event-slide">
+                    <a href="/events">
+                        {{ asset:event_background }}<img src="{{ url }}">{{ /asset:event_background }}
+                        <div class="slide-content">
+                            <span class="top-text">{{ title }}</span>
+                            <span class="middle-text">{{ event_venue }}</span>
+                            <span class="bottom-text">{{ event_date format="F d, Y"}} <br />{{ event_city }} | {{ event_start format="g:iA" }}</span>
+                        </div>
+                    </a>
+                </div>
+                {{ /if }}
+                {{ /collection:events }}
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+{{ content_section }}
+<section class="{{ if first }}main{{ /if }}{{ if background_style }} {{ background_style }}{{ else }} dark{{ /if }}">
+	{{ section_content_blocks }}
+    <div class="row">
+    	{{ partial:section_row_content }}
+    </div>
+    {{ /section_content_blocks }}
+</section>
+{{ /content_section }}

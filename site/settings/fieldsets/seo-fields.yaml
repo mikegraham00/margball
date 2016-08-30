@@ -1,0 +1,9 @@
+title: SEO Fields
+hide: true
+fields:
+  seo_title:
+    type: text
+    display: SEO Title
+  seo_description:
+    type: textarea
+    display: SEO Description

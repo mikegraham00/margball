@@ -1,0 +1,27 @@
+title: Standard Page
+fields:
+  display:
+    type: partial
+    display: Display
+    fieldset: display_control
+  page_header:
+    type: section
+    display: Header
+  header_content:
+    type: partial
+    display: Header Content
+    fieldset: page_header_fields
+  content_sec:
+    type: section
+    display: Content
+  page_content:
+    type: partial
+    display: Page Content
+    fieldset: content_fields
+  seo:
+    type: section
+    display: SEO
+  seo_fields:
+    type: partial
+    display: SEO Fields
+    fieldset: seo-fields

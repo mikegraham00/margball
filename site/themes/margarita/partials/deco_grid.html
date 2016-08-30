@@ -1,0 +1,15 @@
+<h2>{{ heading }}</h2>
+            
+<div class="deco-box-grid">
+    {{ grid_items }}
+    <div class="grid-item">
+        <div class="deco-box-wrap">
+            <h3>{{ heading }}</h3>
+            <p>{{ content }}</p>
+            <p>
+                <a href="{{ call_to_action_url }}" class="button plain"{{if cta_new_window }} target="_blank"{{ /if }}>{{ call_to_action_text }}</a>
+            </p>
+        </div>
+    </div>
+    {{ /grid_items }}
+</div>

@@ -1,0 +1,44 @@
+title: Company Info Fields
+hide: true
+fields:
+  street_address:
+    type: text
+    display: Street Address
+    width: 33
+  city_st_zip:
+    type: text
+    display: City, ST ZIP
+    width: 33
+  phone:
+    type: text
+    display: Phone
+    width: 33
+  site_tagline:
+    type: text
+    display: Site Tagline
+    default: "Benefitting Children's Charities of Fort Worth"
+  social_media:
+    type: section
+    display: Social Media
+  facebook_url:
+    type: text
+    display: Facebook URL
+    width: 25
+  twitter_url:
+    type: text
+    display: Twitter URL
+    width: 25
+  flickr_url:
+    type: text
+    display: Flickr URL
+    width: 25
+  other_info:
+    type: section
+    display: Other Info
+  contribute_url:
+    type: text
+    display: Contribute URL
+  copyright_name:
+    type: text
+    display: Copyright Name
+    instructions: Appears after ©YYYY in the site footer.

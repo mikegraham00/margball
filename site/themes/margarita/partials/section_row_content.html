@@ -1,0 +1,17 @@
+{{ if type == "simple_content_set" }}
+  {{ partial:simple_content }}
+{{ elseif type == "logo_grid_set" }}
+  {{ partial:logo_grid }}
+{{ elseif type == "deco_grid_set"}}
+  {{ partial:deco_grid }}
+{{ elseif type == "gallery_set" }}
+  {{ partial:gallery }}
+{{ elseif type == "photo_grid_set" }}
+  {{ partial:photo_grid }}
+{{ elseif type == "text_list_grid_set" }}
+  {{ partial:text_list }}
+{{ elseif type == "image_and_text_set" }}
+  {{ partial:images_and_text }}
+{{ elseif type == "image_and_link_set" }}
+  {{ partial:images_and_links }}
+{{ /if }}

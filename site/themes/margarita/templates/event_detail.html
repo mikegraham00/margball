@@ -1,0 +1,36 @@
+<div class="hero standard" style="background-image: url({{ asset:event_background }}{{ url }}{{ /asset:event_background }});">
+    <div class="hero-content-wrap">
+        <h1>{{ title }}</h1>
+        <div class="frame">
+            
+            <div class="frame-int event{{ if !asset:event_logo }} nologo{{ /if }}">
+                {{ if asset:event_log }}
+                <div class="img-back" style="background-image: url({{ asset:event_logo }}{{ url }}{{ /asset:event_logo }});">
+                    
+                </div>
+                {{ /if }}
+                <div class="details">
+                    <span>{{ event_venue}}</span>
+                    <span>{{ event_city }}</span>
+                    <span class="date">{{ event_date format="F d, Y" }} | {{ event_start format="g:iA" }}</span>
+                    {{ if cta_url }}
+                    <a href="{{ cta_url }}" class="button clear bold fancy" {{ if cta_new_window }}target="_blank"{{ /if }}>{{ cta_text }}</a>
+                    {{ /if }}
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+<section class="dark">
+    <div class="row">
+        <h2>Information</h2>
+        <div class="contain">
+
+        {{ event_description }}
+        {{ if cta_url }}
+        <p class="cta"><a href="{{ cta_url }}" class="button plain"{{if cta_new_window }} target="_blank"{{ /if }}>{{ cta_text }}</a></p>
+        {{ /if }}
+        </div>
+    </div>
+</section>

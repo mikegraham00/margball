@@ -1,0 +1,12 @@
+{{ partial:page_header }}
+
+{{ content_section }}
+<section class="{{ if background_style }}{{ background_style }}{{ else }}dark{{ /if }}">
+	{{ section_content_blocks }}
+    <div class="row">
+    	{{ partial:section_row_content }}
+    </div>
+    {{ /section_content_blocks }}
+</section>
+{{ /content_section }}
+

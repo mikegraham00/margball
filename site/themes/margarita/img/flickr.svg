@@ -1,0 +1,9 @@
+<svg width="37px" height="37px" viewBox="0 0 37 37" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" fill="#FFFFFF">
+            <path class="rect" d="M0,0 L0,36.021 L36.016,36.021 L36.016,0 L0,0 L0,0 Z M34.016,34.021 L2,34.021 L2,2 L34.016,2 L34.016,34.021 L34.016,34.021 Z" id="Shape"></path>
+            <path class="logo" d="M22.774,21.758 C24.842,21.758 26.519,20.08 26.519,18.011 C26.519,15.942 24.842,14.264 22.774,14.264 C20.702,14.264 19.026,15.942 19.026,18.011 C19.026,20.08 20.701,21.758 22.774,21.758 L22.774,21.758 Z" id="Shape"></path>
+            <circle id="Oval" cx="13.255" cy="18.011" r="3.747"></circle>
+        </g>
+    </g>
+</svg>

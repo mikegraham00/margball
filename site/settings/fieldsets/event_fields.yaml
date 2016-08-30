@@ -1,0 +1,75 @@
+title: Event Fields
+hide: true
+fields:
+  featured_event:
+    type: toggle
+    display: Featured Event?
+    instructions: Should this event be displayed in the homepage event slider?
+    width: 50
+  has_detail_page:
+    type: toggle
+    display: Detail Page
+    instructions: "Should this event have it's own detail page? Typicall only major events will need this."
+    default: 'FALSE'
+    width: 50
+  event_logo:
+    type: assets
+    display: Event Logo
+    container: images
+    folder: /
+    max_files: 1
+  event_background:
+    type: assets
+    display: Event Background
+    container: images
+    folder: /
+    max_files: 1
+  event_date:
+    type: date
+    display: Event Date
+    allow_blank: false
+    allow_time: false
+    earliest_date: January 1, 2016
+    width: 50
+  event_start:
+    type: text
+    display: Event Start Time
+    width: 25
+  event_end:
+    type: text
+    display: Event End Time
+    width: 25
+  event_venue:
+    type: text
+    display: Event Venue
+  event_address:
+    type: text
+    display: Event Address
+    instructions: The street address of the event.
+  event_city:
+    type: text
+    display: Event City
+  event_description:
+    type: redactor
+    display: Event Description
+    settings: Basic
+  cta_url:
+    type: text
+    display: Call to Action URL
+    instructions: Enter the full URL where users can purchase tickets for this event, RSVP, etc.
+  cta_text:
+    type: text
+    display: Call to Action Text
+    instructions: "EX: 'Buy Tickets', 'RSVP', etc."
+  cta_new_window:
+    type: toggle
+    display: Open Call to Action in New Window?
+    default: 'true'
+  lodging_link_url:
+    type: text
+    display: Lodging Link URL
+    width: 50
+  lodging_link_text:
+    type: text
+    display: Lodging Link Text
+    width: 50

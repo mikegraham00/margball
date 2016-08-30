@@ -1,0 +1,18 @@
+title: Gallery Grid Page
+fields:
+  display:
+    type: partial
+    display: Display
+    fieldset: display_control
+  gallery:
+    type: assets
+    display: Gallery
+    container: images
+    folder: /
+  seo:
+    type: section
+    display: SEO
+  seo_fields:
+    type: partial
+    display: SEO Fields
+    fieldset: seo-fields

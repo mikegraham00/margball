@@ -1,0 +1,4 @@
+path: images
+url: /images
+driver: local
+title: Images

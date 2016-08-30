@@ -1,0 +1,47 @@
+{{ partial:page_header }}
+
+<section class="main">
+
+    <div class="row">
+        <h1>{{ title }}</h1>
+        
+        <div class="contact-wrap">
+        		{{ content }}
+	        	
+	        	{{ form:create in="contact" }}
+		        	{{ if errors  }}
+				        <p class="error">Something went wrong...</p>
+				        <ul class="error-list">
+				            {{ errors }}
+				                <li>{{ value }}</li>
+				            {{ /errors }}
+				        </ul>
+				    {{ /if }}
+				    {{ if success }}
+
+				        
+				            <p class="success"> Thanks for contacting us. We'll be in touch soon.</p>
+				            
+				       
+
+				    {{ /if }}
+					
+						<div class="formrow">
+						<input type="text" name="name" class="half" value="{{ old:name }}" placeholder="Name"/>
+						
+						<input type="text" name="email" class="half" value="{{ old:email }}" placeholder="Email"/>
+						</div>
+						<div class="formrow">
+						
+						<textarea name="message" value="{{ old:message }}" placeholder="Message"></textarea>
+						</div>
+						<div class="formrow">
+						<input type="text" class="req" name="emailaddress" value="{{ old:emailaddress }}" />
+						</div>
+					<button>Submit</button>
+				{{ /form:create }}
+			
+    	</div>
+    </div>
+</section>
+

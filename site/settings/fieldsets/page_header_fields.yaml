@@ -1,0 +1,84 @@
+title: Page Header Fields
+hide: true
+fields:
+  page_header:
+    type: replicator
+    display: Page Header
+    sets:
+      image_and_text_set:
+        display: Image and Text
+        instructions:
+        fields:
+          image:
+            type: assets
+            display: Image
+            instructions: null
+            container: images
+            folder: /
+            max_files: 1
+          text:
+            type: short_textarea
+            display: Text
+            instructions: Limited to 500 characters.
+      featured_event:
+        display: Featured Event
+        instructions:
+        fields:
+          event_selection:
+            type: collection
+            display: Event Selection
+            instructions: null
+            max_items: 1
+            sort: event_date:asc
+            label: '{{ title }}'
+            collection: events
+      text_and_table_set:
+        display: Text and Table
+        instructions:
+        fields:
+          text:
+            type: short_textarea
+            display: Text
+            instructions: Limited to 500 characters.
+          table:
+            type: table
+            display: Table
+            instructions: null
+      big_event_set:
+        display: Big Event Set
+        instructions:
+        fields:
+          big_event:
+            type: collection
+            display: Big Event
+            instructions: null
+            max_items: 1
+            sort: event_date:asc
+            label: '{{ title }} - {{ event_date }}'
+            collection: events
+          links_bar:
+            type: grid
+            display: Links Bar
+            instructions: null
+            fields:
+              link_text:
+                type: text
+                display: Link Text
+                instructions: null
+              link_url:
+                type: text
+                display: Link URL
+                instructions: null
+              link_new_window:
+                type: toggle
+                display: Open Link in New Window?
+                instructions: null
+            mode: table
+            max_rows: null
+            min_rows: null
+  background_image:
+    type: assets
+    display: Background Image
+    container: images
+    folder: /
+    max_files: 1
