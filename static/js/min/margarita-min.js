@@ -1,1 +1,0 @@
-$(document).ready(function(){$(".menu-toggle").on("click",function(){var n=$("nav.main");n.toggleClass("open")})});
