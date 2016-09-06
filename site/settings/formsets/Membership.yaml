@@ -1,0 +1,81 @@
+title: Membership Form
+honeypot: user-email
+fields:
+  application_date:
+    display: Application Date
+    validate: date | required
+  date_of_birth:
+    display: Date of Birth
+    validate: date | required
+  applicant_name:
+    display: Applicant Name
+    validate:
+  applicant_address:
+    display: Applicant Address
+    validate:
+  city:
+    display: City
+    validate: string | size:90 | required
+  state:
+    display: State
+    validate:
+  zip:
+    display: Zip
+    validate:
+  spouse_or_significant_other:
+    display: Spouse or Significant Other
+    validate:
+  email_address:
+    display: Email Address
+    validate:
+  home_phone:
+    display: Home Phone
+    validate:
+  cell_phone:
+    display: Cell Phone
+    validate:
+  work_phone:
+    display: Work Phone
+    validate:
+  occupation:
+    display: Occupation
+    validate:
+  name_of_sponsoring_director:
+    display: Name of Sponsoring Director
+    validate:
+  membership_level:
+    display: Membership Level
+    validate:
+  committees:
+    display: Committees
+  convicted_of_a_felony:
+    display: Convicted of a Felony?
+    validate:
+  if_yes_explain:
+    display: If Yes Explain
+    validate:
+  please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster:
+    display: Please do not place my information on the Children’s Charities of Fort Worth roster
+    validate:
+columns:
+  - application_date
+  - date_of_birth
+  - applicant_name
+  - applicant_address
+  - city
+  - state
+  - zip
+  - spouse_or_significant_other
+  - email_address
+  - home_phone
+  - cell_phone
+  - work_phone
+  - occupation
+  - name_of_sponsoring_director
+  - membership_level
+  - director_amount
+  - less_than_director_amount
+  - committees
+  - convicted_of_a_felony
+  - if_yes_explain
+  - please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster

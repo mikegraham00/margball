@@ -12,7 +12,7 @@
         <meta name="description" content="{{ seo_description }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        
+
         <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
         <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css"/>
@@ -50,7 +50,7 @@
                     <h2>{{ site_tagline }}</h2>
                     {{ /company_info }}
                 </div>
-                
+
                 {{ partial:nav }}
 
             </div>
@@ -60,11 +60,11 @@
         </div>
 
          {{ template_content }}
-
+         {{ if segment_1 == 'membership' }}{{ partial:membership_form }}{{ /if }}
          <div class="footer">
             {{ company_info }}
             <div class="row contact">
-                
+
                 <span>{{ street_address }}</span><span>{{ city_st_zip }}</span><span>{{ phone }}</span>
 
             </div>
@@ -77,17 +77,17 @@
                     <!-- Begin MailChimp Signup Form -->
                     <div id="mc_embed_signup">
                     <form action="//fortworthmargaritasociety.us10.list-manage.com/subscribe/post?u=51a18249895b129ec0d87572f&amp;id=e157370333" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-                        
-                        
-                    
+
+
+
                         <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Sign up for our newsletter"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button submit">
                         <div id="mce-responses" class="clear">
                             <div class="response" id="mce-error-response" style="display:none"></div>
                             <div class="response" id="mce-success-response" style="display:none"></div>
                         </div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
                         <div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_51a18249895b129ec0d87572f_e157370333" tabindex="-1" value=""></div>
-                        
-                        
+
+
                     </form>
                     </div>
 
@@ -101,7 +101,7 @@
                     <a href="{{ twitter_url }}" target="_blank">{{ theme:output src="svg/twitter-logo.svg" }}</a>
                     {{ if flickr_url }}<a href="{{ flickr_url }}" target="_blank">{{ theme:output src="svg/flickr-logo.svg" }}</a>{{ /if }}
                 </div>
-                
+
             </div>
             <div class="row copyright">
                 <p>&copy; 2002-{{ now format="Y" }} {{ copyright_name }}. All Rights Reserved.</p>
@@ -134,7 +134,7 @@
 
                 });
 
-                  
+
             </script>
 
             <script src="{{ theme:js }}"></script>

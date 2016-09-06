@@ -1992,3 +1992,78 @@ p.cta {
     -webkit-transform: scaleX(-1);
             transform: scaleX(-1); }
 /*# sourceMappingURL=margarita.css.map */
+
+/*Form Styling for Membership Page*/
+.form-container label {
+    width: 48%;
+    display: inline-block;
+}
+
+.form-container {
+    margin: 3% auto;
+    width: 80%;
+}
+
+.form-container input{
+  border:1px solid #4E4945;
+}
+.form-container input[type="text"]{
+  height:45px;
+}
+input#other, input#if_yes_explain {
+  visibility:hidden;
+}
+input[type=checkbox]:checked ~ input#other {
+   visibility: inherit;
+}
+input[type=radio]:checked ~ input#if_yes_explain {
+   visibility: inherit;
+}
+
+#committees label, #membership-level label{
+   text-align:center;
+   display:block;
+   width:100%;
+}
+fieldset#committees, fieldset#membership-level{
+  margin-top:3%;
+}
+fieldset#finally label {
+  width:100%;
+  text-align:center;
+}
+
+legend{
+  font-weight:bold;
+  font-size:1.4em;
+  text-align:center;
+  width:100%;
+}
+
+.become-member{
+  font-size: 2.5rem;
+  text-align: center;
+  color: #000;
+  margin-bottom: 0;
+  margin-top:4%;
+}
+
+h2.become-member:after{
+  content: '';
+    display: block;
+    width: 96%;
+    margin: 0 auto;
+    padding: 12px 0;
+    height: 25px;
+    fill: #000;
+    background: url(../img/bowtie.svg) center center no-repeat;
+    background-size: contain;
+    overflow: hidden;
+}
+
+.sub-button{
+  width:25%;
+  margin-left:35%;
+  margin-right:35%;
+  margin-bottom:5%;
+}

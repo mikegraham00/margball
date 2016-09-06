@@ -1,0 +1,149 @@
+{{ form:create in="membership" }}
+  {{ if errors  }}
+    <p class="error">Something went wrong...</p>
+    <ul class="error-list">
+        {{ errors }}
+            <li>{{ value }}</li>
+        {{ /errors }}
+    </ul>
+{{ /if }}
+{{ if success }}
+
+
+        <p class="success"> Thanks for contacting us. We'll be in touch soon.</p>
+
+
+
+{{ /if }}
+
+<h2 class="become-member">Apply to Become a Member</h2>
+<div class="form-container">
+<div class="formrow">
+  <label for="application_date"> Application Date
+      <input type="date" name="application_date" class="half" value="{{ old:application_date }}" placeholder="Date"/>
+  </label>
+  <label for="date_of_birth"> Date of Birth
+      <input type="date" name="date_of_birth" class="half" value="{{ old:date_of_birth }}" placeholder="DOB"/>
+  </label>
+</div>
+
+
+<div class="formrow">
+  <label for="applicant_name"> Applicant Name
+    <input type="text" name="applicant_name" class="half" value="{{ old:applicant_name }}" placeholder="Applicant Name"/>
+  </label>
+  <label for="applicant_address"> Applicant Address
+    <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" placeholder="Applicant Address"/>
+  </label>
+</div>
+
+<div class="formrow">
+  <label for="city"> City
+    <input type="text" name="city" class="half" value="{{ old:city }}" placeholder="City"/>
+  </label>
+  <label for="applicant_address"> State
+    <input type="text" name="state" class="half" value="{{ old:state }}" placeholder="Applicant Address"/>
+  </label>
+</div>
+
+<div class="formrow">
+  <label for="zip"> Zip
+    <input type="text" name="zip" class="half" value="{{ old:zip }}" placeholder="Zip"/>
+  </label>
+  <label for="spouse_or_significant_other"> Spouse or Significant Other
+    <input type="text" name="spouse_or_significant_other" class="half" value="{{ old:spouse_or_significant_other }}" placeholder="Name"/>
+  </label>
+</div>
+
+<div class="formrow">
+  <label for="email_address"> Email
+    <input type="text" name="email_address" class="half" value="{{ old:email_address }}" placeholder="Email"/>
+  </label>
+  <label for="home_phone"> Home Phone
+    <input type="text" name="home_phone" class="half" value="{{ old:home_phone }}" placeholder="Applicant Address"/>
+  </label>
+</div>
+
+<div class="formrow">
+  <label for="cell_phone"> Cell Phone
+    <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" placeholder="Cell Phone"/>
+  </label>
+  <label for="work_phone"> Work Phone
+    <input type="text" name="work_phone" class="half" value="{{ old:work_phone }}" placeholder="Work Phone"/>
+  </label>
+</div>
+
+<div class="formrow">
+  <label for="occupation"> Occupation
+    <input type="text" name="occupation" class="half" value="{{ old:occupation }}" placeholder="Occupation"/>
+  </label>
+  <label for="name_of_sponsoring_director"> Name of Sponsoring Director
+    <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" placeholder="Sponsor Name"/>
+  </label>
+</div>
+
+<fieldset id="membership-level">
+    <div class="formrow">
+      <legend>Choose a Membership Level</legend>
+      <label for="Director_1000">
+       <input type="radio" name="membership_level" value="{{ old:Director_1000 }}" id="Director_1000"> Director ($1,000 – Table)<br>
+      </label>
+      <label for="Director_2_500">
+       <input type="radio" name="membership_level" value="{{ old:Director_2_500 }}" id="Director_2_500"> Director Level 2 ($500 – 2 VIP Seats)<br>
+      </label>
+      <label for="Member_250">
+       <input type="radio" name="membership_level" value="{{ old:Member_250 }}" id="Member_250"> Member ($250 – 1 Ticket)
+      </label>
+    </div>
+</fieldset>
+
+<fieldset id="committees">
+    <div class="formrow">
+      <legend>Which Committees will you be active in?</legend>
+      <label for="sponsorship">Sponsorship
+       <input type="checkbox" name="committee" value="sponsorship" id="sponsorship"><br>
+     </label>
+      <label for="fundraising">Fundraising
+       <input type="checkbox" name="fundraising" value="fundraising" id="fundraising"><br>
+      </label>
+      <label for="social_events">Social Events
+       <input type="checkbox" name="social_events" value="social_events" id="social_events"><br>
+      </label>
+      <label for="membership">Membership
+       <input type="checkbox" name="membership" value="membership" id="membership"><br>
+      </label>
+      <label for="marketing">Marketing/Advertising
+       <input type="checkbox" name="marketing" value="marketing" id="marketing"><br>
+      </label>
+      <label for="auction">Auction
+       <input type="checkbox" name="auction" value="auction" id="auction"><br>
+      </label>
+      <label for="community_outreach">Community Outreach
+       <input type="checkbox" name="community_outreach" value="community_outreach" id="community_outreach"><br>
+      </label>
+      <label for="other-committee">Other
+       <input type="checkbox" name="other" value="other" id="other-committee">
+       <input type="text" name="other_committee" class="half" value="{{ old:other_committee }}" placeholder="Committte Name" id="other"/>
+      </label>
+    </div>
+</fieldset>
+
+<fieldset id="finally">
+  <legend>Have you been convicted of a felony in the last ten years?</legend>
+  <label for="convicted_of_a_felony">Yes
+    <input type="radio" name="convicted_of_a_felony" id="convicted_of_a_felony" value="true">
+    <label for="not_convicted_of_felony">No
+      <input type="radio" name="convicted_of_a_felony" id="not_convicted_of_felony" value="false"></label>
+    <input type="text" name="if_yes_explain" id="if_yes_explain" placeholder="If yes, please explain">
+   </label>
+
+
+
+<label for="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
+  <input type="checkbox" name="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster" id="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster" value="true">
+</label>
+</fieldset>
+</div>
+<button class="sub-button">Submit</button>
+
+{{ /form:create }}

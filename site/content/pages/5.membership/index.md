@@ -1,6 +1,6 @@
 in_main_nav: true
 page_header:
-  - 
+  -
     type: image_and_text_set
     image: fc9c9e89-58d4-4ad1-a01f-46d462f2a404
     text: >
@@ -10,9 +10,9 @@ page_header:
       good vibes.
 background_image: c43a013b-3452-4a4e-8c4f-c06189f4e7e6
 content_section:
-  - 
+  -
     section_content_blocks:
-      - 
+      -
         type: simple_content_set
         content: |
           <p>Whether it’s volunteering, planning a fundraiser, raising awareness, or giving a donation, here are 5 great reasons to get involved with Children’s Charities of Fort Worth.
@@ -29,9 +29,9 @@ content_section:
           <p>Children’s Charities of Fort Worth, a 501(c)(3) charitable organization operates by and is fully supported by a voluntary group of at-will board of director and its members with local community interests. Please notice the three options for being involved with our leadership and membership positions within our organization. We look forward to meeting with you, and fulfilling our long-term mission. Our mission is to distribute toys and school uniforms to select local children’s charities, benefiting underprivileged children throughout the community.
           </p>
     background_style: light
-  - 
+  -
     section_content_blocks:
-      - 
+      -
         type: simple_content_set
         heading: Member levels
         content: |
