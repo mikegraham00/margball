@@ -86,13 +86,13 @@
     <div class="formrow">
       <legend>Choose a Membership Level</legend>
       <label for="Director_1000">
-       <input type="radio" name="membership_level" value="{{ old:Director_1000 }}" id="Director_1000"> Director ($1,000 – Table)<br>
+       <input type="radio" name="membership_level" value="Director_1000" id="Director_1000"> Director ($1,000 – Table)<br>
       </label>
       <label for="Director_2_500">
-       <input type="radio" name="membership_level" value="{{ old:Director_2_500 }}" id="Director_2_500"> Director Level 2 ($500 – 2 VIP Seats)<br>
+       <input type="radio" name="membership_level" value="Director_2_500" id="Director_2_500"> Director Level 2 ($500 – 2 VIP Seats)<br>
       </label>
       <label for="Member_250">
-       <input type="radio" name="membership_level" value="{{ old:Member_250 }}" id="Member_250"> Member ($250 – 1 Ticket)
+       <input type="radio" name="membership_level" value="old:Member_250" id="Member_250"> Member ($250 – 1 Ticket)
       </label>
     </div>
 </fieldset>
@@ -102,28 +102,28 @@
     <div class="formrow">
       <legend>Which Committees will you be active in?</legend>
       <label for="sponsorship">Sponsorship
-       <input type="checkbox" name="committee" value="sponsorship" id="sponsorship"><br>
+       <input type="checkbox" name="committee[]" value="sponsorship" id="sponsorship"><br>
      </label>
       <label for="fundraising">Fundraising
-       <input type="checkbox" name="fundraising" value="fundraising" id="fundraising"><br>
+       <input type="checkbox" name="committee[]" value="fundraising" id="fundraising"><br>
       </label>
       <label for="social_events">Social Events
-       <input type="checkbox" name="social_events" value="social_events" id="social_events"><br>
+       <input type="checkbox" name="committee[]" value="social_events" id="social_events"><br>
       </label>
       <label for="membership">Membership
-       <input type="checkbox" name="membership" value="membership" id="membership"><br>
+       <input type="checkbox" name="committee[]" value="membership" id="membership"><br>
       </label>
       <label for="marketing">Marketing/Advertising
-       <input type="checkbox" name="marketing" value="marketing" id="marketing"><br>
+       <input type="checkbox" name="committee[]" value="marketing" id="marketing"><br>
       </label>
       <label for="auction">Auction
-       <input type="checkbox" name="auction" value="auction" id="auction"><br>
+       <input type="checkbox" name="committee[]" value="auction" id="auction"><br>
       </label>
       <label for="community_outreach">Community Outreach
-       <input type="checkbox" name="community_outreach" value="community_outreach" id="community_outreach"><br>
+       <input type="checkbox" name="committee[]" value="community_outreach" id="community_outreach"><br>
       </label>
       <label for="other-committee">Other
-       <input type="checkbox" name="other" value="other" id="other-committee">
+       <input type="checkbox" name="committee[]" value="other" id="other-committee">
        <input type="text" name="other_committee" class="half" value="{{ old:other_committee }}" placeholder="Committte Name" id="other"/>
       </label>
     </div>
@@ -137,7 +137,7 @@
       <input type="radio" name="convicted_of_a_felony" id="not_convicted_of_felony" value="false"></label>
     <input type="text" name="if_yes_explain" id="if_yes_explain" placeholder="If yes, please explain">
    </label>
-  
+
 
 
 <label for="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
