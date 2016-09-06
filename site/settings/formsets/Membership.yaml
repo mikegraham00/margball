@@ -3,10 +3,10 @@ honeypot: user-email
 fields:
   application_date:
     display: Application Date
-    validate: date | required
+    validate:
   date_of_birth:
     display: Date of Birth
-    validate: date | required
+    validate:
   applicant_name:
     display: Applicant Name
     validate:
@@ -15,7 +15,7 @@ fields:
     validate:
   city:
     display: City
-    validate: string | size:90 | required
+    validate:
   state:
     display: State
     validate:
@@ -47,15 +47,16 @@ fields:
     display: Membership Level
     validate:
   committees:
-    display: Committees
+    display: committees
+    validate:
   convicted_of_a_felony:
-    display: Convicted of a Felony?
+    display: Convicted of a Felony
     validate:
   if_yes_explain:
-    display: If Yes Explain
+    display: If yes, Explain
     validate:
   please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster:
-    display: Please do not place my information on the Children’s Charities of Fort Worth roster
+    display: Do not place my information on the roster
     validate:
 columns:
   - application_date
@@ -73,8 +74,6 @@ columns:
   - occupation
   - name_of_sponsoring_director
   - membership_level
-  - director_amount
-  - less_than_director_amount
   - committees
   - convicted_of_a_felony
   - if_yes_explain
