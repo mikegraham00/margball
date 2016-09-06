@@ -3,64 +3,70 @@ honeypot: user-email
 fields:
   application_date:
     display: Application Date
-    validate:
+    validate: required | date
   date_of_birth:
     display: Date of Birth
-    validate:
+    validate: required | date
   applicant_name:
     display: Applicant Name
-    validate:
+    validate: required | string
   applicant_address:
     display: Applicant Address
-    validate:
+    validate: required | string
   city:
     display: City
-    validate:
+    validate: required | string
   state:
     display: State
-    validate:
+    validate: required | string
   zip:
     display: Zip
-    validate:
+    validate: required | string
   spouse_or_significant_other:
     display: Spouse or Significant Other
-    validate:
+    validate: required | string
   email_address:
     display: Email Address
-    validate:
+    validate: required | string
   home_phone:
     display: Home Phone
-    validate:
+    validate: string
   cell_phone:
     display: Cell Phone
-    validate:
+    validate: required | string
   work_phone:
     display: Work Phone
-    validate:
+    validate: string
   occupation:
     display: Occupation
-    validate:
+    validate: string
   name_of_sponsoring_director:
     display: Name of Sponsoring Director
-    validate:
+    validate: required
   membership_level:
     display: Membership Level
-    validate:
-  committee:
-    display: Committees
-    validate:
+    validate: required
+  committees:
+    display: committees
+    validate: 
   convicted_of_a_felony:
     display: Convicted of a Felony
-    validate:
+    validate: required
   if_yes_explain:
     display: If yes, Explain
-    validate:
+    validate: required_if:convicted_of_a_felony,yes | string
   please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster:
     display: Do not place my information on the roster
-    validate:
+    validate: string
 columns:
   - application_date
+  - date_of_birth
   - applicant_name
+  - applicant_address
+  - city
+  - state
+  - zip
+  - spouse_or_significant_other
   - email_address
   - home_phone
   - cell_phone
@@ -68,7 +74,7 @@ columns:
   - occupation
   - name_of_sponsoring_director
   - membership_level
-  - committee
+  - committees
   - convicted_of_a_felony
   - if_yes_explain
   - please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster
