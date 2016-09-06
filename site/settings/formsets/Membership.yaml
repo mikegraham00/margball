@@ -46,8 +46,8 @@ fields:
   membership_level:
     display: Membership Level
     validate:
-  committees:
-    display: committees
+  committee:
+    display: Committees
     validate:
   convicted_of_a_felony:
     display: Convicted of a Felony
@@ -60,13 +60,7 @@ fields:
     validate:
 columns:
   - application_date
-  - date_of_birth
   - applicant_name
-  - applicant_address
-  - city
-  - state
-  - zip
-  - spouse_or_significant_other
   - email_address
   - home_phone
   - cell_phone
@@ -74,7 +68,7 @@ columns:
   - occupation
   - name_of_sponsoring_director
   - membership_level
-  - committees
+  - committee
   - convicted_of_a_felony
   - if_yes_explain
   - please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster

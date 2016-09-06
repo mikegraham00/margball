@@ -1,5 +1,5 @@
-{{ form:create in="membership" }}
-  {{ if errors  }}
+{{ form:create in="membership"}}
+  {{ if errors }}
     <p class="error">Something went wrong...</p>
     <ul class="error-list">
         {{ errors }}
@@ -17,7 +17,7 @@
 {{ /if }}
 
 <h2 class="become-member">Apply to Become a Member</h2>
-<div class="form-container">
+<div class="form-container" id="membership_form">
 <div class="formrow">
   <label for="application_date"> Application Date
       <input type="date" name="application_date" class="half" value="{{ old:application_date }}" placeholder="Date"/>
@@ -101,7 +101,7 @@
 <fieldset id="committees">
     <div class="formrow">
       <legend>Which Committees will you be active in?</legend>
-      <label for="sponsorship">Sponsorship
+    <label>Sponsorship
        <input type="checkbox" name="committee[]" value="sponsorship" id="sponsorship"><br>
      </label>
       <label for="fundraising">Fundraising
