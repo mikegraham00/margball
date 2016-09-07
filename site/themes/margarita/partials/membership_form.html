@@ -18,71 +18,139 @@
 
 <h2 class="become-member">Apply to Become a Member</h2>
 <div class="form-container" id="membership_form">
-<div class="formrow">
-  <label for="application_date"> Application Date
-      <input type="date" name="application_date" class="half" value="{{ old:application_date }}" placeholder="Date"/>
-  </label>
-  <label for="date_of_birth"> Date of Birth
-      <input type="date" name="date_of_birth" class="half" value="{{ old:date_of_birth }}" placeholder="DOB"/>
-  </label>
-</div>
+<fieldset>
+  <legend>Choose Membership Level</legend>
+    <div class="formrow">
+      <!-- <label for="membership_level">Choose Membership Level</label> -->
+        <select name="membership_level" id="membership_level" required>
+          <option value="default">Please Select</option>
+          <option value="director_1000">Director ($1,000 – Table)</option>
+          <option value="director_500">Director Level 2 ($500 – 2 VIP Seats)</option>
+          <option value="member_250">Member ($250 – 1 Ticket)</option>
+        </select>
+    </div>
+</fieldset>
+
+<fieldset>
+  <legend>Applicant Information</legend>
+  <div class="formrow">
+    <label for="application_date"> Application Date
+        <input type="date" name="application_date" class="half" value="{{ old:application_date }}" placeholder="Date"/>
+    </label>
+    <label for="date_of_birth"> Date of Birth
+        <input type="date" name="date_of_birth" class="half" value="{{ old:date_of_birth }}" placeholder="DOB"/>
+    </label>
+  </div>
 
 
-<div class="formrow">
-  <label for="applicant_name"> Applicant Name
-    <input type="text" name="applicant_name" class="half" value="{{ old:applicant_name }}" placeholder="Applicant Name"/>
-  </label>
-  <label for="applicant_address"> Applicant Address
-    <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" placeholder="Applicant Address"/>
-  </label>
-</div>
+  <div class="formrow">
+    <label for="applicant_name"> Applicant Name
+      <input type="text" name="applicant_name" class="half" value="{{ old:applicant_name }}" placeholder="Applicant Name" required/>
+    </label>
+    <label for="applicant_address"> Applicant Address
+      <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" placeholder="Applicant Address" required/>
+    </label>
+  </div>
 
-<div class="formrow">
-  <label for="city"> City
-    <input type="text" name="city" class="half" value="{{ old:city }}" placeholder="City"/>
-  </label>
-  <label for="applicant_address"> State
-    <input type="text" name="state" class="half" value="{{ old:state }}" placeholder="Applicant Address"/>
-  </label>
-</div>
+  <div class="formrow">
+    <label for="city"> City
+      <input type="text" name="city" class="half" value="{{ old:city }}" placeholder="City" required/>
+    </label>
+    <label for="state"> State
+									<select name="state" value="TX" id="state">
+										<option value="TX">Texas</option>
+										<option value="AL">Alabama</option>
+										<option value="AK">Alaska</option>
+										<option value="AZ">Arizona</option>
+										<option value="AR">Arkansas</option>
+										<option value="CA">California</option>
+										<option value="CO">Colorado</option>
+										<option value="CT">Connecticut</option>
+										<option value="DE">Delaware</option>
+										<option value="DC">District Of Columbia</option>
+										<option value="FL">Florida</option>
+										<option value="GA">Georgia</option>
+										<option value="HI">Hawaii</option>
+										<option value="ID">Idaho</option>
+										<option value="IL">Illinois</option>
+										<option value="IN">Indiana</option>
+										<option value="IA">Iowa</option>
+										<option value="KS">Kansas</option>
+										<option value="KY">Kentucky</option>
+										<option value="LA">Louisiana</option>
+										<option value="ME">Maine</option>
+										<option value="MD">Maryland</option>
+										<option value="MA">Massachusetts</option>
+										<option value="MI">Michigan</option>
+										<option value="MN">Minnesota</option>
+										<option value="MS">Mississippi</option>
+										<option value="MO">Missouri</option>
+										<option value="MT">Montana</option>
+										<option value="NE">Nebraska</option>
+										<option value="NV">Nevada</option>
+										<option value="NH">New Hampshire</option>
+										<option value="NJ">New Jersey</option>
+										<option value="NM">New Mexico</option>
+										<option value="NY">New York</option>
+										<option value="NC">North Carolina</option>
+										<option value="ND">North Dakota</option>
+										<option value="OH">Ohio</option>
+										<option value="OK">Oklahoma</option>
+										<option value="OR">Oregon</option>
+										<option value="PA">Pennsylvania</option>
+										<option value="RI">Rhode Island</option>
+										<option value="SC">South Carolina</option>
+										<option value="SD">South Dakota</option>
+										<option value="TN">Tennessee</option>
+										<option value="UT">Utah</option>
+										<option value="VT">Vermont</option>
+										<option value="VA">Virginia</option>
+										<option value="WA">Washington</option>
+										<option value="WV">West Virginia</option>
+										<option value="WI">Wisconsin</option>
+										<option value="WY">Wyoming</option>
+										</div>
+									</select>
+    </label>
+  </div>
 
-<div class="formrow">
-  <label for="zip"> Zip
-    <input type="text" name="zip" class="half" value="{{ old:zip }}" placeholder="Zip"/>
-  </label>
-  <label for="spouse_or_significant_other"> Spouse or Significant Other
-    <input type="text" name="spouse_or_significant_other" class="half" value="{{ old:spouse_or_significant_other }}" placeholder="Name"/>
-  </label>
-</div>
+  <div class="formrow">
+    <label for="zip"> Zip
+      <input type="text" name="zip" class="half" value="{{ old:zip }}" placeholder="Zip" required/>
+    </label>
+    <label for="spouse_or_significant_other"> Spouse or Significant Other
+      <input type="text" name="spouse_or_significant_other" class="half" value="{{ old:spouse_or_significant_other }}" placeholder="Name"/>
+    </label>
+  </div>
 
-<div class="formrow">
-  <label for="email_address"> Email
-    <input type="text" name="email_address" class="half" value="{{ old:email_address }}" placeholder="Email"/>
-  </label>
-  <label for="home_phone"> Home Phone
-    <input type="text" name="home_phone" class="half" value="{{ old:home_phone }}" placeholder="Applicant Address"/>
-  </label>
-</div>
+  <div class="formrow">
+    <label for="email_address"> Email
+      <input type="text" name="email_address" class="half" value="{{ old:email_address }}" placeholder="Email"/>
+    </label>
+    <label for="home_phone"> Home Phone
+      <input type="text" name="home_phone" class="half" value="{{ old:home_phone }}" placeholder="Phone"/>
+    </label>
+  </div>
 
-<div class="formrow">
-  <label for="cell_phone"> Cell Phone
-    <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" placeholder="Cell Phone"/>
-  </label>
-  <label for="work_phone"> Work Phone
-    <input type="text" name="work_phone" class="half" value="{{ old:work_phone }}" placeholder="Work Phone"/>
-  </label>
-</div>
+  <div class="formrow">
+    <label for="cell_phone"> Cell Phone
+      <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" placeholder="Phone"/>
+    </label>
+    <label for="work_phone"> Work Phone
+      <input type="text" name="work_phone" class="half" value="{{ old:work_phone }}" placeholder="Phone"/>
+    </label>
+  </div>
 
-<div class="formrow">
-  <label for="occupation"> Occupation
-    <input type="text" name="occupation" class="half" value="{{ old:occupation }}" placeholder="Occupation"/>
-  </label>
-  <label for="name_of_sponsoring_director"> Name of Sponsoring Director
-    <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" placeholder="Sponsor Name"/>
-  </label>
-</div>
-
-<fieldset id="membership-level">
+  <div class="formrow">
+    <label for="occupation"> Occupation
+      <input type="text" name="occupation" class="half" value="{{ old:occupation }}" placeholder="Occupation"/>
+    </label>
+    <label for="name_of_sponsoring_director"> Name of Sponsoring Director
+      <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" placeholder="Sponsor Name"/>
+    </label>
+  </div>
+</fieldset>
+<!-- <fieldset id="membership-level">
     <div class="formrow">
       <legend>Choose a Membership Level</legend>
       <label for="Director_1000">
@@ -95,56 +163,92 @@
        <input type="radio" name="membership_level" value="old:Member_250" id="Member_250"> Member ($250 – 1 Ticket)
       </label>
     </div>
-</fieldset>
+</fieldset> -->
 
 
 <fieldset id="committees">
-    <div class="formrow">
+
       <legend>Which Committees will you be active in?</legend>
-    <label for="sponsorship">Sponsorship
-       <input type="checkbox" name="committee[]" value="sponsorship" id="sponsorship"><br>
-     </label>
-      <label for="fundraising">Fundraising
-       <input type="checkbox" name="committee[]" value="fundraising" id="fundraising"><br>
-      </label>
-      <label for="social_events">Social Events
-       <input type="checkbox" name="committee[]" value="social_events" id="social_events"><br>
-      </label>
-      <label for="membership">Membership
-       <input type="checkbox" name="committee[]" value="membership" id="membership"><br>
-      </label>
-      <label for="marketing">Marketing/Advertising
-       <input type="checkbox" name="committee[]" value="marketing" id="marketing"><br>
-      </label>
-      <label for="auction">Auction
-       <input type="checkbox" name="committee[]" value="auction" id="auction"><br>
-      </label>
-      <label for="community_outreach">Community Outreach
-       <input type="checkbox" name="committee[]" value="community_outreach" id="community_outreach"><br>
-      </label>
-      <label for="other-committee">Other
-       <input type="checkbox" name="committee[]" value="other" id="other-committee">
-       <input type="text" name="other_committee" class="half" value="{{ old:other_committee }}" placeholder="Committte Name" id="other"/>
-      </label>
-    </div>
+      <div class="formrow">
+        <label for="sponsorship">Sponsorship
+           <input type="checkbox" name="committee[]" value="sponsorship" id="sponsorship"><br>
+         </label>
+          <label for="fundraising">Fundraising
+           <input type="checkbox" name="committee[]" value="fundraising" id="fundraising"><br>
+          </label>
+      </div>
+
+      <div class="formrow">
+          <label for="social_events">Social Events
+           <input type="checkbox" name="committee[]" value="social_events" id="social_events"><br>
+          </label>
+          <label for="membership">Membership
+           <input type="checkbox" name="committee[]" value="membership" id="membership"><br>
+          </label>
+      </div>
+
+      <div class="formrow">
+        <label for="marketing">Marketing/Advertising
+         <input type="checkbox" name="committee[]" value="marketing" id="marketing"><br>
+        </label>
+        <label for="auction">Auction
+         <input type="checkbox" name="committee[]" value="auction" id="auction"><br>
+        </label>
+      </div>
+
+      <div class="formrow">
+        <label for="community_outreach">Community Outreach
+         <input type="checkbox" name="committee[]" value="community_outreach" id="community_outreach"><br>
+        </label>
+        <label for="other-committee">Other
+         <input type="checkbox" name="committee[]" value="other" id="other-committee" onclick="showOther()">
+        </label>
+      </div>
+       <input type="text" name="other_committee" class="half" value="{{ old:other_committee }}" placeholder="Committte Name" id="other" />
+
 </fieldset>
 
 <fieldset id="finally">
   <legend>Have you been convicted of a felony in the last ten years?</legend>
-  <label for="convicted_of_a_felony">Yes
-    <input type="radio" name="convicted_of_a_felony" id="convicted_of_a_felony" value="true">
-    <label for="not_convicted_of_felony">No
-      <input type="radio" name="convicted_of_a_felony" id="not_convicted_of_felony" value="false"></label>
-    <input type="text" name="if_yes_explain" id="if_yes_explain" placeholder="If yes, please explain">
-   </label>
+  <div class="formrow">
+    <label for="convicted_of_a_felony" class="binary">Yes
+      <input type="radio" name="convicted_of_a_felony" id="convicted_of_a_felony" value="true" onclick="showExplain()">
 
+    </label>
+      <label for="not_convicted_of_felony" class="binary">No
+        <input type="radio" name="convicted_of_a_felony" id="not_convicted_of_felony" value="false" onclick="showExplain()">
 
+     </label>
+   </div>
+   <input type="text" name="if_yes_explain" id="if_yes_explain" placeholder="If yes, please explain">
 
-<label for="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
+<!-- <label for="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
   <input type="checkbox" name="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster" id="please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster" value="yes">
-</label>
+</label> -->
 </fieldset>
 </div>
 <button class="sub-button">Submit</button>
+
+<script>
+
+  function showOther(){
+    if(document.getElementById("other-committee").checked){
+    document.getElementById("other").style.display = "block";
+  }
+    if(!document.getElementById("other-committee").checked){
+      document.getElementById("other").style.display = "none";
+    }
+  }
+  function showExplain(){
+    if(document.getElementById("convicted_of_a_felony").checked){
+    document.getElementById("if_yes_explain").style.display = "block";
+  }
+    if(!document.getElementById("convicted_of_a_felony").checked){
+      document.getElementById("if_yes_explain").style.display = "none";
+    }
+  }
+
+</script>
+
 
 {{ /form:create }}
