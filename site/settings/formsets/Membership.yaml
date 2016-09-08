@@ -48,15 +48,15 @@ fields:
     validate: required
   committees:
     display: committees
-    validate: 
+    validate:
   convicted_of_a_felony:
     display: Convicted of a Felony
     validate: required
   if_yes_explain:
     display: If yes, Explain
     validate: required_if:convicted_of_a_felony,yes | string
-  please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster:
-    display: Do not place my information on the roster
+  name_on_roster:
+    display: Name on Roster?
     validate: string
 columns:
   - application_date
