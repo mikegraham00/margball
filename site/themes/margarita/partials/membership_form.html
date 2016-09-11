@@ -18,7 +18,7 @@
 
 
   {{ /if }}
-{{ fields }}{{ name }}{{ /fields }}
+{{# fields #}}{{# name #}}{{# /fields #}}
   <h2 class="become-member">Apply to Become a Member</h2>
   <div class="form-container" id="membership_form">
   <fieldset>
@@ -26,7 +26,7 @@
       <div class="formrow">
         <!-- <label for="membership_level">Choose Membership Level</label> -->
           <select name="membership_level" id="membership_level" required>
-            <option value="default">Please Select</option>
+            <option value="-1" >Please Select</option>
             <option value="director_1000">Director ($1,000 – Table)</option>
             <option value="director_500">Director Level 2 ($500 – 2 VIP Seats)</option>
             <option value="member_250">Member ($250 – 1 Ticket)</option>
@@ -35,29 +35,29 @@
   </fieldset>
 
   <fieldset>
-    <legend>Applicant Information</legend>
+    <legend>Applicant Information </legend>
     <div class="formrow">
-      <label for="application_date"> Application Date
-          <input type="date" name="application_date" class="half" value="{{ old:application_date }}" placeholder="Date"/>
+      <label for="application_date" required> Application Date
+          <input type="date" name="application_date" class="half" value="{{ old:application_date }}" required />
       </label>
-      <label for="date_of_birth"> Date of Birth
-          <input type="date" name="date_of_birth" class="half" value="{{ old:date_of_birth }}" placeholder="DOB"/>
+      <label for="date_of_birth" required> Date of Birth
+          <input type="date" name="date_of_birth" class="half" value="{{ old:date_of_birth }}" required />
       </label>
     </div>
 
 
     <div class="formrow">
-      <label for="applicant_name"> Applicant Name
-        <input type="text" name="applicant_name" class="half" value="{{ old:applicant_name }}" placeholder="Applicant Name" required/>
+      <label for="applicant_name" required> Applicant Name
+        <input type="text" name="applicant_name" required class="half" value="{{ old:applicant_name }}" />
       </label>
-      <label for="applicant_address"> Applicant Address
-        <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" placeholder="Applicant Address" required/>
+      <label for="applicant_address" required> Applicant Address
+        <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" required/>
       </label>
     </div>
 
-    <div class="formrow">
+    <div class="formrow" required>
       <label for="city"> City
-        <input type="text" name="city" class="half" value="{{ old:city }}" placeholder="City" required/>
+        <input type="text" name="city" class="half" value="{{ old:city }}" required/>
       </label>
       <label for="state"> State
   									<select name="state" value="TX" id="state">
@@ -119,41 +119,41 @@
 
     <div class="formrow">
       <label for="zip"> Zip
-        <input type="text" name="zip" class="half" value="{{ old:zip }}" placeholder="Zip" required/>
+        <input type="text" name="zip" class="half" value="{{ old:zip }}" required/>
       </label>
       <label for="spouse_or_significant_other"> Spouse or Significant Other
-        <input type="text" name="spouse_or_significant_other" class="half" value="{{ old:spouse_or_significant_other }}" placeholder="Name"/>
+        <input type="text" name="spouse_or_significant_other" class="half" value="{{ old:spouse_or_significant_other }}" />
       </label>
     </div>
 
     <div class="formrow">
-      <label for="email_address"> Email
-        <input type="text" name="email_address" class="half" value="{{ old:email_address }}" placeholder="Email"/>
+      <label for="email_address" required> Email
+        <input type="text" name="email_address" class="half" value="{{ old:email_address }}" />
       </label>
       <label for="home_phone"> Home Phone
-        <input type="text" name="home_phone" class="half" value="{{ old:home_phone }}" placeholder="Phone"/>
+        <input type="text" name="home_phone" class="half" value="{{ old:home_phone }}" />
       </label>
     </div>
 
     <div class="formrow">
-      <label for="cell_phone"> Cell Phone
-        <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" placeholder="Phone"/>
+      <label for="cell_phone" required> Cell Phone
+        <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" />
       </label>
       <label for="work_phone"> Work Phone
-        <input type="text" name="work_phone" class="half" value="{{ old:work_phone }}" placeholder="Phone"/>
+        <input type="text" name="work_phone" class="half" value="{{ old:work_phone }}" />
       </label>
     </div>
 
     <div class="formrow">
       <label for="occupation"> Occupation
-        <input type="text" name="occupation" class="half" value="{{ old:occupation }}" placeholder="Occupation"/>
+        <input type="text" name="occupation" class="half" value="{{ old:occupation }}" />
       </label>
       <label for="name_of_sponsoring_director"> Name of Sponsoring Director
-        <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" placeholder="Sponsor Name"/>
+        <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" />
       </label>
     </div>
   </fieldset>
-  <fieldset id="membership-level">
+  <!-- <fieldset id="membership-level">
       <div class="formrow">
         <legend>Choose a Membership Level</legend>
         <label for="Director_1000">
@@ -166,7 +166,7 @@
          <input type="radio" name="membership_level" value="old:Member_250" id="Member_250"> Member ($250 – 1 Ticket)
         </label>
       </div>
-  </fieldset>
+  </fieldset> -->
 
 
   <fieldset id="committees">
@@ -174,40 +174,40 @@
         <legend>Which Committees will you be active in?</legend>
         <div class="formrow">
           <label for="sponsorship">Sponsorship
-             <input type="checkbox" name="sponsorcommittee[]" value="sponsorship" id="sponsorship"><br>
+             <input type="checkbox" name="sponsorship" value="yes" id="sponsorship" {{ if {old:sponsorship} == "yes" }} checked {{ /if }}><br>
            </label>
             <label for="fundraising">Fundraising
-             <input type="checkbox" name="committee[]" value="fundraising" id="fundraising"><br>
+             <input type="checkbox" name="fundraising" value="yes" id="fundraising" {{ if {old:fundraising} == "yes" }} checked {{ /if }}><br>
             </label>
         </div>
 
         <div class="formrow">
             <label for="social_events">Social Events
-             <input type="checkbox" name="committee[]" value="social_events" id="social_events"><br>
+             <input type="checkbox" name="social_events" value="yes" id="social_events" {{ if {old:social_events} == "yes" }} checked {{ /if }}><br>
             </label>
             <label for="membership">Membership
-             <input type="checkbox" name="committee[]" value="membership" id="membership"><br>
+             <input type="checkbox" name="membership" value="yes" id="membership" {{ if {old:membership} == "yes" }} checked {{ /if }}><br>
             </label>
         </div>
 
         <div class="formrow">
           <label for="marketing">Marketing/Advertising
-           <input type="checkbox" name="committee[]" value="marketing" id="marketing"><br>
+           <input type="checkbox" name="marketing" value="yes" id="marketing" {{ if {old:marketing} == "yes" }} checked {{ /if }}><br>
           </label>
           <label for="auction">Auction
-           <input type="checkbox" name="committee[]" value="auction" id="auction"><br>
+           <input type="checkbox" name="auction" value="yes" id="auction" {{ if {old:auction} == "yes" }} checked {{ /if }}><br>
           </label>
         </div>
 
         <div class="formrow">
           <label for="community_outreach">Community Outreach
-           <input type="checkbox" name="committee[]" value="community_outreach" id="community_outreach"><br>
+           <input type="checkbox" name="community_outreach" value="yes" id="community_outreach" {{ if {old:community_outreach} == "yes" }} checked {{ /if }}><br>
           </label>
-          <label for="other-committee">Other
-           <input type="checkbox" name="committee[]" value="other" id="other-committee" onclick="showOther()">
+          <label for="other">Other
+           <input type="checkbox" name="other" value="yes" id="other" onclick="showOther()" {{ if {old:other} == "yes" }} checked {{ /if }}>
           </label>
         </div>
-         <input type="text" name="other_committee" class="half" value="{{ old:other_committee }}" placeholder="Committte Name" id="other" />
+         <input type="text" name="other_committee" class="half" value="{{ old:other_committee }}" placeholder="Committte Name" id="other-committee"/>
 
   </fieldset>
 
@@ -215,20 +215,20 @@
     <legend>Have you been convicted of a felony in the last ten years?</legend>
     <div class="formrow">
       <label for="convicted_of_a_felony" class="binary">Yes
-        <input type="radio" name="convicted_of_a_felony" id="convicted_of_a_felony" value="true" onclick="showExplain()">
+        <input type="radio" name="convicted_of_a_felony" id="convicted_of_a_felony" value="yes" onclick="showExplain()" {{ if {old:convicted_of_a_felony} == "true" }} checked {{ /if }}>
 
       </label>
         <label for="not_convicted_of_felony" class="binary">No
-          <input type="radio" name="convicted_of_a_felony" id="not_convicted_of_felony" value="false" onclick="showExplain()">
+          <input type="radio" name="convicted_of_a_felony" id="not_convicted_of_felony" value="no" onclick="showExplain()">
 
        </label>
      </div>
      <input type="text" name="if_yes_explain" id="if_yes_explain" placeholder="If yes, please explain">
      </fieldset>
-      <label for="name_on_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
+      <!-- <label for="name_on_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
         <input type="checkbox" name="name_on_roster" id="name_on_roster" value="yes" {{ if {old:name_on_roster} == 'yes' }}checked{{ /if }}>
-      </label>
-    
+      </label> -->
+ <br>
   <button class="sub-button">Submit</button>
 </div>
 {{ /form:create }}
@@ -238,11 +238,11 @@
 <script>
 
   function showOther(){
-    if(document.getElementById("other-committee").checked){
-    document.getElementById("other").style.display = "block";
+    if(document.getElementById("other").checked){
+    document.getElementById("other-committee").style.display = "block";
   }
-    if(!document.getElementById("other-committee").checked){
-      document.getElementById("other").style.display = "none";
+    if(!document.getElementById("other").checked){
+      document.getElementById("other-committee").style.display = "none";
     }
   }
   function showExplain(){

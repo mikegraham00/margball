@@ -46,18 +46,39 @@ fields:
   membership_level:
     display: Membership Level
     validate: required
-  committees:
-    display: committees
-    validate:
+  sponsorship:
+    display: Sponsorship
+    validate: string
+  fundraising:
+    display: Fundraising
+    validate: string
+  social_events:
+    display: Social Events
+    validate: string
+  membership:
+    display: Membership
+    validate: string
+  marketing:
+    display: Marketing
+    validate: string
+  auction:
+    display: Auction
+    validate: string
+  community_outreach:
+    display: Community Outreach
+    validate: string
+  other:
+    display: other
+    validate: string
+  other_committee:
+    display: Other Committee
+    validate: required_if:other,yes | string
   convicted_of_a_felony:
     display: Convicted of a Felony
     validate: required
   if_yes_explain:
     display: If yes, Explain
     validate: required_if:convicted_of_a_felony,yes | string
-  name_on_roster:
-    display: Name on Roster?
-    validate: string
 columns:
   - application_date
   - date_of_birth
@@ -74,7 +95,14 @@ columns:
   - occupation
   - name_of_sponsoring_director
   - membership_level
-  - committees
   - convicted_of_a_felony
   - if_yes_explain
-  - please_do_not_place_my_information_on_the_childrens_charities_of_fort_worth_roster
+  - sponsorship
+  - fundraising
+  - social_events
+  - membership
+  - marketing
+  - auction
+  - community_outreach
+  - other
+  - other_committee

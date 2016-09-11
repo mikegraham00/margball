@@ -2037,7 +2037,7 @@ input:-moz-placeholder { /* Firefox 18- */
 .form-container input[type="text"]{
   height:45px;
 }
-input#other, input#if_yes_explain {
+input#other-committee, input#if_yes_explain {
   display:none;
 }
 input[type=checkbox]:checked ~ input#other {

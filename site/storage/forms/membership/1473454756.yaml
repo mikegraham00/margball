@@ -1,0 +1,18 @@
+membership_level: director_1000
+application_date: 1231-03-23
+date_of_birth: 2312-12-31
+applicant_name: Jake Hudson
+applicant_address: 6002 Paradise Dr.
+city: Arlington
+state: TX
+zip: 76001
+spouse_or_significant_other: TEST
+email_address: jake.t.hudson@gmail.com
+home_phone: 8178453764
+cell_phone: 8178453764
+work_phone: 8178453764
+occupation: TEst
+name_of_sponsoring_director: Test
+sponsorship: yes
+convicted_of_a_felony: 'true'
+if_yes_explain: I killed a man in Reno, just to watch him die. (developer field test)
