@@ -50,16 +50,44 @@ fields:
                 display: Call to Action in New Window?
                 instructions: null
           logo_grid_set:
-            display: Logo Grid
+            display: Sponsor Logos
             instructions:
             fields:
               heading:
                 type: text
                 display: Heading
                 instructions: null
-              logos:
+              platinum_sponsor_logos:
                 type: assets
-                display: Logos
+                display: Platinum Sponsors
+                instructions: null
+                container: images
+                folder: /
+                max_files: null
+              gold_sponsor_logos:
+                type: assets
+                display: Gold Sponsors
+                instructions: null
+                container: images
+                folder: /
+                max_files: null
+              silver_sponsor_logos:
+                type: assets
+                display: Silver Sponsors
+                instructions: null
+                container: images
+                folder: /
+                max_files: null
+              in_kind_sponsor_logos:
+                type: assets
+                display: In-Kind Sponsors
+                instructions: null
+                container: images
+                folder: /
+                max_files: null
+              premium_sponsor_logos:
+                type: assets
+                display: Premium Sponsors
                 instructions: null
                 container: images
                 folder: /

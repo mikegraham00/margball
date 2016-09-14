@@ -9,7 +9,6 @@ featured_event:
     call_to_action_text: Learn More
 single_link_block:
   - 
-    background_image: 366d2d9b-9433-4ea4-8975-ebe86cbef5f6
     call_to_action_url: /charities
     call_to_action_text: Charities
 content_section:
@@ -37,6 +36,23 @@ content_section:
           - 08f340d2-71cf-4968-a8d5-f7e0d013303d
           - c2b755ed-272d-4740-a6bd-3e8015245510
           - b2210a67-035f-4e11-b6c0-97c7eb7ac00a
+        silver_sponsor_logos:
+          - 08f340d2-71cf-4968-a8d5-f7e0d013303d
+          - 8cbf07d8-f8d1-4519-98fe-eb01f161996c
+          - c2b755ed-272d-4740-a6bd-3e8015245510
+          - 247bffc2-56a0-4900-99b3-248cce42224f
+        in_kind_sponsor_logos:
+          - b2210a67-035f-4e11-b6c0-97c7eb7ac00a
+          - 33745140-9bfe-4972-8515-f1b47a510970
+          - 831843e4-4f43-4ab5-8c97-dc887a35f6c7
+          - f1856fc1-7594-432f-8a72-e917560f1f5b
+          - 279b0474-8f5b-4733-9f30-a6bdd00dc511
+          - 0e65f5d4-f41f-454d-bc97-86a750706101
+          - 391e0e2f-c965-44c8-ba79-8c0c1093ac00
+          - 6bee3cd1-498a-4b0b-baa4-ec6ff5bb9878
+        premium_sponsor_logos:
+          - e732ca24-b215-48d8-90d8-5fc08093f247
+          - e3f1a063-ae7f-463d-9c0c-c0b79044d5ea
     background_style: light
 seo_title: "Fort Worth Margarita Society benefitting Children's Charities of Fort Worth"
 seo_description: "The Fort Worth Margarita Society hosts the annual Fort Worth Margarita Ball to benefit under-served children's charities in Fort Worth."

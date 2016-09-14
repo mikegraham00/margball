@@ -2,8 +2,50 @@
 {{ if subheading }}
 <h3>{{ subheading }}</h3>
 {{ /if }}
-<div class="image-grid flex">
-	{{ assets:logos }}
+
+{{ if platinum_sponsor_logos  }}
+
+<div class="logos">
+<h4 class="center">Platinum Sponsors</h4>
+<div class="image-grid flex platinum">
+	{{ assets:platinum_sponsor_logos }}
     <img src="{{ url }}" alt="{{ alt }}">
-    {{ /assets:logos }}
-</div>
+    {{ /assets:platinum_sponsor_logos }}
+</div></div>
+{{ /if }}
+{{ if gold_sponsor_logos }}
+<div class="logos">
+<h4 class="center">Gold Sponsors</h4>
+<div class="image-grid flex gold">
+	{{ assets:gold_sponsor_logos }}
+    <img src="{{ url }}" alt="{{ alt }}">
+    {{ /assets:gold_sponsor_logos }}
+</div></div>
+{{ /if }}
+{{ if silver_sponsor_logos  }}
+<div class="logos">
+<h4 class="center">Silver Sponsors</h4>
+<div class="image-grid flex silver">
+	{{ assets:silver_sponsor_logos }}
+    <img src="{{ url }}" alt="{{ alt }}">
+    {{ /assets:silver_sponsor_logos }}
+</div></div>
+{{ /if }}
+{{ if in_kind_sponsor_logos }}
+<div class="logos">
+<h4 class="center">In-Kind Sponsors</h4>
+<div class="image-grid flex inkind">
+	{{ assets:in_kind_sponsor_logos }}
+    <img src="{{ url }}" alt="{{ alt }}">
+    {{ /assets:in_kind_sponsor_logos }}
+</div></div>
+{{ /if }}
+{{ if premium_sponsor_logos }}
+<div class="logos">
+<h4 class="center">Premium Sponsors</h4>
+<div class="image-grid flex premium">
+	{{ assets:premium_sponsor_logos }}
+    <img src="{{ url }}" alt="{{ alt }}">
+    {{ /assets:premium_sponsor_logos }}
+</div></div>
+{{ /if }}
