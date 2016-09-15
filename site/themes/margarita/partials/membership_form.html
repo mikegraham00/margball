@@ -1,6 +1,6 @@
 <section class="light">
   <div class="row">
-  {{ form:create in="membership" attr="novalidate"}}
+  {{ form:create in="membership" redirect=“/#membership_form” }}
     {{ if errors }}
       <p class="error">Something went wrong...</p>
       <ul class="error-list">
@@ -22,7 +22,7 @@
   <h2 class="become-member">Apply to Become a Member</h2>
   <div class="form-container" id="membership_form">
   <fieldset>
-    <legend>Choose Membership Level</legend>
+    <legend>Choose Membership Level <span class="req">*</span> </legend>
       <div class="formrow">
         <!-- <label for="membership_level">Choose Membership Level</label> -->
           <select name="membership_level" id="membership_level" required>
@@ -37,29 +37,29 @@
   <fieldset>
     <legend>Applicant Information </legend>
     <div class="formrow">
-      <label for="application_date" required> Application Date
+      <label for="application_date" required> Application Date <span class="req">*</span>
           <input type="date" name="application_date" class="half" value="{{ old:application_date }}" required />
       </label>
-      <label for="date_of_birth" required> Date of Birth
+      <label for="date_of_birth" required> Date of Birth <span class="req">*</span>
           <input type="date" name="date_of_birth" class="half" value="{{ old:date_of_birth }}" required />
       </label>
     </div>
 
 
     <div class="formrow">
-      <label for="applicant_name" required> Applicant Name
+      <label for="applicant_name" required> Applicant Name <span class="req">*</span>
         <input type="text" name="applicant_name" required class="half" value="{{ old:applicant_name }}" />
       </label>
-      <label for="applicant_address" required> Applicant Address
+      <label for="applicant_address" required> Applicant Address <span class="req">*</span>
         <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" required/>
       </label>
     </div>
 
     <div class="formrow" required>
-      <label for="city"> City
+      <label for="city"> City <span class="req">*</span>
         <input type="text" name="city" class="half" value="{{ old:city }}" required/>
       </label>
-      <label for="state"> State
+      <label for="state"> State <span class="req">*</span>
   									<select name="state" value="TX" id="state">
   										<option value="TX">Texas</option>
   										<option value="AL">Alabama</option>
@@ -118,7 +118,7 @@
     </div>
 
     <div class="formrow">
-      <label for="zip"> Zip
+      <label for="zip"> Zip <span class="req">*</span>
         <input type="text" name="zip" class="half" value="{{ old:zip }}" required/>
       </label>
       <label for="spouse_or_significant_other"> Spouse or Significant Other
@@ -127,8 +127,8 @@
     </div>
 
     <div class="formrow">
-      <label for="email_address" required> Email
-        <input type="text" name="email_address" class="half" value="{{ old:email_address }}" />
+      <label for="email_address" required> Email <span class="req">*</span>
+        <input type="text" name="email_address" class="half" value="{{ old:email_address }}" required />
       </label>
       <label for="home_phone"> Home Phone
         <input type="text" name="home_phone" class="half" value="{{ old:home_phone }}" />
@@ -136,8 +136,8 @@
     </div>
 
     <div class="formrow">
-      <label for="cell_phone" required> Cell Phone
-        <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" />
+      <label for="cell_phone" required> Cell Phone <span class="req">*</span>
+        <input type="text" name="cell_phone" class="half" value="{{ old:cell_phone }}" required />
       </label>
       <label for="work_phone"> Work Phone
         <input type="text" name="work_phone" class="half" value="{{ old:work_phone }}" />
@@ -148,8 +148,8 @@
       <label for="occupation"> Occupation
         <input type="text" name="occupation" class="half" value="{{ old:occupation }}" />
       </label>
-      <label for="name_of_sponsoring_director"> Name of Sponsoring Director
-        <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" />
+      <label for="name_of_sponsoring_director"> Name of Sponsoring Director <span class="req">*</span>
+        <input type="text" name="name_of_sponsoring_director" class="half" value="{{ old:name_of_sponsoring_director }}" required />
       </label>
     </div>
   </fieldset>
@@ -212,7 +212,7 @@
   </fieldset>
 
     <fieldset id="finally">
-    <legend>Have you been convicted of a felony in the last ten years?</legend>
+    <legend>Have you been convicted of a felony in the last ten years? <span class="req">*</span> </legend>
     <div class="formrow">
       <label for="convicted_of_a_felony" class="binary">Yes
         <input type="radio" name="convicted_of_a_felony" id="convicted_of_a_felony" value="yes" onclick="showExplain()" {{ if {old:convicted_of_a_felony} == "true" }} checked {{ /if }}>

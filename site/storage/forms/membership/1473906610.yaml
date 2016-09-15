@@ -1,0 +1,20 @@
+membership_level: director_1000
+application_date: 1212-12-12
+date_of_birth: 1212-12-12
+applicant_name: Jake Hudson
+applicant_address: 6002 Paradise Dr.
+city: Arlington
+state: TX
+zip: 76001
+spouse_or_significant_other:
+email_address: jake.t.hudson@gmail.com
+home_phone: 8178453764
+cell_phone: 8178453764
+work_phone: 8178453764
+occupation: as
+name_of_sponsoring_director: asdf
+sponsorship: yes
+social_events: yes
+other_committee:
+convicted_of_a_felony: no
+if_yes_explain:

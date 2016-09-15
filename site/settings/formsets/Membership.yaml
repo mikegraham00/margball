@@ -24,7 +24,7 @@ fields:
     validate: required | string
   spouse_or_significant_other:
     display: Spouse or Significant Other
-    validate: required | string
+    validate: string
   email_address:
     display: Email Address
     validate: required | string
@@ -42,7 +42,7 @@ fields:
     validate: string
   name_of_sponsoring_director:
     display: Name of Sponsoring Director
-    validate: required
+    validate: string | required
   membership_level:
     display: Membership Level
     validate: required
