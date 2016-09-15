@@ -15,10 +15,10 @@
 	                <span class="time">{{ event_start format="g:i"}}|{{ event_end format="g:iA" }}</span>
 	                {{ event_description }}
 	                {{ if has_detail_page }}
-	                <div><a href="{{ url }}" class="button">More Info</a></div>
+	                <div style="margin-top:12px;"><a href="{{ url }}" class="button">More Info</a></div>
 	                {{/if}}
 	                {{ if cta_url }}
-	                <div><a href="{{ cta_url }}" class="button" {{if cta_new_window }}target="_blank"{{/if}}>{{ cta_text }}</a></div>
+	                <div style="margin-top:12px;"><a href="{{ cta_url }}" class="button" {{if cta_new_window }}target="_blank"{{/if}}>{{ cta_text }}</a></div>
 	                {{ /if }}
 	                {{ if lodging_link_url }}
 	                <div style="margin-top:12px;"><a href="{{ lodging_link_url }}" class="button" target="_blank">{{ lodging_link_text }}</a></div>
