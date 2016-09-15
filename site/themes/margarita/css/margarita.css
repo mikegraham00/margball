@@ -1343,16 +1343,16 @@ p.cta {
       .image-grid.silver img {
         width: 30%;
         padding: 20px; } }
-  .image-grid.inkind img {
+  .image-grid.premium img {
     width: 50%; }
     @media screen and (min-width: 801px) {
-      .image-grid.inkind img {
+      .image-grid.premium img {
         width: 25%;
         padding: 20px; } }
-  .image-grid.premium img {
+  .image-grid.inkind img {
     width: 40%; }
     @media screen and (min-width: 801px) {
-      .image-grid.premium img {
+      .image-grid.inkind img {
         width: 20%;
         padding: 20px; } }
 

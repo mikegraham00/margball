@@ -31,15 +31,6 @@
     {{ /assets:silver_sponsor_logos }}
 </div></div>
 {{ /if }}
-{{ if in_kind_sponsor_logos }}
-<div class="logos">
-<h4 class="center">In-Kind Sponsors</h4>
-<div class="image-grid flex inkind">
-	{{ assets:in_kind_sponsor_logos }}
-    <img src="{{ url }}" alt="{{ alt }}">
-    {{ /assets:in_kind_sponsor_logos }}
-</div></div>
-{{ /if }}
 {{ if premium_sponsor_logos }}
 <div class="logos">
 <h4 class="center">Premium Sponsors</h4>
@@ -47,5 +38,14 @@
 	{{ assets:premium_sponsor_logos }}
     <img src="{{ url }}" alt="{{ alt }}">
     {{ /assets:premium_sponsor_logos }}
+</div></div>
+{{ /if }}
+{{ if in_kind_sponsor_logos }}
+<div class="logos">
+<h4 class="center">In-Kind Sponsors</h4>
+<div class="image-grid flex inkind">
+	{{ assets:in_kind_sponsor_logos }}
+    <img src="{{ url }}" alt="{{ alt }}">
+    {{ /assets:in_kind_sponsor_logos }}
 </div></div>
 {{ /if }}
