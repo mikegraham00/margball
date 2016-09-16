@@ -66,7 +66,7 @@ content_section:
           	<li>Networking opportunities</li>
           </ul>
           <hr>
-        cta: Download Membership Form
+        
         cta_url: '/assets/2016 Director Application[1].pdf'
     background_style: dark
 title: Membership
