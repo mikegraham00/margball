@@ -3,6 +3,7 @@
 @section('content')
 
     <form method="post" action="{{ route('user.group.store') }}" class="card">
+        {!! csrf_field() !!}
 
         <div class="head">
             <h1>{{ translate('cp.creating_usergroup') }}</h1>

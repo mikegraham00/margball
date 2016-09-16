@@ -22,7 +22,6 @@ class Kernel extends ConsoleKernel
        'Statamic\Console\Commands\Clear\ClearCacheCommand',
        'Statamic\Console\Commands\Clear\ClearStacheCommand',
        'Statamic\Console\Commands\Clear\ClearGlideCommand',
-       'Statamic\Console\Commands\Clear\ClearStaticCommand',
        'Statamic\Console\Commands\Clear\ClearSiteCommand',
        'Statamic\Console\Commands\Generators\Theme\ThemeMakeCommand',
        'Statamic\Console\Commands\Generators\Addon\AddonMakeCommand',
@@ -41,6 +40,8 @@ class Kernel extends ConsoleKernel
        'Statamic\Console\Commands\Generators\UserMakeCommand',
        'Statamic\Console\Commands\Generators\FieldsetMakeCommand',
        'Statamic\Console\Commands\RefreshAddonsCommand',
+       'Statamic\Console\Commands\Config\ConfigSetCommand',
+       'Statamic\Console\Commands\Convert\ConvertEmailLoginCommand',
        'Statamic\Console\Commands\SetCommand',
     ];
 

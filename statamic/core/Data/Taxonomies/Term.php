@@ -329,6 +329,8 @@ class Term extends Content implements TermContract
         $this->supplements['taxonomy'] = $this->taxonomyName();
         $this->supplements['count'] = $this->count();
         $this->supplements['is_term'] = true;
+        $this->supplements['results'] = $this->count();
+        $this->supplements['collection'] = $this->collection(); // ContentCollection, was array
 
         $this->supplements = array_merge($this->cascadingData(), $this->supplements);
     }

@@ -3,6 +3,7 @@
 @section('content')
 
     <form method="post" action="{{ route('collection.store') }}">
+        {!! csrf_field() !!}
 
         <div class="card flat-bottom sticky">
             <div class="head">

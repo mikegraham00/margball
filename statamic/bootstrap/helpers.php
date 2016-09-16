@@ -570,3 +570,13 @@ function refreshing_addons()
 {
     return app()->runningInConsole() && array_get($_SERVER, 'argv.1') === 'addons:refresh';
 }
+
+/**
+ * The middleware names applied to CP routes.
+ *
+ * @return array
+ */
+function cp_middleware()
+{
+    return ['locale', 'outpost'];
+}

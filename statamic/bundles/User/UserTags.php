@@ -39,28 +39,28 @@ class UserTags extends Tags
         // Get a user by ID, if the `id` parameter was used.
         if ($id = $this->get('id')) {
             if (! $user = User::find($id)) {
-                return $this->parse(['no_results' => true]);
+                return $this->parseNoResults();
             }
         }
 
         // Get a user by username, if the `username` parameter was used.
         if ($username = $this->get('username')) {
             if (! $user = User::whereUsername($username)) {
-                return $this->parse(['no_results' => true]);
+                return $this->parseNoResults();
             }
         }
 
         // Get a user by email, if the `email` parameter was used.
         if ($email = $this->get('email')) {
             if (! $user = User::whereEmail($email)) {
-                return $this->parse(['no_results' => true]);
+                return $this->parseNoResults();
             }
         }
 
         // No user found? Get the current one.
         if (! $user) {
             if (! $user = User::getCurrent()) {
-                return $this->parse(['no_results' => true]);
+                return $this->parseNoResults();
             }
         }
 

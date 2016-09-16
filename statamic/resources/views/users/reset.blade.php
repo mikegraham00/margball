@@ -24,6 +24,7 @@
     @else
 
         <form method="post">
+            {!! csrf_field() !!}
 
             <div class="form-group">
                 <label>{{ trans_choice('cp.passwords', 1) }}</label>

@@ -2,7 +2,7 @@
 
 namespace Statamic\Data\Entries;
 
-use Statamic\API\Entry;
+use Statamic\API\Entry as EntryAPI;
 use Statamic\API\File;
 use Statamic\API\YAML;
 use Statamic\API\Config;
@@ -38,7 +38,7 @@ class Collection extends DataFolder implements CollectionContract
      */
     public function count()
     {
-        return $this->entries()->count();
+        return EntryAPI::countWhereCollection($this->path());
     }
 
     /**
@@ -50,7 +50,7 @@ class Collection extends DataFolder implements CollectionContract
             return $this->entries;
         }
 
-        if (! $entries = Entry::whereCollection($this->path())) {
+        if (! $entries = EntryAPI::whereCollection($this->path())) {
             $entries = collect_entries();
         }
 

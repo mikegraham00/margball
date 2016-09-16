@@ -48,6 +48,8 @@ abstract class Controller extends BaseController
                 'logged_out'   => !\Auth::check(),
                 'environment'  => app()->environment(),
                 'xml_header'   => '<?xml version="1.0" encoding="utf-8" ?>',
+                'csrf_token'   => csrf_token(),
+                'csrf_field'   => csrf_field(),
                 'settings'     => Config::all()
             ],
             $this->segments()

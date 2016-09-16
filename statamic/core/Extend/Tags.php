@@ -80,7 +80,7 @@ abstract class Tags extends Addon
      * @param array $context  Contextual variables to also use
      * @return string
      */
-    protected function parse($data, $context = [])
+    protected function parse($data = [], $context = [])
     {
         if ($this->trim) {
             $this->content = trim($this->content);
@@ -108,6 +108,20 @@ abstract class Tags extends Addon
         $context = array_merge($context, $this->context);
 
         return Parse::templateLoop($this->content, $this->addScope($data), $supplement, $context);
+    }
+
+    /**
+     * Parse with no results
+     *
+     * @param array $data Extra data to merge
+     * @return string
+     */
+    protected function parseNoResults($data = [])
+    {
+        return $this->parse(array_merge($data, [
+            'no_results' => true,
+            'total_results' => 0
+        ]));
     }
 
     /**
@@ -159,7 +173,7 @@ abstract class Tags extends Addon
 
         $action = $this->eventUrl($action);
 
-        $html = '<form method="POST" action="'.$action.'" '.$attr_str.'>';
+        $html = '<form method="POST" action="'.$action.'" '.$attr_str.'>'.csrf_field();
 
         return $html;
     }

@@ -2,8 +2,7 @@
 
 namespace Statamic\Stache;
 
-use Statamic\API\Config;
-use Statamic\API\File;
+use Statamic\API\Cache;
 
 class UpdateManager
 {
@@ -125,11 +124,7 @@ class UpdateManager
      */
     protected function getTimestamps()
     {
-        $filename = 'local/cache/stache/timestamps.txt';
-
-        return (File::exists($filename))
-            ? collect(unserialize(File::get($filename)))
-            : collect();
+        return collect(Cache::get('stache.timestamps', []));
     }
 
     /**
@@ -139,22 +134,16 @@ class UpdateManager
      */
     private function persistTimestamps()
     {
-        File::put(
-            'local/cache/stache/timestamps.txt',
-            serialize($this->timestamps->all())
-        );
+        Cache::put('stache.timestamps', $this->timestamps->all());
     }
 
     /**
-     * Persist the config for next time
+     * Persist the config (and some meta data) for next time
      *
      * @return void
      */
     private function persistConfig()
     {
-        File::put(
-            'local/cache/stache/config.txt',
-            serialize(Config::all())
-        );
+        Cache::put('stache.config', $this->stache->buildConfig());
     }
 }

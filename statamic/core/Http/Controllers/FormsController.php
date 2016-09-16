@@ -64,6 +64,7 @@ class FormsController extends CpController
             $submission['datestring'] = (string) $submission['date'];
             $submission['datestamp'] = $submission['date']->timestamp;
             $submission['edit_url'] = route('form.submission.show', [$form->name(), $submission['id']]);
+            $submission['delete_url'] = route('form.submission.delete', [$form->name(), $submission['id']]);
             return $submission;
         });
 

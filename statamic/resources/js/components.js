@@ -1,6 +1,9 @@
 import AssetBrowser from './components/assets/AssetBrowser.vue'
 import DossierTable from './components/dossier/DossierTable.vue'
 import DossierSearch from './components/dossier/DossierSearch.vue'
+import PageTree from './components/page-tree/PageTree.vue'
+import PageTreeBranch from './components/page-tree/Branch.vue'
+import PageTreeBranches from './components/page-tree/Branches.vue'
 
 // Core
 Vue.component('addon-listing', require('./components/listings/addons'));
@@ -15,7 +18,7 @@ Vue.component('configure-taxonomies-listing', require('./components/listings/tax
 Vue.component('entry-listing', require('./components/listings/entries'));
 Vue.component('formset-builder', require('./components/formset-builder/formset-builder'));
 Vue.component('fieldset-builder', require('./components/fieldset-builder/builder'));
-Vue.component('page-tree', require('./components/page-tree/page-tree'));
+Vue.component('page-tree', PageTree);
 Vue.component('publish', require('./components/publish/publish'));
 Vue.component('typeahead', require('./components/typeahead/typeahead'));
 Vue.component('installer', require('./components/installer/installer'));
@@ -39,8 +42,8 @@ Vue.component('alert', require('./components/alert'));
 Vue.component('asset-editor', require('./components/assets/modals/asset-editor'));
 Vue.component('asset-folder-editor', require('./components/assets/modals/folder-editor'));
 Vue.component('asset-listing', require('./components/assets/listing/listing'));
-Vue.component('branch', require('./components/page-tree/branch'));
-Vue.component('branches', require('./components/page-tree/branches'));
+Vue.component('branch', PageTreeBranch);
+Vue.component('branches', PageTreeBranches);
 Vue.component('set-builder', require('./components/fieldset-builder/set-builder'));
 Vue.component('fields-builder', require('./components/fieldset-builder/fields-builder'));
 Vue.component('field-settings', require('./components/fieldset-builder/field-settings'));

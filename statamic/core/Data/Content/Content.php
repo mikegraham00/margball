@@ -175,6 +175,8 @@ abstract class Content extends Data implements ContentContract
         // process will likely assume we're using the default locale.
         $this->locale(default_locale());
 
+        $this->ensureId();
+
         // Write files to disk. One for each locale stored in this data.
         $this->writeFiles();
 
@@ -326,7 +328,7 @@ abstract class Content extends Data implements ContentContract
         // Subclasses will be able to perform any post-save functionality. For example,
         // renaming a page would leave an empty folder, the Page class will delete it.
         $this->completeDelete();
-        
+
         // Whoever wants to know about it can do so now.
         $event_class = 'Statamic\Events\Data\\' . ucfirst($this->contentType()) . 'Deleted';
         event(new $event_class($this->id(), $paths->all()));

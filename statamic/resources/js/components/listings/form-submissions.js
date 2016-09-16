@@ -24,6 +24,23 @@ module.exports = {
                 }
             }
         }
+    },
+
+    ready: function () {
+        if (this.can('super')) {
+            this.addActionPartial();
+        }
+    },
+
+    methods: {
+        addActionPartial: function () {
+            var str = `
+                <li><a :href="item.delete_url">{{ translate('cp.delete') }}</a></li>
+            `;
+
+            this.tableOptions.partials.actions = str;
+        }
     }
+
 
 };

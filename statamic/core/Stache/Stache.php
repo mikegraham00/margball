@@ -4,6 +4,7 @@ namespace Statamic\Stache;
 
 use Illuminate\Support\Collection;
 use Statamic\API\Str;
+use Statamic\API\Config;
 use Statamic\Stache\Drivers\AggregateDriver;
 
 class Stache
@@ -39,12 +40,75 @@ class Stache
     private $updates = [];
 
     /**
+     * The "temperature" of the Stache.
+     *
+     * @var int
+     */
+    private $temperature;
+
+    /**
+     * When the Stache is cold
+     *
+     * @var int
+     */
+    const TEMP_COLD = 0;
+
+    /**
+     * When the cache is warm
+     *
+     * @var int
+     */
+    const TEMP_WARM = 1;
+
+    /**
      * Stache constructor.
      */
     public function __construct()
     {
         $this->drivers = collect();
         $this->repositories = collect();
+
+        $this->cool();
+    }
+
+    /**
+     * Change the temperature to cold
+     *
+     * @return void
+     */
+    public function cool()
+    {
+        $this->temperature = self::TEMP_COLD;
+    }
+
+    /**
+     * Change the temperature to warm
+     *
+     * @return void
+     */
+    public function heat()
+    {
+        $this->temperature = self::TEMP_WARM;
+    }
+
+    /**
+     * Whether the Stache is warm (contains at least the initial data)
+     *
+     * @return bool
+     */
+    public function isWarm()
+    {
+        return $this->temperature === self::TEMP_WARM;
+    }
+
+    /**
+     * Whether the Stache is cold (doesn't yet contain at least the initial data)
+     *
+     * @return bool
+     */
+    public function isCold()
+    {
+        return $this->temperature === self::TEMP_COLD;
     }
 
     /**
@@ -257,5 +321,23 @@ class Stache
         }
 
         $this->updates[] = $key;
+    }
+
+    /**
+     * Build up a config array
+     *
+     * Used for comparisons to see if the config has changed between requests.
+     *
+     * @return array
+     */
+    public function buildConfig()
+    {
+        $meta = [
+            'version' => STATAMIC_VERSION
+        ];
+
+        $config = Config::all();
+
+        return compact('meta', 'config');
     }
 }

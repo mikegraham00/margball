@@ -17,6 +17,13 @@ use Statamic\Stache\EmptyStacheException;
 class StacheServiceProvider extends ServiceProvider
 {
     /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = true;
+
+    /**
      * @var Stache
      */
     private $stache;
@@ -75,7 +82,7 @@ class StacheServiceProvider extends ServiceProvider
             new Persister($this->stache)
         );
 
-        $this->app->instance('stache.manager', $manager);
+        $this->app->instance(Manager::class, $manager);
     }
 
     /**
@@ -87,9 +94,9 @@ class StacheServiceProvider extends ServiceProvider
     {
         $this->request = $request;
 
-        $this->app->make('stache')->locales(Config::getLocales());
+        $this->app->make(Stache::class)->locales(Config::getLocales());
 
-        $this->manager = $this->app->make('stache.manager');
+        $this->manager = $this->app->make(Manager::class);
 
         $this->manager->registerDrivers();
 
@@ -104,12 +111,17 @@ class StacheServiceProvider extends ServiceProvider
         $update = $this->shouldUpdateStache();
 
         try {
-            // At this point the Stache is just an empty object.
-            // We'll want to load (aka. 'hydrate') it.
+            // At this point the Stache is just an empty object. We'll want to load
+            // (aka. 'hydrate') it. We'll also mark it as warmed. If it turns
+            // out that it was empty/cold, the exception will adjust that.
             $this->manager->load();
+            $this->stache->heat();
         } catch (EmptyStacheException $e) {
-            // If the stache was empty, we need to be sure to update it.
+            // If the stache was empty, we need to be sure to update it. We also
+            // want to mark it as "cold". Some services (like search indexing)
+            // should not run on the initial warm up to prevent overloading.
             $update = true;
+            $this->stache->cool();
         }
 
         // If we've opted to update the Stache, we'll do so, and
@@ -117,6 +129,8 @@ class StacheServiceProvider extends ServiceProvider
         if ($update) {
             $this->manager->update();
         }
+
+        $this->stache->heat();
     }
 
     /**
@@ -151,5 +165,15 @@ class StacheServiceProvider extends ServiceProvider
         if ($this->manager->hasConfigChanged()) {
             \Statamic\API\Stache::clear();
         }
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [Stache::class];
     }
 }

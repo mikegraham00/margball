@@ -2,6 +2,7 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\UserGroupsService;
 use Statamic\Contracts\Permissions\Permissible;
 
 class UserGroup
@@ -11,7 +12,7 @@ class UserGroup
      */
     public static function all()
     {
-        return app('UserGroupsService')->all();
+        return app(UserGroupsService::class)->all();
     }
 
     /**
@@ -22,7 +23,7 @@ class UserGroup
      */
     public static function find($id)
     {
-        return app('UserGroupsService')->id($id);
+        return app(UserGroupsService::class)->id($id);
     }
 
     /**
@@ -33,7 +34,7 @@ class UserGroup
      */
     public static function whereHandle($handle)
     {
-        return app('UserGroupsService')->handle($handle);
+        return app(UserGroupsService::class)->handle($handle);
     }
 
     /**

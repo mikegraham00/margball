@@ -3,6 +3,7 @@
 @section('content')
 
     <form method="post" action="{{ route('taxonomy.update', $group->path()) }}">
+        {!! csrf_field() !!}
 
         <div class="publish-form card">
             <div class="head">

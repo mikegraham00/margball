@@ -34,15 +34,16 @@
             >
                 <div class="editor" v-el:codemirror></div>
 
-                <div class="markdown-cheatsheet-helper" v-if="cheatsheet">
-                    <a href="" @click.prevent="showCheatsheet = true">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="208" height="128" viewBox="0 0 208 128"><mask id="a"><rect width="100%" height="100%" fill="#fff"/><path d="M30 98v-68h20l20 25 20-25h20v68h-20v-39l-20 25-20-25v39zM155 98l-30-33h20v-35h20v35h20z"/></mask><rect width="100%" height="100%" ry="15" mask="url(#a)"/></svg>
-                        Markdown Cheatsheet
-                    </a>
-                </div>
-
-                <div class="markdown-asset-helper" v-if="assetsEnabled">
-                    <a href="" @click.prevent="addAsset"><span class="icon icon-image"></span> Add Asset</a> (or drag &amp; drop)
+                <div class="helpers">
+                    <div class="markdown-cheatsheet-helper" v-if="cheatsheet">
+                        <a href="" @click.prevent="showCheatsheet = true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="208" height="128" viewBox="0 0 208 128"><mask id="a"><rect width="100%" height="100%" fill="#fff"/><path d="M30 98v-68h20l20 25 20-25h20v68h-20v-39l-20 25-20-25v39zM155 98l-30-33h20v-35h20v35h20z"/></mask><rect width="100%" height="100%" ry="15" mask="url(#a)"/></svg>
+                            Markdown Cheatsheet
+                        </a>
+                    </div>
+                    <div class="markdown-asset-helper" v-if="assetsEnabled">
+                        <a href="" @click.prevent="addAsset"><span class="icon icon-image"></span> Add Asset</a> (or drag &amp; drop)
+                    </div>
                 </div>
 
                 <div class="drag-notification" v-if="assetsEnabled && draggingFile">
@@ -327,7 +328,8 @@ module.exports = {
                 url: cp_url('assets'),
                 extraData: {
                     container: self.container,
-                    folder: self.folder
+                    folder: self.folder,
+                    _token: document.querySelector('#csrf-token').getAttribute('value')
                 },
                 onUploadSuccess: function(id, data) {
                     if (data.asset.is_image) {

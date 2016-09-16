@@ -5,7 +5,6 @@ fields:
   locales:
     type: locale_settings
 
-
   date_format:
 
   default_extension:
@@ -28,6 +27,9 @@ fields:
         width: 30
       settings:
         type: yaml
+  
+  csrf_exclude:
+    type: list
 
 #  protect:
 #    type: yaml

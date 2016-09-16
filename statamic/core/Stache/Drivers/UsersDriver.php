@@ -38,11 +38,15 @@ class UsersDriver extends AbstractDriver
 
     public function toPersistentArray($repo)
     {
+        $users = $repo->getItems()->map(function ($user) {
+            return $user->shrinkWrap();
+        })->all();
+
         return [
             'meta' => [
                 'paths' => $repo->getPaths()->all()
             ],
-            'items' => ['users' => $repo->getItems()]
+            'items' => compact('users')
         ];
     }
 
@@ -68,5 +72,18 @@ class UsersDriver extends AbstractDriver
     public function getLocalizedUri($locale, $data, $path)
     {
         dd('users locale', $path, $data);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function load($collection)
+    {
+        return $collection->map(function ($item, $id) {
+            return User::create()
+                ->username($item['attributes']['username'])
+                ->with($item['data'][default_locale()])
+                ->get();
+        });
     }
 }

@@ -2,41 +2,78 @@
 
 namespace Statamic\Addons\Search;
 
-use Statamic\API\Cache;
 use Statamic\API\Config;
 use Statamic\API\Search;
+use Statamic\Stache\Stache;
 use Statamic\Extend\Listener;
-use Statamic\Events\StacheUpdated;
+use Statamic\Events\Stache\RepositoryItemRemoved;
+use Statamic\Events\Stache\RepositoryItemInserted;
 
 class SearchListener extends Listener
 {
     public $events = [
-        StacheUpdated::class => 'handle'
+        RepositoryItemInserted::class => 'insert',
+        RepositoryItemRemoved::class => 'remove',
     ];
 
-    public function handle(StacheUpdated $event)
+    /**
+     * @var Stache
+     */
+    private $stache;
+
+    /**
+     * @param Stache $stache
+     */
+    public function __construct(Stache $stache)
     {
-        // If search auto-indexing is disabled, we don't need to do anything.
+        $this->stache = $stache;
+    }
+
+    /**
+     * Insert content into the search index
+     *
+     * @param RepositoryItemInserted $event
+     */
+    public function insert(RepositoryItemInserted $event)
+    {
         if (! Config::get('search.auto_index')) {
             return;
         }
 
-        // Check if any content we're interested in was updated.
-        // If none was, then we don't care. Don't do anything.
-        if (! $event->updatedAny(['pages', 'entries', 'terms'])) {
+        // If the cache was cleared, all the content will be re-added, triggering this event for each item.
+        // Typically, these will be considered 'false positives' since the search index probably has the
+        // same content. If using an API driver like Algolia, there would be an API request for each
+        // item, which would be nuts. So, while the Stache is warming up, we'll disable indexing.
+        if ($this->stache->isCold()) {
             return;
         }
 
-        // If we're inside the idle period, don't do anything.
-        if (Cache::get('search_index_idle', false)) {
+        $content = $event->item;
+
+        if (! is_object($content) || ! method_exists($content, 'id')) {
             return;
         }
 
-        // Made it this far, congrats. Your prize is a fresh search index.
-        Search::update();
+        Search::insert($event->id, $content->toArray());
+    }
 
-        // Begin the idle period which will last for a configurable amount of time.
-        // During the idle period, automated search index will be disabled.
-        Cache::put('search_index_idle', true, Config::get('search.index_frequency'));
+    /**
+     * Delete an item from the search index
+     *
+     * @param RepositoryItemRemoved $event
+     */
+    public function remove(RepositoryItemRemoved $event)
+    {
+        if (! Config::get('search.auto_index')) {
+            return;
+        }
+
+        $content = $event->item;
+
+        if (! is_object($content) || ! method_exists($content, 'id')) {
+            return;
+        }
+
+        Search::delete($event->id);
     }
 }

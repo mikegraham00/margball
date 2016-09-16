@@ -2,6 +2,8 @@
 
 namespace Statamic\Console\Commands\Clear;
 
+use Statamic\API\File;
+use Statamic\API\Cache;
 use Statamic\API\Folder;
 use Illuminate\Console\Command;
 
@@ -28,7 +30,18 @@ class ClearGlideCommand extends Command
      */
     public function fire()
     {
-        Folder::delete(cache_path('glide'));
+        // Delete the cached images
+        collect(Folder::disk('glide')->getFilesRecursively('/'))->each(function ($path) {
+            File::disk('glide')->delete($path);
+        });
+
+        // Clean up subfolders
+        Folder::disk('glide')->deleteEmptySubfolders('/');
+
+        // Remove the cached keys so the middleware doesn't try to load a non existent image.
+        collect(Cache::get('glide.paths', []))->keys()->each(function ($key) {
+            Cache::forget("glide.paths.$key");
+        });
 
         $this->info('Your Glide image cache is now so very, very empty.');
     }

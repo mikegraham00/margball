@@ -24,7 +24,7 @@ class GetFilesTags extends Tags
         $this->getFiles();
 
         if ($this->files->count() == 0) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         $data = $this->files->toArray();

@@ -2,15 +2,13 @@
 
 namespace Statamic\Http\Controllers;
 
-use GuzzleHttp\Client;
+use Cache;
 use Statamic\API\Asset;
 use League\Glide\Server;
 use Statamic\API\Config;
 use Statamic\API\Stache;
 use Illuminate\Http\Request;
-use League\Flysystem\Filesystem;
 use Statamic\Imaging\ImageGenerator;
-use Twistor\Flysystem\GuzzleAdapter;
 use League\Glide\Signatures\SignatureFactory;
 use League\Glide\Signatures\SignatureException;
 
@@ -67,18 +65,12 @@ class GlideController extends Controller
      */
     public function generateByUrl($url)
     {
-        $parsed = parse_url(base64_decode($url));
-
-        $base = $parsed['scheme'] . '://' . $parsed['host'];
-
-        $filesystem = new Filesystem(new GuzzleAdapter($base, new Client()));
-
-        $this->server->setSource($filesystem);
-
         $this->validateSignature();
 
+        $url = base64_decode($url);
+
         return $this->createResponse(
-            $this->generator->generateByUrl($parsed['path'], $this->request->all())
+            $this->generator->generateByUrl($url, $this->request->all())
         );
     }
 
@@ -106,7 +98,28 @@ class GlideController extends Controller
      */
     private function createResponse($path)
     {
+        $this->cachePath($path);
+
         return $this->server->getResponseFactory()->create($this->server->getCache(), $path);
+    }
+
+    /**
+     * Cache the path of the Glide generated image so the Glide middleware can serve it faster.
+     *
+     * @param string $path
+     * @return void
+     */
+    private function cachePath($path)
+    {
+        $key = md5($this->request->getUri());
+
+        // Append the path to an array so they can all be cleared.
+        $paths = Cache::get('glide.paths', []);
+        $paths[$key] = $path;
+        Cache::forever('glide.paths', $paths);
+
+        // Save the path as its own key so it can be retrieved quickly.
+        Cache::forever("glide.paths.$key", $path);
     }
 
     /**

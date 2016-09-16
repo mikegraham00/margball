@@ -1,0 +1,53 @@
+{{ partial:page_header }}
+
+<section class="main">
+
+    <div class="row">
+        <h1>{{ title }}</h1>
+        
+        <div class="contact-wrap">
+            {{ content }}
+
+{{ form:create in="work" redirect=“/about-us” }}
+    {{ if errors }}
+      <p class="error">Something went wrong...</p>
+      <ul class="error-list">
+          {{ errors }}
+              <li>{{ value }}</li>
+          {{ /errors }}
+      </ul>
+
+  {{ /if }}
+  {{ if success }}
+
+
+          <p class="success"> Thanks for contacting us. We'll be in touch soon.</p>
+
+
+
+  {{ /if }}
+
+  
+  <fieldset>
+    <legend>Applicant Information </legend>
+    <div class="formrow">
+     
+    </div>
+
+
+    <div class="formrow">
+      <label for="applicant_name" > Applicant Name <span class="req">*</span>
+        <input type="text" name="applicant_name"  class="half" value="{{ old:applicant_name }}" />
+      </label>
+      <label for="applicant_address" > Applicant Address <span class="req">*</span>
+        <input type="text" name="applicant_address" class="half" value="{{ old:applicant_address }}" />
+      </label>
+    </div>
+
+    
+  <button class="sub-button">Submit</button>
+</div>
+{{ /form:create }}
+</div>
+</div>
+</section>

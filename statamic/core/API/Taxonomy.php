@@ -2,6 +2,8 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\TaxonomiesService;
+
 class Taxonomy
 {
     /**
@@ -11,7 +13,7 @@ class Taxonomy
      */
     public static function all()
     {
-        return app('TaxonomiesService')->all();
+        return app(TaxonomiesService::class)->all();
     }
 
     /**
@@ -32,7 +34,7 @@ class Taxonomy
      */
     public static function whereHandle($handle)
     {
-        return app('TaxonomiesService')->handle($handle);
+        return app(TaxonomiesService::class)->handle($handle);
     }
 
     /**

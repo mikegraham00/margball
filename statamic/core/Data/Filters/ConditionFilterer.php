@@ -58,7 +58,7 @@ class ConditionFilterer implements ConditionFiltererContract
                 }
                 break;
             default:
-                $value = $data->get($value);
+                $value = $data->getWithCascade($value);
                 break;
         }
 
@@ -87,12 +87,21 @@ class ConditionFilterer implements ConditionFiltererContract
         switch ($type) {
             case 'is':
             case 'equals':
-                return $value === $needle;
+                return $value == $needle;
                 break;
             case 'not':
             case 'isnt':
             case 'aint':
             case '¯\_(ツ)_/¯':
+                return $value != $needle;
+                break;
+            case 'is_strict':
+            case 'equals_strict':
+                return $value === $needle;
+                break;
+            case 'not_strict':
+            case 'isnt_strict':
+            case 'aint_strict':
                 return $value !== $needle;
                 break;
             case 'exists':

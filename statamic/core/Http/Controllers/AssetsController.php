@@ -104,19 +104,6 @@ class AssetsController extends CpController
         return $assets;
     }
 
-    public function create($container, $folder)
-    {
-        $this->authorize('assets:'.$container.':manage');
-
-        $container = AssetContainer::find($container);
-
-        $folder = $container->folder($folder);
-
-        $title = 'Create asset';
-
-        return view('assets.create', compact('title', 'container', 'folder'));
-    }
-
     public function store()
     {
         if (! $this->request->hasFile('file')) {

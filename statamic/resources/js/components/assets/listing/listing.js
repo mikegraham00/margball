@@ -254,7 +254,8 @@ module.exports = {
                 url: cp_url('assets'),
                 extraData: {
                     container: self.container,
-                    folder: self.path
+                    folder: self.path,
+                    _token: document.querySelector('#csrf-token').getAttribute('value')
                 },
 
                 onNewFile: function(id, file) {

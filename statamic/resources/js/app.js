@@ -10,6 +10,8 @@ require('./components');
 require('./fieldtypes');
 require('./directives');
 
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#csrf-token').getAttribute('value');
+
 var vm = new Vue({
     el: '#statamic',
 

@@ -28,7 +28,7 @@ class PagesTags extends CollectionTags
         $this->filter();
 
         if ($this->collection->isEmpty()) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         return $this->output();
@@ -90,5 +90,23 @@ class PagesTags extends CollectionTags
     protected function getSortOrder()
     {
         return $this->get('sort', 'order|title');
+    }
+
+    /**
+     * Maps to `{{ pages:count }}`
+     *
+     * @return integer
+     */
+    public function count()
+    {
+        $from = $this->get(['from', 'folder', 'url']);
+
+        $from = Str::ensureLeft($from, '/');
+
+        $this->collection = Page::whereUri($from)->children(1);
+
+        $this->filter();
+
+        return $this->collection->count();
     }
 }

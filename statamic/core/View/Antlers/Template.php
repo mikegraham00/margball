@@ -10,14 +10,6 @@ use Statamic\API\Config;
 class Template
 {
     /**
-     * @return \Statamic\Parser\Parser
-     */
-    private static function parser()
-    {
-        return app('Statamic\View\Antlers\Parser');
-    }
-
-    /**
      * Parse a string/template
      *
      * @param       $str        String to parse
@@ -27,7 +19,9 @@ class Template
      */
     public static function parse($str, $variables = [], $context = [])
     {
-        self::parser()->cumulativeNoparse(true);
+        $parser = new Parser;
+
+        $parser->cumulativeNoparse(true);
 
         if (! is_array($variables)) {
             $variables = $variables->toArray();
@@ -35,7 +29,7 @@ class Template
 
         $data = array_merge($context, $variables);
 
-        return self::parser()->parse($str, $data, ['Statamic\View\Antlers\Engine', 'renderTag'], Config::get('theming.allow_php'));
+        return $parser->parse($str, $data, ['Statamic\View\Antlers\Engine', 'renderTag'], Config::get('theming.allow_php'));
     }
 
     /**

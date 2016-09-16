@@ -55,7 +55,8 @@ class PagesDriver extends AbstractDriver
         $uri = '/';
 
         // Homepage? The URI will always just be a single slash.
-        if (pathinfo($path)['filename'] === "$locale.index") {
+        $pi = pathinfo($path);
+        if ($pi['dirname'] == 'pages' && $pi['filename'] === "$locale.index") {
             return '/';
         }
 
@@ -79,12 +80,50 @@ class PagesDriver extends AbstractDriver
 
     public function toPersistentArray($repo)
     {
+        $pages = $repo->getItems()->map(function ($page) {
+            return $page->shrinkWrap();
+        })->all();
+
         return [
             'meta' => [
                 'paths' => $repo->getPathsForAllLocales()->toArray(),
                 'uris' => $repo->getUrisForAllLocales()->toArray(),
             ],
-            'items' => ['pages' => $repo->getItems()]
+            'items' => compact('pages')
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function load($collection)
+    {
+        return $collection->map(function ($item, $id) {
+            $attr = $item['attributes'];
+
+            // Get the data for the default locale. Remove the ID since
+            // we already have it and will be setting it separately.
+            $data = $item['data'][default_locale()];
+            unset($data['id']);
+
+            $page = Page::create($attr['uri'])
+                ->id($id)
+                ->with($data)
+                ->path($attr['path'])
+                ->published($attr['published'])
+                ->order(array_get($attr, 'order'))
+                ->get();
+
+            // If the page has additional locale data, add them.
+            if (count($item['data']) > 1) {
+                foreach ($item['data'] as $locale => $data) {
+                    $page->dataForLocale($locale, $data);
+                }
+
+                $page->syncOriginal();
+            }
+
+            return $page;
+        });
     }
 }

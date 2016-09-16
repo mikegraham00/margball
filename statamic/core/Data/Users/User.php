@@ -133,7 +133,13 @@ class User extends Data implements UserContract, Authenticatable, PermissibleCon
         $this->ensureSecured();
         $this->ensureId();
 
-        $contents = YAML::dump($this->data(), $content);
+        $data = $this->data();
+
+        if (Config::get('users.login_type') === 'email') {
+            unset($data['email']);
+        }
+
+        $contents = YAML::dump($data, $content);
 
         File::disk('users')->put($this->path(), $contents);
 
@@ -232,6 +238,7 @@ class User extends Data implements UserContract, Authenticatable, PermissibleCon
     {
         $this->supplements['last_modified'] = File::disk('users')->lastModified($this->path());
         $this->supplements['username'] = $this->username();
+        $this->supplements['email'] = $this->email();
         $this->supplements['status'] = $this->status();
         $this->supplements['edit_url'] = $this->editUrl();
 
@@ -452,14 +459,13 @@ class User extends Data implements UserContract, Authenticatable, PermissibleCon
      *
      * @param string|null|bool
      * @return \Statamic\Contracts\CP\Fieldset
-     * @throws \Exception
      */
     public function fieldset($fieldset = null)
     {
-        if ($fieldset) {
-            throw new \Exception('A user fieldset cannot be set.');
+        if (is_null($fieldset)) {
+            return Fieldset::get('user');
         }
 
-        return Fieldset::get('user');
+        $this->set('fieldset', $fieldset);
     }
 }

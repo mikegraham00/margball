@@ -214,8 +214,6 @@ class StatamicController extends Controller
 
         $this->setUpDebugBar();
 
-        $this->saveStaticPage();
-
         $this->modifyResponse();
 
         return $this->response;
@@ -308,12 +306,13 @@ class StatamicController extends Controller
         // At this point we have all the routes organized nicely into a route/data array.
         // We'll iterate over them and if there's a match, we'll return the route data.
         foreach ($standard_routes as $route => $data) {
-            // Check for standard wildcards
-            if (strpos($route, '/*')) {
-                $regex = '#' . str_replace('/*', '/.*', $route) . '#';
-                if (preg_match($regex, $url)) {
-                    return $data;
-                }
+            // Convert standard wildcards
+            if (strpos($route, '*')) {
+                $i = 0;
+                $route = preg_replace_callback('/\*/', function ($matches) use (&$i) {
+                    $i++;
+                    return "{wildcard_$i}";
+                }, $route);
             }
 
             // Check for named wildcards
@@ -427,18 +426,6 @@ class StatamicController extends Controller
         ksort($data);
 
         debugbar()->addCollector(new ConfigCollector($data, 'Variables'));
-    }
-
-    private function saveStaticPage()
-    {
-        if (! Config::get('caching.static_caching_enabled')) {
-            return;
-        }
-
-        /** @var \Statamic\Addons\StaticPageCache\StaticPageCacheAPI $cacher */
-        $cacher = addon('StaticPageCache');
-
-        $cacher->cachePage($this->request, $this->response);
     }
 
     /**

@@ -3,7 +3,7 @@
 namespace Statamic\Data\Taxonomies;
 
 use Statamic\API\File;
-use Statamic\API\Term;
+use Statamic\API\Term as TermAPI;
 use Statamic\API\YAML;
 use Statamic\API\Config;
 use Statamic\API\Folder;
@@ -50,7 +50,7 @@ class Taxonomy extends DataFolder implements TaxonomyContract
             return $this->terms;
         }
 
-        if (! $taxonomies = Term::whereTaxonomy($this->path())) {
+        if (! $taxonomies = TermAPI::whereTaxonomy($this->path())) {
             $taxonomies = collect_terms();
         }
 

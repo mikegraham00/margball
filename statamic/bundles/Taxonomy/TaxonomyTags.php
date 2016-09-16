@@ -42,7 +42,7 @@ class TaxonomyTags extends Tags
         $this->filter();
 
         if ($this->terms->isEmpty()) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         $data = $this->terms->toArray();

@@ -5,6 +5,7 @@ namespace Statamic\Providers;
 use Statamic\API\Parse;
 use Statamic\API\Str;
 use Statamic\API\File;
+use Statamic\API\Path;
 use Statamic\API\YAML;
 use Statamic\API\Config;
 use Statamic\API\Folder;
@@ -13,6 +14,8 @@ use Illuminate\Contracts\Config\Repository;
 
 class FilesystemServiceProvider extends ServiceProvider
 {
+    private $local;
+
     public function boot(Repository $config)
     {
         // Start with the default/local disk.
@@ -20,12 +23,19 @@ class FilesystemServiceProvider extends ServiceProvider
 
         $filesystems = Config::get('system.filesystems');
 
+        // Create a disk for the webroot
+        $webroot = $this->local;
+        $webroot['root'] = STATAMIC_ROOT;
+
+        // Create a disk for the glide cache
+        $glide = $this->createGlideFilesystem();
+
         // Create the content disk. For now, it's just the site/content subdirectory.
         // Eventually it will be configurable by the user to allow them to relocate
         // it, or mount from a cloud service like Dropbox or Amazon S3.
         $content = $this->local;
         $content_root = array_get($filesystems, 'content.root');
-        if (Str::startsWith($content_root, '/')) {
+        if (Path::isAbsolute($content_root)) {
             $content['root'] = $content_root;
         } else {
             $content['root'] .= '/' . $content_root;
@@ -34,7 +44,7 @@ class FilesystemServiceProvider extends ServiceProvider
         // Same with storage
         $storage = $this->local;
         $storage_root = array_get($filesystems, 'storage.root');
-        if (Str::startsWith($storage_root, '/')) {
+        if (Path::isAbsolute($storage_root)) {
             $storage['root'] = $storage_root;
         } else {
             $storage['root'] .= '/' . $storage_root;
@@ -43,7 +53,7 @@ class FilesystemServiceProvider extends ServiceProvider
         // Same with users
         $users = $this->local;
         $users_root = array_get($filesystems, 'users.root');
-        if (Str::startsWith($users_root, '/')) {
+        if (Path::isAbsolute($users_root)) {
             $users['root'] = $users_root;
         } else {
             $users['root'] .= '/' . $users_root;
@@ -52,7 +62,7 @@ class FilesystemServiceProvider extends ServiceProvider
         // Same with themes
         $themes = $this->local;
         $themes_root = array_get($filesystems, 'themes.root');
-        if (Str::startsWith($themes_root, '/')) {
+        if (Path::isAbsolute($themes_root)) {
             $themes['root'] = $themes_root;
         } else {
             $themes['root'] .= '/' . $themes_root;
@@ -65,7 +75,7 @@ class FilesystemServiceProvider extends ServiceProvider
         $theme['root'] .= '/' . Config::getThemeName();
 
         // Combine all the disks
-        $disks = compact('local', 'content', 'storage', 'users', 'themes', 'theme');
+        $disks = compact('local', 'webroot', 'content', 'storage', 'users', 'themes', 'theme', 'glide');
 
         // Merge into the config. The asset container filesystem bindings
         // rely on the storage disk to be available up-front.
@@ -105,7 +115,7 @@ class FilesystemServiceProvider extends ServiceProvider
             if ($driver === 'local') {
                 $config = $this->local;
                 $path = $yaml['path'];
-                if (Str::startsWith($path, '/')) {
+                if (Path::isAbsolute($path)) {
                     // absolute paths get replaced completely
                     $config['root'] = $path;
                 } else {
@@ -125,4 +135,22 @@ class FilesystemServiceProvider extends ServiceProvider
 
         return $containers;
     }
+
+    private function createGlideFilesystem()
+    {
+        $glide = $this->local;
+
+        $root = Config::get('assets.image_manipulation_cached')
+            ? Config::get('assets.image_manipulation_cached_path')
+            : cache_path('glide');
+
+        if (Path::isAbsolute($root)) {
+            $glide['root'] = $root;
+        } else {
+            $glide['root'] .= '/' . $root;
+        }
+
+        return $glide;
+    }
+
 }

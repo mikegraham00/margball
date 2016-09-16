@@ -270,6 +270,7 @@ class PublishController extends CpController
             'title'             => $title,
             'uuid'              => null,
             'url'               => null,
+            'uri'               => null,
             'slug'              => null,
             'status'            => true,
             'locale'            => default_locale(),

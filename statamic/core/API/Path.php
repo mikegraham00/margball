@@ -41,6 +41,21 @@ class Path
     }
 
     /**
+     * Determine if a given path is absolute or not.
+     *
+     * Unix based paths beginning with slashes are absolute: /path/to/something
+     * Windows based paths beginning with drive letters are absolute: C:\path\to\something
+     * Paths without a leading slash are relative: path/to/something
+     *
+     * @param string $path
+     * @return bool
+     */
+    public static function isAbsolute($path)
+    {
+        return $path[0] === DIRECTORY_SEPARATOR || preg_match('~\A[A-Z]:(?![^/\\\\])~i', $path) > 0;
+    }
+
+    /**
      * Makes a $path a valid URL
      *
      * @param string $path  The path to change

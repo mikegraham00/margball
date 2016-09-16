@@ -187,6 +187,27 @@ class PagesController extends CpController
         ];
     }
 
+    public function mountCollection()
+    {
+        $this->authorize('super');
+
+        $page = Page::find($this->request->input('id'));
+
+        if ($this->request->has('collection')) {
+            $page->set('mount', $this->request->input('collection'));
+        } else {
+            $page->remove('mount');
+        }
+
+        $page->save();
+
+        $this->success(t('page_updated'));
+
+        return [
+            'success' => true
+        ];
+    }
+
     /**
      * Create the home page if it doesn't already exist
      */

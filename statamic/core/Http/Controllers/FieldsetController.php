@@ -102,12 +102,13 @@ class FieldsetController extends CpController
             return response(['success' => false, 'message' => $e->getMessage()], 500);
         }
 
-        // Ensure there's no email field visible if we're logging in with email.
-        // In that case, the username field will be used for the email address.
-        if ($fieldset->name() === 'user' && Config::get('users.login_type') === 'email') {
-            $array['fields'] = collect($array['fields'])->reject(function ($field) {
-                return $field['name'] === 'email';
-            })->values()->all();
+        if ($fieldset->name() === 'user') {
+            // If logging in using emails, make sure there is no username field.
+            if (Config::get('users.login_type') === 'email') {
+                $array['fields'] = collect($array['fields'])->reject(function ($field) {
+                    return $field['name'] === 'username';
+                })->values()->all();
+            }
         }
 
         return $array;

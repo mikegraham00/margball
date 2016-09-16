@@ -1,0 +1,28 @@
+{{ form:create in="apply" redirect="/about-us" }}
+	{{ if errors  }}
+        <p class="error">Something went wrong...</p>
+        <ul class="error-list">
+            {{ errors }}
+                <li>{{ value }}</li>
+            {{ /errors }}
+        </ul>
+    {{ /if }}
+    {{ if success }}
+
+            <p class="success"> Thanks for contacting us. We'll be in touch soon.</p>
+
+    {{ /if }}
+	
+		<div class="formrow">
+		<input type="text" name="name" class="half" value="{{ old:name }}" placeholder="Name"/>
+		
+		<input type="text" name="address" class="half" value="{{ old:address }}" placeholder="Email"/>
+		</div>
+		<div class="formrow">
+		
+		</div>
+		<div class="formrow">
+		<input type="text" class="req" name="emailaddress" value="{{ old:emailaddress }}" />
+		</div>
+	<button>Submit</button>
+{{ /form:create }}

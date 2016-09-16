@@ -44,7 +44,7 @@
                 border: 5px solid transparent;
                 border-bottom-color: #F2F2F2;
                 position: absolute;
-                top: 100%;
+                top: 85%;
                 left: 50%;
                 z-index: 2;
                 margin-top: 2px;
@@ -88,9 +88,13 @@
 
     .CodeMirror-code { min-height: 100px; }
 
+    .helpers {
+        border-top: 1px solid #ddd;
+    }
+
     .markdown-cheatsheet-helper {
         padding: 10px;
-        border-top: 1px solid #ddd;
+        display: inline-block;
         svg {
             height: 14px;
             width: 24px;
@@ -102,7 +106,7 @@
     }
 
     .markdown-asset-helper {
-        padding: 8px 0 0 0;
+        padding: 10px;
         display: inline-block;
         color: #ccc;
 

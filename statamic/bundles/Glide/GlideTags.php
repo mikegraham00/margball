@@ -5,6 +5,7 @@ namespace Statamic\Addons\Glide;
 use Statamic\API\Str;
 use Statamic\API\Asset;
 use Statamic\API\Image;
+use League\Glide\Server;
 use Statamic\Extend\Tags;
 use Statamic\Imaging\ImageGenerator;
 
@@ -59,7 +60,7 @@ class GlideTags extends Tags
 
         $path = $this->generateImage($item);
 
-        list($width, $height) = getimagesize($path);
+        list($width, $height) = getimagesize($this->getServer()->getCache()->getAdapter()->getPathPrefix().$path);
 
         return $this->parse(
             compact('url', 'width', 'height')
@@ -74,15 +75,11 @@ class GlideTags extends Tags
      */
     private function generateImage($item)
     {
-        $generator = new ImageGenerator(app('League\Glide\Server'));
-
         $params = $this->getGlideParams($item);
 
-        $path = (Str::isUrl($item))
-            ? $generator->generateByPath($item, $params)
-            : $generator->generateByAsset(Asset::find($item), $params);
-
-        return cache_path('glide/'.$path);
+        return (Str::isUrl($item))
+            ? $this->getGenerator()->generateByPath($item, $params)
+            : $this->getGenerator()->generateByAsset(Asset::find($item), $params);
     }
 
     /**
@@ -109,7 +106,7 @@ class GlideTags extends Tags
     private function generateGlideUrl($item)
     {
         try {
-            return $this->getUrlBuilder($item)->build();
+            return $this->getManipulator($item)->build();
         } catch (\Exception $e) {
             \Log::error($e->getMessage());
         }
@@ -123,24 +120,24 @@ class GlideTags extends Tags
      */
     private function getGlideParams($item = null)
     {
-        return $this->getUrlBuilder($item)->getParams();
+        return $this->getManipulator($item)->getParams();
     }
 
     /**
-     * Get the Glide URL builder with the parameters added to it
+     * Get the image manipulator with the parameters added to it
      *
      * @param string|null $item
-     * @return \Statamic\Imaging\GlideUrlBuilder
+     * @return \Statamic\Imaging\GlideImageManipulator
      */
-    private function getUrlBuilder($item = null)
+    private function getManipulator($item = null)
     {
-        $builder = Image::manipulate($item);
+        $manipulator = Image::manipulate($item);
 
-        $this->getManipulationParams()->each(function ($value, $param) use ($builder) {
-            $builder->$param($value);
+        $this->getManipulationParams()->each(function ($value, $param) use ($manipulator) {
+            $manipulator->$param($value);
         });
 
-        return $builder;
+        return $manipulator;
     }
 
     /**
@@ -159,5 +156,25 @@ class GlideTags extends Tags
         }
 
         return $params;
+    }
+
+    /**
+     * Get the image generator
+     *
+     * @return ImageGenerator
+     */
+    private function getGenerator()
+    {
+        return app(ImageGenerator::class);
+    }
+
+    /**
+     * Get the Glide Server instance
+     *
+     * @return Server
+     */
+    private function getServer()
+    {
+        return app(Server::class);
     }
 }

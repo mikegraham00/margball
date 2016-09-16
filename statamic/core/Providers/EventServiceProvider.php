@@ -10,7 +10,8 @@ class EventServiceProvider extends ServiceProvider
 {
     protected $listen = [
         'content.saved' => [
-            'Statamic\Stache\Listeners\UpdateContent',
+            \Statamic\Stache\Listeners\UpdateContent::class,
+            \Statamic\StaticCaching\Invalidator::class
         ],
         \Statamic\Events\DataIdCreated::class => [
             \Statamic\Stache\Listeners\SaveCreatedId::class
@@ -35,7 +36,7 @@ class EventServiceProvider extends ServiceProvider
 
         // Register all the events specified in each listener class
         foreach ($listeners as $class) {
-            $listener = new $class;
+            $listener = app($class);
 
             foreach ($listener->events as $event => $methods) {
                 foreach (Helper::ensureArray($methods) as $method) {

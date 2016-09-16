@@ -10,6 +10,7 @@ use Statamic\API\Str;
 use Statamic\API\Helper;
 use Statamic\API\Request;
 use Statamic\Extend\Tags;
+use Statamic\Data\Content\ContentCollection;
 use Statamic\Presenters\PaginationPresenter;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -41,6 +42,11 @@ class CollectionTags extends Tags
     private $pagination_data;
 
     /**
+     * @var int|null
+     */
+    private $total_results;
+
+    /**
      * Maps to the {{ collection }} tag.
      *
      * If there's a parameter, we want a listing. Otherwise, just treat it like a variable.
@@ -53,7 +59,13 @@ class CollectionTags extends Tags
             return $this->collect($collection);
         }
 
-        return array_get($this->context, 'collection');
+        $collection = array_get($this->context, 'collection');
+
+        if ($collection instanceof ContentCollection) {
+            return $this->collect($collection);
+        }
+
+        return $collection;
     }
 
     /**
@@ -71,29 +83,31 @@ class CollectionTags extends Tags
     /**
      * The brains of the operation
      *
-     * @param string $collection
+     * @param mixed $collection  Either a collection name string, array of collection names, or a ContentCollection.
      * @return string
      * @throws \Exception
      */
     private function collect($collection)
     {
-        $collections = Helper::ensureArray($collection);
+        if (! $collection instanceof ContentCollection) {
+            $collections = Helper::ensureArray($collection);
 
-        foreach ($collections as $collection) {
-            if (! Collection::handleExists($collection)) {
-                throw new \Exception("Collection [$collection] doesn't exist.");
+            foreach ($collections as $collection) {
+                if (! Collection::handleExists($collection)) {
+                    throw new \Exception("Collection [$collection] doesn't exist.");
+                }
             }
+
+            $collection = Entry::whereCollection($collections);
         }
 
-        $this->collection = Entry::whereCollection($collections);
-
         // Swap to the appropriate locale. By default it's the site locale.
-        $this->collection = $this->collection->localize($this->get('locale', site_locale()));
+        $this->collection = $collection->localize($this->get('locale', site_locale()));
 
         $this->filter();
 
         if ($this->collection->isEmpty()) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         return $this->output();
@@ -125,15 +139,25 @@ class CollectionTags extends Tags
 
                 $data['paginate'] = $this->pagination_data;
 
+                $data = array_merge($data, $this->getCollectionMetaData());
+
                 return $this->parse($data);
 
             } else {
-                // Not paginated, but we can still nest inside a scope key
-                // if they have specified to.
+                // Not paginated, but we can still nest inside a scope key if they have specified to.
                 if ($as) {
-                    $data = [[ $as => $this->collection->toArray() ]];
+                    $data = [
+                        array_merge(
+                            [$as => $this->collection->toArray()],
+                            $this->getCollectionMetaData()
+                        )
+                    ];
                 } else {
-                    $data = $this->collection->toArray();
+                    // Add the meta data (total_results, etc) into each iteration.
+                    $meta = $this->getCollectionMetaData();
+                    $data = collect($this->collection->toArray())->map(function ($item) use ($meta) {
+                        return array_merge($item, $meta);
+                    })->all();
                 }
 
                 return $this->parseLoop($data);
@@ -254,6 +278,28 @@ class CollectionTags extends Tags
         return $sort;
     }
 
+    /**
+     * Get the total number of results in the collection, before pagination.
+     *
+     * @return int
+     */
+    protected function getTotalResults()
+    {
+        return $this->total_results ?: $this->collection->count();
+    }
+
+    /**
+     * Get any meta data that should be available in templates
+     *
+     * @return array
+     */
+    protected function getCollectionMetaData()
+    {
+        return [
+            'total_results' => $this->getTotalResults()
+        ];
+    }
+
     private function limit()
     {
         $limit = $this->getInt('limit');
@@ -270,6 +316,9 @@ class CollectionTags extends Tags
     private function paginate()
     {
         $this->paginated = true;
+
+        // Keep track of how many items were in the collection before pagination chunks it up.
+        $this->total_results = $this->collection->count();
 
         $page = (int) Request::get('page', 1);
 
@@ -315,12 +364,14 @@ class CollectionTags extends Tags
         if ($filter = $this->get('filter')) {
             // If a "filter" parameter has been specified, we want to use a custom filter class.
             $this->collection = collection_filter($filter, $this->collection, $this->context, $this->parameters)->filter();
-        } else {
-            // No filter parameter has been specified, so we should filter by condition parameters
-            $conditions = array_filter_key($this->parameters, function ($key) {
-                return Str::contains($key, ':');
-            });
+        }
 
+        // Filter by condition parameters
+        $conditions = array_filter_key($this->parameters, function ($key) {
+            return Str::contains($key, ':');
+        });
+
+        if (! empty($conditions)) {
             $this->collection = $this->collection->conditions($conditions);
         }
     }
@@ -401,7 +452,7 @@ class CollectionTags extends Tags
         }
 
         if ($this->collection->isEmpty()) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         $current = Str::ensureLeft($this->get('current', URL::getCurrent()), '/');
@@ -436,7 +487,7 @@ class CollectionTags extends Tags
         $this->limit();
 
         if ($this->collection->isEmpty()) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         return $this->output();

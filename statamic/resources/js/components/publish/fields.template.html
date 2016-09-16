@@ -9,7 +9,7 @@
 
 			<label class="block">
 				<template v-if="field.display">{{ field.display }}</template>
-				<template v-if="!field.display">{{ field.name | capitalize }}</template>
+				<template v-if="!field.display">{{ field.name | deslugify | titleize }}</template>
 				<i class="required" v-if="field.required">*</i>
 			</label>
 

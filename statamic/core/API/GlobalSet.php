@@ -3,6 +3,7 @@
 namespace Statamic\API;
 
 use Statamic\Contracts\Data\Globals\GlobalFactory;
+use Statamic\Data\Services\GlobalsService;
 
 class GlobalSet
 {
@@ -25,7 +26,7 @@ class GlobalSet
      */
     public static function whereHandle($handle)
     {
-        return app('GlobalsService')->handle($handle);
+        return app(GlobalsService::class)->handle($handle);
     }
 
     /**
@@ -36,7 +37,7 @@ class GlobalSet
      */
     public static function find($id)
     {
-        return app('GlobalsService')->id($id);
+        return app(GlobalsService::class)->id($id);
     }
 
     /**
@@ -46,7 +47,7 @@ class GlobalSet
      */
     public static function all()
     {
-        return app('GlobalsService')->all()->sortBy(function ($global) {
+        return app(GlobalsService::class)->all()->sortBy(function ($global) {
             return $global->title();
         });
     }

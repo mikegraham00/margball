@@ -10,7 +10,5 @@ fields:
     width: 50
   auto_index:
      type: toggle
-  index_frequency:
-    type: text
   default_index:
     type: text

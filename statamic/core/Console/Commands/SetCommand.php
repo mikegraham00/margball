@@ -26,7 +26,7 @@ class SetCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Assign a new value to a setting.';
+    protected $description = 'Assign a new value to a setting. (Alias of config:set)';
 
     /**
      * Execute the console command.
@@ -35,11 +35,9 @@ class SetCommand extends Command
      */
     public function fire()
     {
-        $setting = $this->argument('setting');
-
-        Config::set($setting, $this->argument('value'));
-        Config::save();
-
-        $this->info($setting . ' has been set!');
+        $this->call('config:set', [
+            'setting' => $this->argument('setting'),
+            'value' => $this->argument('value')
+        ]);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\ContentService;
+
 /**
  * Manipulate URLs
  */
@@ -312,6 +314,6 @@ class URL
      */
     public static function getDefaultUri($locale, $uri)
     {
-        return app('ContentService')->defaultUri($locale, $uri);
+        return app(ContentService::class)->defaultUri($locale, $uri);
     }
 }

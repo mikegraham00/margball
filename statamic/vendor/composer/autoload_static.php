@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
+class ComposerStaticInit96645ec99e2a67ac7b5dcef1d760c3a1
 {
     public static $files = array (
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
@@ -274,7 +274,6 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Intervention\\Image\\' => 
         array (
             0 => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image',
-            1 => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image',
         ),
         'Illuminate\\' => 
         array (
@@ -1800,7 +1799,6 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Intervention\\Image\\AbstractEncoder' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/AbstractEncoder.php',
         'Intervention\\Image\\AbstractFont' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/AbstractFont.php',
         'Intervention\\Image\\AbstractShape' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/AbstractShape.php',
-        'Intervention\\Image\\CachedImage' => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image/CachedImage.php',
         'Intervention\\Image\\Commands\\AbstractCommand' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Commands/AbstractCommand.php',
         'Intervention\\Image\\Commands\\Argument' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Commands/Argument.php',
         'Intervention\\Image\\Commands\\ChecksumCommand' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Commands/ChecksumCommand.php',
@@ -1869,8 +1867,6 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Intervention\\Image\\Gd\\Shapes\\PolygonShape' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Gd/Shapes/PolygonShape.php',
         'Intervention\\Image\\Gd\\Shapes\\RectangleShape' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Gd/Shapes/RectangleShape.php',
         'Intervention\\Image\\Image' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Image.php',
-        'Intervention\\Image\\ImageCache' => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image/ImageCache.php',
-        'Intervention\\Image\\ImageCacheController' => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image/ImageCacheController.php',
         'Intervention\\Image\\ImageManager' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/ImageManager.php',
         'Intervention\\Image\\ImageManagerStatic' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/ImageManagerStatic.php',
         'Intervention\\Image\\ImageServiceProvider' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/ImageServiceProvider.php',
@@ -1921,9 +1917,6 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Intervention\\Image\\Point' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Point.php',
         'Intervention\\Image\\Response' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Response.php',
         'Intervention\\Image\\Size' => __DIR__ . '/..' . '/intervention/image/src/Intervention/Image/Size.php',
-        'Intervention\\Image\\Templates\\Large' => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image/Templates/Large.php',
-        'Intervention\\Image\\Templates\\Medium' => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image/Templates/Medium.php',
-        'Intervention\\Image\\Templates\\Small' => __DIR__ . '/..' . '/intervention/imagecache/src/Intervention/Image/Templates/Small.php',
         'JakubOnderka\\PhpConsoleColor\\ConsoleColor' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/ConsoleColor.php',
         'JakubOnderka\\PhpConsoleColor\\InvalidStyleException' => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src/JakubOnderka/PhpConsoleColor/InvalidStyleException.php',
         'JakubOnderka\\PhpConsoleHighlighter\\Highlighter' => __DIR__ . '/..' . '/jakub-onderka/php-console-highlighter/src/JakubOnderka/PhpConsoleHighlighter/Highlighter.php',
@@ -2569,6 +2562,7 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Addons\\Collection\\CollectionFieldtype' => __DIR__ . '/../..' . '/bundles/Collection/CollectionFieldtype.php',
         'Statamic\\Addons\\Collection\\CollectionTags' => __DIR__ . '/../..' . '/bundles/Collection/CollectionTags.php',
         'Statamic\\Addons\\Collection\\CollectionWidget' => __DIR__ . '/../..' . '/bundles/Collection/CollectionWidget.php',
+        'Statamic\\Addons\\Collections\\CollectionsFieldtype' => __DIR__ . '/../..' . '/bundles/Collections/CollectionsFieldtype.php',
         'Statamic\\Addons\\Date\\DateFieldtype' => __DIR__ . '/../..' . '/bundles/Date/DateFieldtype.php',
         'Statamic\\Addons\\Dump\\DumpTags' => __DIR__ . '/../..' . '/bundles/Dump/DumpTags.php',
         'Statamic\\Addons\\Entries\\EntriesTags' => __DIR__ . '/../..' . '/bundles/Entries/EntriesTags.php',
@@ -2592,6 +2586,7 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Addons\\Lists\\ListsFieldtype' => __DIR__ . '/../..' . '/bundles/Lists/ListsFieldtype.php',
         'Statamic\\Addons\\LocaleSettings\\LocaleSettingsFieldtype' => __DIR__ . '/../..' . '/bundles/LocaleSettings/LocaleSettingsFieldtype.php',
         'Statamic\\Addons\\Markdown\\MarkdownFieldtype' => __DIR__ . '/../..' . '/bundles/Markdown/MarkdownFieldtype.php',
+        'Statamic\\Addons\\Markdown\\MarkdownTags' => __DIR__ . '/../..' . '/bundles/Markdown/MarkdownTags.php',
         'Statamic\\Addons\\Member\\MemberTags' => __DIR__ . '/../..' . '/bundles/Member/MemberTags.php',
         'Statamic\\Addons\\Nav\\NavTags' => __DIR__ . '/../..' . '/bundles/Nav/NavTags.php',
         'Statamic\\Addons\\Nav\\Tree' => __DIR__ . '/../..' . '/bundles/Nav/Tree.php',
@@ -2625,18 +2620,15 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Addons\\Replicator\\ReplicatorFieldtype' => __DIR__ . '/../..' . '/bundles/Replicator/ReplicatorFieldtype.php',
         'Statamic\\Addons\\Rotate\\RotateTags' => __DIR__ . '/../..' . '/bundles/Rotate/RotateTags.php',
         'Statamic\\Addons\\Routes\\RoutesTags' => __DIR__ . '/../..' . '/bundles/Routes/RoutesTags.php',
-        'Statamic\\Addons\\Search\\Commands\\SearchCommand' => __DIR__ . '/../..' . '/bundles/Search/Commands/SearchCommand.php',
+        'Statamic\\Addons\\Search\\Commands\\UpdateCommand' => __DIR__ . '/../..' . '/bundles/Search/Commands/UpdateCommand.php',
         'Statamic\\Addons\\Search\\SearchListener' => __DIR__ . '/../..' . '/bundles/Search/SearchListener.php',
         'Statamic\\Addons\\Search\\SearchTags' => __DIR__ . '/../..' . '/bundles/Search/SearchTags.php',
         'Statamic\\Addons\\Section\\SectionFieldtype' => __DIR__ . '/../..' . '/bundles/Section/SectionFieldtype.php',
         'Statamic\\Addons\\Select\\SelectFieldtype' => __DIR__ . '/../..' . '/bundles/Select/SelectFieldtype.php',
-        'Statamic\\Addons\\StaticPageCache\\Cacher\\ApplicationCacher' => __DIR__ . '/../..' . '/bundles/StaticPageCache/Cacher/ApplicationCacher.php',
-        'Statamic\\Addons\\StaticPageCache\\Cacher\\Cacher' => __DIR__ . '/../..' . '/bundles/StaticPageCache/Cacher/Cacher.php',
-        'Statamic\\Addons\\StaticPageCache\\Cacher\\FileCacher' => __DIR__ . '/../..' . '/bundles/StaticPageCache/Cacher/FileCacher.php',
-        'Statamic\\Addons\\StaticPageCache\\StaticPageCacheAPI' => __DIR__ . '/../..' . '/bundles/StaticPageCache/StaticPageCacheAPI.php',
         'Statamic\\Addons\\Suggest\\Mode' => __DIR__ . '/../..' . '/bundles/Suggest/Mode.php',
         'Statamic\\Addons\\Suggest\\Modes\\AbstractMode' => __DIR__ . '/../..' . '/bundles/Suggest/Modes/AbstractMode.php',
         'Statamic\\Addons\\Suggest\\Modes\\CollectionMode' => __DIR__ . '/../..' . '/bundles/Suggest/Modes/CollectionMode.php',
+        'Statamic\\Addons\\Suggest\\Modes\\CollectionsMode' => __DIR__ . '/../..' . '/bundles/Suggest/Modes/CollectionsMode.php',
         'Statamic\\Addons\\Suggest\\Modes\\OptionsMode' => __DIR__ . '/../..' . '/bundles/Suggest/Modes/OptionsMode.php',
         'Statamic\\Addons\\Suggest\\Modes\\PagesMode' => __DIR__ . '/../..' . '/bundles/Suggest/Modes/PagesMode.php',
         'Statamic\\Addons\\Suggest\\Modes\\TaxonomyMode' => __DIR__ . '/../..' . '/bundles/Suggest/Modes/TaxonomyMode.php',
@@ -2699,7 +2691,8 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Console\\Commands\\Clear\\ClearGlideCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Clear/ClearGlideCommand.php',
         'Statamic\\Console\\Commands\\Clear\\ClearSiteCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Clear/ClearSiteCommand.php',
         'Statamic\\Console\\Commands\\Clear\\ClearStacheCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Clear/ClearStacheCommand.php',
-        'Statamic\\Console\\Commands\\Clear\\ClearStaticCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Clear/ClearStaticCommand.php',
+        'Statamic\\Console\\Commands\\Config\\ConfigSetCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Config/ConfigSetCommand.php',
+        'Statamic\\Console\\Commands\\Convert\\ConvertEmailLoginCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Convert/ConvertEmailLoginCommand.php',
         'Statamic\\Console\\Commands\\Generators\\Addon\\AddonMakeCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Generators/Addon/AddonMakeCommand.php',
         'Statamic\\Console\\Commands\\Generators\\Addon\\ApiMakeCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Generators/Addon/ApiMakeCommand.php',
         'Statamic\\Console\\Commands\\Generators\\Addon\\CommandMakeCommand' => __DIR__ . '/../..' . '/core/Console/Commands/Generators/Addon/CommandMakeCommand.php',
@@ -2764,6 +2757,7 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Contracts\\Forms\\Metric' => __DIR__ . '/../..' . '/core/Contracts/Forms/Metric.php',
         'Statamic\\Contracts\\Forms\\Submission' => __DIR__ . '/../..' . '/core/Contracts/Forms/Submission.php',
         'Statamic\\Contracts\\HasFieldset' => __DIR__ . '/../..' . '/core/Contracts/HasFieldset.php',
+        'Statamic\\Contracts\\Imaging\\ImageManipulator' => __DIR__ . '/../..' . '/core/Contracts/Imaging/ImageManipulator.php',
         'Statamic\\Contracts\\Imaging\\UrlBuilder' => __DIR__ . '/../..' . '/core/Contracts/Imaging/UrlBuilder.php',
         'Statamic\\Contracts\\Importing\\Importer' => __DIR__ . '/../..' . '/core/Contracts/Importing/Importer.php',
         'Statamic\\Contracts\\Permissions\\Permissible' => __DIR__ . '/../..' . '/core/Contracts/Permissions/Permissible.php',
@@ -2838,6 +2832,8 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Events\\OAuth\\GeneratingUserData' => __DIR__ . '/../..' . '/core/Events/OAuth/GeneratingUserData.php',
         'Statamic\\Events\\OAuth\\GeneratingUsername' => __DIR__ . '/../..' . '/core/Events/OAuth/GeneratingUsername.php',
         'Statamic\\Events\\StacheUpdated' => __DIR__ . '/../..' . '/core/Events/StacheUpdated.php',
+        'Statamic\\Events\\Stache\\RepositoryItemInserted' => __DIR__ . '/../..' . '/core/Events/Stache/RepositoryItemInserted.php',
+        'Statamic\\Events\\Stache\\RepositoryItemRemoved' => __DIR__ . '/../..' . '/core/Events/Stache/RepositoryItemRemoved.php',
         'Statamic\\Exceptions\\ApiNotFoundException' => __DIR__ . '/../..' . '/core/Exceptions/ApiNotFoundException.php',
         'Statamic\\Exceptions\\DuplicateIdException' => __DIR__ . '/../..' . '/core/Exceptions/DuplicateIdException.php',
         'Statamic\\Exceptions\\FatalException' => __DIR__ . '/../..' . '/core/Exceptions/FatalException.php',
@@ -2944,7 +2940,7 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Http\\Middleware\\CP\\Configurable' => __DIR__ . '/../..' . '/core/Http/Middleware/CP/Configurable.php',
         'Statamic\\Http\\Middleware\\CP\\DefaultLocale' => __DIR__ . '/../..' . '/core/Http/Middleware/CP/DefaultLocale.php',
         'Statamic\\Http\\Middleware\\CP\\StartPage' => __DIR__ . '/../..' . '/core/Http/Middleware/CP/StartPage.php',
-        'Statamic\\Http\\Middleware\\CheckForStaticallyCachedPage' => __DIR__ . '/../..' . '/core/Http/Middleware/CheckForStaticallyCachedPage.php',
+        'Statamic\\Http\\Middleware\\Glide' => __DIR__ . '/../..' . '/core/Http/Middleware/Glide.php',
         'Statamic\\Http\\Middleware\\Installer' => __DIR__ . '/../..' . '/core/Http/Middleware/Installer.php',
         'Statamic\\Http\\Middleware\\Outpost' => __DIR__ . '/../..' . '/core/Http/Middleware/Outpost.php',
         'Statamic\\Http\\Middleware\\PersistStache' => __DIR__ . '/../..' . '/core/Http/Middleware/PersistStache.php',
@@ -2959,8 +2955,11 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Http\\ViewComposers\\NavigationComposer' => __DIR__ . '/../..' . '/core/Http/ViewComposers/NavigationComposer.php',
         'Statamic\\Http\\ViewComposers\\PermissionComposer' => __DIR__ . '/../..' . '/core/Http/ViewComposers/PermissionComposer.php',
         'Statamic\\Http\\ViewComposers\\TranslationComposer' => __DIR__ . '/../..' . '/core/Http/ViewComposers/TranslationComposer.php',
+        'Statamic\\Imaging\\GlideImageManipulator' => __DIR__ . '/../..' . '/core/Imaging/GlideImageManipulator.php',
         'Statamic\\Imaging\\GlideUrlBuilder' => __DIR__ . '/../..' . '/core/Imaging/GlideUrlBuilder.php',
         'Statamic\\Imaging\\ImageGenerator' => __DIR__ . '/../..' . '/core/Imaging/ImageGenerator.php',
+        'Statamic\\Imaging\\ImageUrlBuilder' => __DIR__ . '/../..' . '/core/Imaging/ImageUrlBuilder.php',
+        'Statamic\\Imaging\\StaticUrlBuilder' => __DIR__ . '/../..' . '/core/Imaging/StaticUrlBuilder.php',
         'Statamic\\Importing\\Importer' => __DIR__ . '/../..' . '/core/Importing/Importer.php',
         'Statamic\\Importing\\Statamic\\Migrator' => __DIR__ . '/../..' . '/core/Importing/Statamic/Migrator.php',
         'Statamic\\Importing\\Statamic\\Preparer' => __DIR__ . '/../..' . '/core/Importing/Statamic/Preparer.php',
@@ -2978,23 +2977,19 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Presenters\\PaginationPresenter' => __DIR__ . '/../..' . '/core/Presenters/PaginationPresenter.php',
         'Statamic\\Providers\\AddonServiceProvider' => __DIR__ . '/../..' . '/core/Providers/AddonServiceProvider.php',
         'Statamic\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/core/Providers/AppServiceProvider.php',
-        'Statamic\\Providers\\AssetServiceProvider' => __DIR__ . '/../..' . '/core/Providers/AssetServiceProvider.php',
         'Statamic\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/core/Providers/AuthServiceProvider.php',
         'Statamic\\Providers\\BladeServiceProvider' => __DIR__ . '/../..' . '/core/Providers/BladeServiceProvider.php',
-        'Statamic\\Providers\\CpServiceProvider' => __DIR__ . '/../..' . '/core/Providers/CpServiceProvider.php',
         'Statamic\\Providers\\DataServiceProvider' => __DIR__ . '/../..' . '/core/Providers/DataServiceProvider.php',
         'Statamic\\Providers\\EmailServiceProvider' => __DIR__ . '/../..' . '/core/Providers/EmailServiceProvider.php',
         'Statamic\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/core/Providers/EventServiceProvider.php',
         'Statamic\\Providers\\FilesystemServiceProvider' => __DIR__ . '/../..' . '/core/Providers/FilesystemServiceProvider.php',
-        'Statamic\\Providers\\FormServiceProvider' => __DIR__ . '/../..' . '/core/Providers/FormServiceProvider.php',
-        'Statamic\\Providers\\NavigationServiceProvider' => __DIR__ . '/../..' . '/core/Providers/NavigationServiceProvider.php',
+        'Statamic\\Providers\\GlideServiceProvider' => __DIR__ . '/../..' . '/core/Providers/GlideServiceProvider.php',
         'Statamic\\Providers\\OAuthServiceProvider' => __DIR__ . '/../..' . '/core/Providers/OAuthServiceProvider.php',
         'Statamic\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/core/Providers/RouteServiceProvider.php',
-        'Statamic\\Providers\\SearchServiceProvider' => __DIR__ . '/../..' . '/core/Providers/SearchServiceProvider.php',
         'Statamic\\Providers\\StacheServiceProvider' => __DIR__ . '/../..' . '/core/Providers/StacheServiceProvider.php',
-        'Statamic\\Providers\\UserServiceProvider' => __DIR__ . '/../..' . '/core/Providers/UserServiceProvider.php',
         'Statamic\\Providers\\ViewServiceProvider' => __DIR__ . '/../..' . '/core/Providers/ViewServiceProvider.php',
         'Statamic\\Repositories\\AddonRepository' => __DIR__ . '/../..' . '/core/Repositories/AddonRepository.php',
+        'Statamic\\Search\\Index' => __DIR__ . '/../..' . '/core/Search/Index.php',
         'Statamic\\Search\\Search' => __DIR__ . '/../..' . '/core/Search/Search.php',
         'Statamic\\Stache\\AggregateRepository' => __DIR__ . '/../..' . '/core/Stache/AggregateRepository.php',
         'Statamic\\Stache\\Driver' => __DIR__ . '/../..' . '/core/Stache/Driver.php',
@@ -3028,6 +3023,15 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
         'Statamic\\Stache\\Traverser' => __DIR__ . '/../..' . '/core/Stache/Traverser.php',
         'Statamic\\Stache\\UpdateManager' => __DIR__ . '/../..' . '/core/Stache/UpdateManager.php',
         'Statamic\\Stache\\Updater' => __DIR__ . '/../..' . '/core/Stache/Updater.php',
+        'Statamic\\StaticCaching\\AbstractCacher' => __DIR__ . '/../..' . '/core/StaticCaching/AbstractCacher.php',
+        'Statamic\\StaticCaching\\ApplicationCacher' => __DIR__ . '/../..' . '/core/StaticCaching/ApplicationCacher.php',
+        'Statamic\\StaticCaching\\Cacher' => __DIR__ . '/../..' . '/core/StaticCaching/Cacher.php',
+        'Statamic\\StaticCaching\\ClearStaticCommand' => __DIR__ . '/../..' . '/core/StaticCaching/ClearStaticCommand.php',
+        'Statamic\\StaticCaching\\FileCacher' => __DIR__ . '/../..' . '/core/StaticCaching/FileCacher.php',
+        'Statamic\\StaticCaching\\Invalidator' => __DIR__ . '/../..' . '/core/StaticCaching/Invalidator.php',
+        'Statamic\\StaticCaching\\Middleware\\Cache' => __DIR__ . '/../..' . '/core/StaticCaching/Middleware/Cache.php',
+        'Statamic\\StaticCaching\\Middleware\\Retrieve' => __DIR__ . '/../..' . '/core/StaticCaching/Middleware/Retrieve.php',
+        'Statamic\\StaticCaching\\ServiceProvider' => __DIR__ . '/../..' . '/core/StaticCaching/ServiceProvider.php',
         'Statamic\\Testing\\TestCase' => __DIR__ . '/../..' . '/core/Testing/TestCase.php',
         'Statamic\\View\\Antlers\\Engine' => __DIR__ . '/../..' . '/core/View/Antlers/Engine.php',
         'Statamic\\View\\Antlers\\Parser' => __DIR__ . '/../..' . '/core/View/Antlers/Parser.php',
@@ -3828,10 +3832,10 @@ class ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit77aa3e08833f7aa449fefd5b0f6d8d97::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit96645ec99e2a67ac7b5dcef1d760c3a1::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit96645ec99e2a67ac7b5dcef1d760c3a1::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit96645ec99e2a67ac7b5dcef1d760c3a1::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit96645ec99e2a67ac7b5dcef1d760c3a1::$classMap;
 
         }, null, ClassLoader::class);
     }

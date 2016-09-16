@@ -2,6 +2,8 @@
 
 namespace Statamic\API;
 
+use Statamic\Stache\Manager;
+
 class Stache
 {
     /**
@@ -9,7 +11,7 @@ class Stache
      */
     public static function update()
     {
-        app('stache.manager')->update();
+        app(Manager::class)->update();
     }
 
     /**
@@ -19,6 +21,10 @@ class Stache
      */
     public static function clear()
     {
-        Folder::delete('local/cache/stache');
+        collect(Cache::get('stache.keys', []))
+            ->merge(['meta', 'timestamps', 'config', 'keys'])
+            ->each(function ($key) {
+                Cache::forget("stache.$key");
+            });
     }
 }

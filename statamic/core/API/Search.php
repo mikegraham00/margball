@@ -59,4 +59,26 @@ class Search
     {
         return self::search()->update($index);
     }
+
+    /**
+     * Insert a value into the index
+     *
+     * @param mixed $id
+     * @param mixed $value
+     * @return mixed
+     */
+    public static function insert($id, $value)
+    {
+        return self::search()->insert($id, $value);
+    }
+
+    /**
+     * Delete a value from the index
+     *
+     * @param mixed $id
+     */
+    public static function delete($id)
+    {
+        return self::search()->delete($id);
+    }
 }

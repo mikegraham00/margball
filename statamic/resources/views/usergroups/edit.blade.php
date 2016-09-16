@@ -3,6 +3,7 @@
 @section('content')
 
     <form method="post" action="{{ route('user.group', $group->uuid()) }}" class="card">
+        {!! csrf_field() !!}
 
         <div class="head">
             <h1>{{ translate('cp.editing_usergroup') }}: <strong>{{ $group->title() }}</strong></h1>

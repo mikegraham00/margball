@@ -2,6 +2,7 @@
 
 namespace Statamic\Stache\Drivers;
 
+use Statamic\API\Asset;
 use Statamic\API\YAML;
 use Statamic\API\Folder;
 
@@ -120,7 +121,9 @@ class AssetsDriver extends AbstractDriver implements AggregateDriver
         $items = [];
 
         foreach ($repo->getItems() as $key => $collection) {
-            $items[$key.'/items'] = $collection;
+            $items[$key.'/items'] = $collection->map(function ($asset) {
+                return $asset->shrinkWrap();
+            })->all();
         }
 
         return $items;
@@ -162,4 +165,20 @@ class AssetsDriver extends AbstractDriver implements AggregateDriver
         dd('asset locale', $path, $data);
     }
 
+    /**
+     * @inheritdoc
+     */
+    public function load($collection)
+    {
+        return $collection->map(function ($item, $id) {
+            $attr = $item['attributes'];
+
+            return Asset::create($id)
+                ->container($attr['container'])
+                ->folder($attr['folder'])
+                ->file($attr['basename'])
+                ->with($item['data'][default_locale()])
+                ->get();
+        });
+    }
 }

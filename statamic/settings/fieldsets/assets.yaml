@@ -10,3 +10,7 @@ fields:
     options:
       gd: GD
       imagick: ImageMagick
+  image_manipulation_cached:
+    type: toggle
+  image_manipulation_cached_path:
+    type: text

@@ -2,16 +2,18 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\PagesService;
+
 class Page
 {
     /**
      * The service for interacting with pages
      *
-     * @return \Statamic\Data\Services\PagesService
+     * @return PagesService
      */
     private static function service()
     {
-        return app('PagesService');
+        return app(PagesService::class);
     }
 
     /**

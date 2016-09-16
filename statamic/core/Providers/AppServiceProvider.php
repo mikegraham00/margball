@@ -9,9 +9,11 @@ use Statamic\CP\Router;
 use Statamic\API\Config;
 use Statamic\Config\ConfigManager;
 use Statamic\Extensions\FileStore;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Statamic\Extend\Management\Loader;
 use Illuminate\Support\ServiceProvider;
+use Statamic\Extensions\FileUserProvider;
 use Statamic\Config\File\Config as ConfigObject;
 
 class AppServiceProvider extends ServiceProvider
@@ -62,6 +64,10 @@ class AppServiceProvider extends ServiceProvider
             ));
         });
 
+        Auth::extend('file', function () {
+            return new FileUserProvider();
+        });
+
         // Enable the Debugbar, if necessary
         if (Config::get('debug.debug') && Config::get('debug.debug_bar')) {
             config(['debugbar.enabled' => true]);
@@ -95,8 +101,8 @@ class AppServiceProvider extends ServiceProvider
             return new Loader;
         });
 
-        $this->app->singleton('Statamic\CP\Router', function() {
-            return new Router(addon_repo());
+        $this->app->singleton('Statamic\CP\Router', function ($app) {
+            return new Router($app['router'], addon_repo());
         });
     }
 

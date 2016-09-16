@@ -3,6 +3,7 @@
 @section('content')
 
     <form method="post" action="{{ route('globals.update', $global->slug()) }}">
+        {!! csrf_field() !!}
 
         <div class="publish-form card">
             <div class="head">

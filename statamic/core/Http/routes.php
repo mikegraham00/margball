@@ -14,7 +14,9 @@ Route::controller('installer', 'InstallerController');
  * Control Panel
  */
 if (CP_ROUTE !== false) {
-    require __DIR__ . '/routes-cp.php';
+    Route::group(['middleware' => cp_middleware()], function () {
+        require __DIR__ . '/routes-cp.php';
+    });
 }
 
 /**
@@ -48,6 +50,6 @@ Route::any(EVENT_ROUTE . '/{controller?}/{method?}/{params?}', 'StatamicControll
  * Front-end
  * All front-end website requests go through a single controller method.
  */
-Route::any('/{segments?}', 'StatamicController@index')->where('segments', '.*')->name('site');
+Route::any('/{segments?}', 'StatamicController@index')->where('segments', '.*')->name('site')->middleware(['staticcache']);
 
 stop_measure('routing');

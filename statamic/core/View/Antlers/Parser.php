@@ -47,9 +47,9 @@ class Parser
         'noparse' => [],
     ];
 
-    protected static $data = null;
-    protected static $original_text = null;
-    protected static $callbackData = [];
+    protected $data = null;
+    protected $original_text = null;
+    protected $callbackData = [];
 
     /**
      * The main Lex parser method.  Essentially acts as dispatcher to
@@ -78,29 +78,15 @@ class Parser
         $this->setupRegex();
         $this->allowPhp = $allowPhp;
 
-        // Is this the first time parse() is called?
-        if (self::$data === null) {
-            // Let's store the local data array for later use.
-            self::$data = $data;
-        } else {
-            // Let's merge the current data array with the local scope variables
-            // So you can call local variables from within blocks.
-            // <statamic>
-            // data should never have numeric keys, so using union operator as it's faster
-            $data = $data + self::$data;
-            // </statamic>
+        // Let's store the current callback data with the the local data
+        // so we can use it straight after a callback is called.
+        $this->callbackData = $data;
 
-            // Since this is not the first time parse() is called, it's most definitely a callback,
-            // let's store the current callback data with the the local data
-            // so we can use it straight after a callback is called.
-            self::$callbackData = $data;
-
-            // <statamic>
-            // Save the original text coming in so that we can parse it recursively
-            // later on without this needing to be within a callback
-            self::$original_text = $text;
-            // </statamic>
-        }
+        // <statamic>
+        // Save the original text coming in so that we can parse it recursively
+        // later on without this needing to be within a callback
+        $this->original_text = $text;
+        // </statamic>
 
         // The parseConditionals method executes any PHP in the text, so clean it up.
         if (! $allowPhp) {
@@ -213,7 +199,7 @@ class Parser
                             // have been merged into the bigger scope
 
                             // merge this local data with callback data before performing actions
-                            $loop_value = $loop_data + $data + self::$callbackData;
+                            $loop_value = $loop_data + $data + $this->callbackData;
 
                             // perform standard actions
                             $str = $this->extractLoopedTags($match[2][0], $loop_value, $callback);
@@ -253,7 +239,7 @@ class Parser
                                 $loop_value['last']          = ($index === $loop_value['total_results']) ? true : false;
 
                                 // merge this local data with callback data before performing actions
-                                $loop_value = $loop_value + $data + self::$callbackData;
+                                $loop_value = $loop_value + $data + $this->callbackData;
 
                                 // perform standard actions
                                 $str = $this->extractLoopedTags($match[2][0], $loop_value, $callback);
@@ -315,7 +301,7 @@ class Parser
                     $var_name = ($var_pipe !== false) ? substr($var, 0, $var_pipe) : $var;
                     // </statamic>
 
-                    if (strpos($var, '"') === 0 && strrpos($var, '"') === strlen($var) - 1) {
+                    if (preg_match('/^(["\']).+\1$/', $var)) {
                         $text = str_replace($data_matches[0][$index], substr($var, 1, strlen($var) - 2), $text);
                         break;
                     }
@@ -378,9 +364,9 @@ class Parser
                         // is $data an array?
                         if (is_array($data)) {
                             // it is, have we had callback data before?
-                            if (! empty(self::$callbackData)) {
+                            if (! empty($this->callbackData)) {
                                 // we have, merge it all together
-                                $cb_data = $data + self::$callbackData;
+                                $cb_data = $data + $this->callbackData;
                             }
 
                             // grab the raw string of parameters
@@ -452,8 +438,8 @@ class Parser
         while (preg_match($regex, $text, $match, PREG_OFFSET_CAPTURE)) {
             // <statamic>
             // update the collective data if it's different
-            if (! empty(self::$callbackData)) {
-                $cb_data = $data + self::$callbackData;
+            if (! empty($this->callbackData)) {
+                $cb_data = $data + $this->callbackData;
             }
             // </statamic>
 
@@ -707,7 +693,7 @@ class Parser
 
         // <statamic>
         // parse for recursives, as they may not have been parsed for above
-        $text = $this->parseRecursives($text, self::$original_text, $callback);
+        $text = $this->parseRecursives($text, $this->original_text, $callback);
         // </statamic>
 
         // <statamic>
@@ -902,13 +888,13 @@ class Parser
             // check to see if the recursive variable we're looking for is set
             // within the current data for this run-through, if it isn't, just
             // abort and return the text
-            if (!array_get(self::$callbackData, $array_key)) {
+            if (!array_get($this->callbackData, $array_key)) {
                 return $text;
             }
             // </statamic>
 
             $next_tag    = null;
-            $children    = array_get(self::$callbackData, $array_key);
+            $children    = array_get($this->callbackData, $array_key);
 
             // <statamic>
             // if the array key is scoped, we'll add a scope to the array
@@ -1107,9 +1093,9 @@ class Parser
 
         // <statamic>
         // expand allowed characters in variable regex
-        $this->variableRegex = '\b(?!if|unless\s)[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\@\/,0-9_\.'.$glue.']*';
+        $this->variableRegex = "\b(?!if|unless\s)[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\@\/,0-9_\.'".$glue.']*';
         // Allow spaces after the variable name so you can do modifiers like | this | and_that
-        $this->looseVariableRegex = '\b(?!if|unless\s)[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\@\/,0-9_\.(\s.*)?'.$glue.']*';
+        $this->looseVariableRegex = "\b(?!if|unless\s)[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\@\/,0-9_\.(\s.*)?'".$glue.']*';
         // </statamic>
         $this->callbackNameRegex = '\b(?!if|unless\s)[a-zA-Z0-9_][|a-zA-Z\-\+\*%\^\/,0-9_\.(\s.*?)'.$glue.']*'.$glue.$this->variableRegex;
         $this->variableLoopRegex = '/\{\{\s*('.$this->looseVariableRegex.')\s*\}\}(.*?)\{\{\s*\/\1\s*\}\}/ms';
@@ -1311,6 +1297,13 @@ class Parser
                 $modifier_bits = explode(':', $modifier);
                 $data = $this->runModifier(array_get($modifier_bits, 0), $data, array_slice($modifier_bits, 1), $context);
             }
+        }
+        // </statamic>
+
+        // <statamic>
+        // convert collections to arrays
+        if ($data instanceof \Illuminate\Support\Collection) {
+            $data = $data->toArray();
         }
         // </statamic>
 

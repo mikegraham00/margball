@@ -6,7 +6,7 @@ fieldtype_fields:
   label:
     type: text
   collection:
-    type: text
+    type: collections
   mode:
     type: select
     options:

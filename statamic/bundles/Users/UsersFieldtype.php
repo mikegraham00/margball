@@ -9,7 +9,7 @@ class UsersFieldtype extends RelateFieldtype
 {
     public function preProcess($data)
     {
-        if (! $data) {
+        if ($data === 'current') {
             $user = User::getCurrent();
             $data = $user->id();
         }

@@ -125,7 +125,9 @@ class TermsDriver extends AbstractDriver implements AggregateDriver
         $items = [];
 
         foreach ($repo->getItems() as $key => $collection) {
-            $items[$key.'/items'] = $collection;
+            $items[$key.'/items'] = $collection->map(function ($term) {
+                return $term->shrinkWrap();
+            })->all();
         }
 
         return $items;
@@ -142,5 +144,39 @@ class TermsDriver extends AbstractDriver implements AggregateDriver
     public function getLocalizedUri($locale, $data, $path)
     {
         return Term::find($data['id'])->in($locale)->uri();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function load($collection)
+    {
+        return $collection->map(function ($item, $id) {
+            $attr = $item['attributes'];
+
+            // Get the data for the default locale. Remove the ID since
+            // we already have it and will be setting it separately.
+            $data = $item['data'][default_locale()];
+            unset($data['id']);
+
+            $term = Term::create($attr['slug'])
+                ->id($id)
+                ->with($data)
+                ->taxonomy($attr['taxonomy'])
+                ->order(array_get($attr, 'order'))
+                ->published(array_get($attr, 'published'))
+                ->get();
+
+            // If the term has additional locale data, add them.
+            if (count($item['data']) > 1) {
+                foreach ($item['data'] as $locale => $data) {
+                    $term->dataForLocale($locale, $data);
+                }
+
+                $term->syncOriginal();
+            }
+
+            return $term;
+        });
     }
 }

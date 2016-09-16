@@ -120,6 +120,10 @@ class Asset extends Data implements AssetContract
      */
     protected function getPath()
     {
+        if (isset($this->attributes['path'])) {
+            return $this->attributes['path'];
+        }
+
         return ltrim(Path::assemble($this->folder()->path(), $this->basename()), '/');
     }
 
@@ -144,27 +148,20 @@ class Asset extends Data implements AssetContract
      * Get the asset's URL
      *
      * @return string
-     * @throws \RuntimeException
      */
     public function uri()
     {
-        if ($this->driver() === 'local') {
-            return URL::encode(Path::tidy($this->container()->url() . '/' . $this->getPath()));
-
-        } elseif ($this->driver() === 's3') {
-            $adapter = $this->disk()->filesystem()->getAdapter();
-            return URL::encode(URL::tidy($adapter->getClient()->getObjectUrl(
-                $adapter->getBucket(),
-                $this->container()->path() . '/' . $this->path()
-            )));
-        }
-
-        throw new \RuntimeException('This driver does not support retrieving URLs.');
+        return URL::assemble($this->container()->url(), $this->path());
     }
 
+    /**
+     * Get the asset's URL, and encode it
+     *
+     * @return string
+     */
     public function url()
     {
-        return $this->uri();
+        return URL::encode($this->uri());
     }
 
     /**
@@ -182,12 +179,12 @@ class Asset extends Data implements AssetContract
      * Get either a image URL builder instance, or a URL if passed params.
      *
      * @param null|array $params Optional manipulation parameters to return a string right away
-     * @return \Statamic\Contracts\Assets\Manipulation\UrlBuilder|string
+     * @return \Statamic\Contracts\Imaging\UrlBuilder|string
      * @throws \Exception
      */
     public function manipulate($params = null)
     {
-        return Image::manipulate($this->id());
+        return Image::manipulate($this->id(), $params);
     }
 
     /**

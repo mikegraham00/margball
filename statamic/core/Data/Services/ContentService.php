@@ -2,6 +2,7 @@
 
 namespace Statamic\Data\Services;
 
+use Statamic\API\Str;
 use Illuminate\Support\Collection;
 use Statamic\Stache\AggregateRepository;
 use Statamic\Data\Content\ContentCollection;
@@ -15,7 +16,17 @@ class ContentService extends AbstractService
      */
     public function all()
     {
-        return collect_content($this->stache->all());
+        $entries = $this->stache->repo('entries')->getItems()->flatMap(function ($items) {
+            return $items;
+        });
+
+        $terms = $this->stache->repo('terms')->getItems()->flatMap(function ($items) {
+            return $items;
+        });
+
+        $pages = $this->stache->repo('pages')->getItems();
+
+        return collect_content($entries->merge($terms)->merge($pages));
     }
 
     /**
@@ -74,7 +85,7 @@ class ContentService extends AbstractService
      */
     public function uri($uri)
     {
-        $key = default_locale() . '::' . $uri;
+        $key = default_locale() . '::' . Str::ensureLeft($uri, '/');
 
         $id = $this->uris()->get($key);
 

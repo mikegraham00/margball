@@ -19,7 +19,8 @@
     @include toolbar;
     box-shadow: none;
 
-    .btn-group > .icon {
+    .btn-group > .icon,
+    .btn-group button > .icon {
         cursor: pointer;
         color: $color_gray_light;
         margin: -4px 0 0 2px;

@@ -2,8 +2,7 @@
 
 namespace Statamic\Stache;
 
-use Statamic\API\Config;
-use Statamic\API\File;
+use Statamic\API\Cache;
 use Statamic\Events\StacheUpdated;
 
 class Manager
@@ -94,12 +93,10 @@ class Manager
 
     public function hasConfigChanged()
     {
-        $file = 'local/cache/stache/config.txt';
-
-        if (! File::exists($file)) {
+        if (! Cache::has('stache.config')) {
             return false;
         }
 
-        return Config::all() !== unserialize(File::get($file));
+        return $this->stache->buildConfig() !== Cache::get('stache.config');
     }
 }

@@ -266,6 +266,9 @@ class Modify implements \IteratorAggregate
             case "list":
                 return "joinplode";
 
+            case "piped":
+                return "optionList";
+
             case "json":
                 return "toJson";
 

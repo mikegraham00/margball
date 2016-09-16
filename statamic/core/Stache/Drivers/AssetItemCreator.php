@@ -68,13 +68,16 @@ class AssetItemCreator
             return array_get(YAML::parse($contents), 'assets', []);
         })->map(function ($assets, $folder) use ($container) {
             $folder = $this->getFolderFromPath($folder);
-            return $this->createAssets($container, $folder, $assets);
+            $path = $this->stache->repo('assetfolders')->getItem(
+                'assets/' . rtrim(Path::assemble($container, $folder), '/')
+            )->path();
+            return $this->createAssets($container, $folder, $path, $assets);
         });
     }
 
-    private function createAssets($container, $folder, $assets)
+    private function createAssets($container, $folder, $folder_path, $assets)
     {
-        return collect($assets)->map(function ($data, $id) use ($container, $folder) {
+        return collect($assets)->map(function ($data, $id) use ($container, $folder, $folder_path) {
             $file = $data['file'];
             unset($data['file']);
 
@@ -84,6 +87,8 @@ class AssetItemCreator
                 ->folder($folder)
                 ->with($data)
                 ->get();
+
+            $asset->path(ltrim(str_replace('//', '/', $folder_path.'/'.$file), '/'));
 
             return [
                 'item' => $asset,

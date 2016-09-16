@@ -126,4 +126,15 @@ class EntriesService extends AbstractService
 
         return $entries;
     }
+
+    /**
+     * Get the number of entries in a collection
+     *
+     * @param string $collection
+     * @return int
+     */
+    public function countCollection($collection)
+    {
+        return $this->repo()->repo($collection)->getIds()->count();
+    }
 }

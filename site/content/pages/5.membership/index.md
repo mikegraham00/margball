@@ -1,4 +1,5 @@
 in_main_nav: true
+template: membership
 page_header:
   -
     type: image_and_text_set

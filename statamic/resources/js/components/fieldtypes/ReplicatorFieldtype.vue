@@ -5,15 +5,22 @@
             <div class="list-group" v-for="(setIndex, set) in data">
                 <div class="list-group-item group-header">
                     <div class="btn-group icon-group pull-right">
-                        <!-- <i class="icon icon-cog"></i> -->
-                        <i class="icon" :class="{ 'icon-triangle-down': !isHidden(set), 'icon-triangle-up': isHidden(set) }" v-on:click="toggle(set)"></i>
-                        <i class="icon icon-cross" v-on:click="deleteSet(this)"></i>
                         <i class="icon icon-menu drag-handle"></i>
+                        <i class="icon" :class="{ 'icon-resize-100': !isHidden(set), 'icon-resize-full-screen': isHidden(set) }" v-on:click="toggle(set)"></i>
+                        <button type="button" class="btn-more dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="icon icon-dots-three-vertical"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a @click="collapseAll">Collapse All</a></li>
+                            <li><a @click="expandAll">Expand All</a></li>
+                            <li class="warning"><a @click="deleteSet(this)">Delete Set</a></li>
+                        </ul>
                     </div>
                     <label>{{ setConfig(set.type).display || set.type }}</label>
                     <small class="help-block" v-if="setConfig(set.type).instructions" v-html="setConfig(set.type).instructions | markdown"></small>
                 </div>
-                <div class="list-group-item" v-if="!isHidden(set)">
+                <div class="list-group-item" v-show="!isHidden(set)">
                     <div class="row">
                         <div v-for="field in setConfig(set.type).fields" class="{{ colClass(field.width) }}">
                             <div class="form-group {{ field.type }}-fieldtype">
@@ -44,6 +51,23 @@
         </div>
     </div>
 </template>
+
+<style>
+    .replicator-fieldtype-wrapper {
+        position: relative;
+    }
+    .replicator-controls {
+        position: absolute;
+        top: -34px;
+        right: 0;
+    }
+    .replicator-controls .btn {
+        padding: 7px 10px;
+        height: auto;
+        line-height: 1;
+        font-size: 12px;
+    }
+</style>
 
 <script>
 var Vue = require('vue');
@@ -142,6 +166,18 @@ module.exports = {
 
         isHidden: function(set) {
             return set['#hidden'];
+        },
+
+        expandAll: function() {
+              _.each(this.data, function (s) {
+                    Vue.set(s, '#hidden', false);
+              });
+        },
+
+        collapseAll: function () {
+            _.each(this.data, function (s) {
+                Vue.set(s, '#hidden', true);
+            });
         },
 
         /**

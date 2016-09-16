@@ -3,6 +3,9 @@
 namespace Statamic\Stache;
 
 use Illuminate\Support\Collection;
+use Statamic\Events\Stache\RepositoryItemInserted;
+use Statamic\Events\Stache\RepositoryItemRemoved;
+use Statamic\Events\StacheItemInserted;
 
 class Repository
 {
@@ -228,9 +231,7 @@ class Repository
             return $this;
         }
 
-        $loader = new ItemLoader($this);
-
-        $this->items = $loader->load();
+        $this->items = app(ItemLoader::class)->load($this);
 
         $this->loaded = true;
 
@@ -255,6 +256,8 @@ class Repository
     {
         $this->items->put($id, $item);
 
+        event(new RepositoryItemInserted($this, $id, $item));
+
         return $this;
     }
 
@@ -262,12 +265,15 @@ class Repository
     {
         $this->load();
 
-        $this->items->forget($id);
+        $item = $this->items->pull($id);
+
         $this->paths->get(default_locale())->forget($id);
 
         if ($uris = $this->uris->get(default_locale())) {
             $uris->forget($id);
         }
+
+        event(new RepositoryItemRemoved($this, $id, $item));
 
         return $this;
     }

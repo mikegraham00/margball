@@ -16,5 +16,7 @@ fields:
     options:
       cache: Cache
       file: File
+  static_caching_file_path:
+     type: text
   static_caching_ignore_query_strings:
     type: toggle

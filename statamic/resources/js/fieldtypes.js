@@ -6,6 +6,7 @@ import AssetsFolderFieldtype from './components/fieldtypes/AssetsFolderFieldtype
 import AssetContainerFieldtype from './components/fieldtypes/AssetContainerFieldtype.vue'
 import CheckboxesFieldtype from './components/fieldtypes/CheckboxesFieldtype.vue'
 import CollectionFieldtype from './components/fieldtypes/CollectionFieldtype.vue'
+import CollectionsFieldtype from './components/fieldtypes/CollectionsFieldtype.vue'
 import DateFieldtype from './components/fieldtypes/DateFieldtype.vue'
 import GridFieldtype from './components/fieldtypes/GridFieldtype.vue'
 import FieldsetFieldtype from './components/fieldtypes/FieldsetFieldtype.vue'
@@ -44,6 +45,7 @@ Vue.component('asset_container-fieldtype', AssetContainerFieldtype);
 Vue.component('asset_folder-fieldtype', AssetsFolderFieldtype);
 Vue.component('checkboxes-fieldtype', CheckboxesFieldtype);
 Vue.component('collection-fieldtype', CollectionFieldtype);
+Vue.component('collections-fieldtype', CollectionsFieldtype);
 Vue.component('date-fieldtype', DateFieldtype);
 Vue.component('fieldset-fieldtype', FieldsetFieldtype);
 Vue.component('grid-fieldtype', GridFieldtype);

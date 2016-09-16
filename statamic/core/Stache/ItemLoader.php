@@ -2,34 +2,49 @@
 
 namespace Statamic\Stache;
 
-use Statamic\API\File;
-use Statamic\API\Folder;
+use Illuminate\Support\Collection;
+use Statamic\API\Cache;
+use Statamic\API\Str;
 
 class ItemLoader
 {
     /**
-     * @var \Statamic\Stache\Repository
+     * @var Stache
+     */
+    private $stache;
+
+    /**
+     * @var Repository
      */
     private $repo;
 
-    public function __construct(Repository $repo)
+    /**
+     * @param Stache $stache
+     */
+    public function __construct(Stache $stache)
     {
-        $this->repo = $repo;
+        $this->stache = $stache;
     }
 
-    public function load()
+    /**
+     * Load the items
+     *
+     * @param Repository $repo
+     * @return Collection
+     */
+    public function load(Repository $repo)
     {
-        // Get all the data from the cache files. For now, we're
-        // storing as files so we can see what's going on.
-        $files = Folder::getFiles('local/cache/stache/'.$this->repo->cacheKey());
+        $this->repo = $repo;
 
-        $data = collect($files)->map(function ($path) {
-            return unserialize(File::get($path));
-        });
-
-        // Combine all the items from the different cache files.
-        return $data->flatMap(function ($collection) {
-            return $collection->all();
+        return collect(Cache::get('stache.keys', []))->filter(function ($key) {
+            return Str::startsWith($key, $this->repo->cacheKey().'/');
+        })->map(function ($key) {
+            return Cache::get("stache.$key");
+        })->flatMap(function ($collection) {
+            $cache_key = $this->repo->cacheKey();
+            $key = (Str::contains($cache_key, '/')) ? explode('/', $cache_key)[0] : $cache_key;
+            $repo = $this->stache->driver($key);
+            return $repo->load(collect($collection));
         });
     }
 }

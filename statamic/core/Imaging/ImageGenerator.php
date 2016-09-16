@@ -2,9 +2,12 @@
 
 namespace Statamic\Imaging;
 
+use GuzzleHttp\Client;
 use Statamic\API\File;
 use Statamic\API\Config;
 use League\Glide\Server;
+use League\Flysystem\Filesystem;
+use Twistor\Flysystem\GuzzleAdapter;
 
 class ImageGenerator
 {
@@ -55,6 +58,8 @@ class ImageGenerator
         $this->path = $path;
         $this->params = $params;
 
+        $this->server->setSource(File::disk('webroot')->filesystem()->getDriver());
+        $this->server->setSourcePathPrefix('/');
         $this->server->setCachePathPrefix('default');
 
         return $this->generate($path);
@@ -63,18 +68,26 @@ class ImageGenerator
     /**
      * Generate a manipulated image by a URL
      *
-     * @param string $path
+     * @param string $url
      * @param array  $params
      * @return mixed
      */
-    public function generateByUrl($path, array $params)
+    public function generateByUrl($url, array $params)
     {
-        $this->path = $path;
+        $this->skip_validation = true;
         $this->params = $params;
 
-        $this->skip_validation = true;
+        $parsed = parse_url($url);
 
-        return $this->generate($path);
+        $base = $parsed['scheme'] . '://' . $parsed['host'];
+
+        $filesystem = new Filesystem(new GuzzleAdapter($base, new Client()));
+
+        $this->server->setSource($filesystem);
+        $this->server->setSourcePathPrefix('/');
+        $this->server->setCachePathPrefix('http');
+
+        return $this->generate($parsed['path']);
     }
 
     /**

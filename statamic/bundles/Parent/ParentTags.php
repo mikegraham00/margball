@@ -20,7 +20,12 @@ class ParentTags extends Tags
      */
     public function __call($method, $args)
     {
-        $parent = Content::whereUri($this->getParentUrl())->toArray();
+        
+        $parent = Content::whereUri($this->getParentUrl());
+        
+        if ($parent) {
+            $parent = $parent->toArray();
+        }
 
         return array_get($parent, $method);
     }

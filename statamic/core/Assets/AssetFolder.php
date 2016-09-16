@@ -9,6 +9,7 @@ use Statamic\API\Str;
 use Statamic\API\Folder;
 use Statamic\API\Storage;
 use Statamic\Assets\AssetCollection;
+use Statamic\Data\Services\AssetsService;
 use Illuminate\Contracts\Support\Arrayable;
 use Statamic\Contracts\Assets\AssetFolder as AssetFolderContract;
 
@@ -131,7 +132,7 @@ class AssetFolder implements AssetFolderContract, Arrayable
      */
     public function assets()
     {
-        return app('AssetsService')->folder($this->container, $this->path());
+        return app(AssetsService::class)->folder($this->container, $this->path());
     }
 
     /**

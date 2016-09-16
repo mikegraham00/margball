@@ -2,16 +2,18 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\TermsService;
+
 class Term
 {
     /**
      * The service for interacting with term
      *
-     * @return \Statamic\Data\Services\TermsService
+     * @return TermsService
      */
     private static function service()
     {
-        return app('TermsService');
+        return app(TermsService::class);
     }
 
     /**
@@ -28,7 +30,7 @@ class Term
     /**
      * Get all terms
      *
-     * @return \Statamic\Data\Taxonomies\Term
+     * @return \Statamic\Data\Taxonomies\TermCollection
      */
     public static function all()
     {

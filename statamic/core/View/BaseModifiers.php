@@ -1150,6 +1150,22 @@ class BaseModifiers extends Modifier
     }
 
     /**
+     * Turn an array into a pipe delimited list
+     *
+     * @param $value
+     * @param $params
+     * @return string
+     */
+    public function optionList($value, $params)
+    {
+        if (count($params) > 1) {
+            $params = [join('|', $params)];
+        }
+
+        return implode(array_get($params, 0, '|'), $value);
+    }
+
+    /**
      * Offset the items in an array
      *
      * @param $value

@@ -30,7 +30,7 @@
 
 				<div class="sneak-peek-header">
 					<h2 class="pull-left">{{ trans('cp.sneak_peeking') }}</h2>
-					<button class="pull-right btn btn-default" @click="stopPreviewing">{{ trans('cp.done') }}</button>
+					<button class="pull-right btn btn-primary" @click="stopPreviewing">{{ trans('cp.done') }}</button>
 				</div>
 
 				@yield('content')

@@ -2,6 +2,7 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\AssetContainersService;
 use Statamic\Contracts\Assets\AssetContainerFactory;
 
 class AssetContainer
@@ -13,7 +14,7 @@ class AssetContainer
      */
     public static function all()
     {
-        return app('AssetContainersService')->all();
+        return app(AssetContainersService::class)->all();
     }
 
     /**
@@ -24,7 +25,7 @@ class AssetContainer
      */
     public static function find($id)
     {
-        return app('AssetContainersService')->id($id);
+        return app(AssetContainersService::class)->id($id);
     }
 
     /**

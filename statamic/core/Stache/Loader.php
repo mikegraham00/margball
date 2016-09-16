@@ -2,7 +2,7 @@
 
 namespace Statamic\Stache;
 
-use Statamic\API\File;
+use Statamic\API\Cache;
 
 class Loader
 {
@@ -63,8 +63,6 @@ class Loader
      */
     private function fetch($key)
     {
-        $value = File::get('local/cache/stache/'.$key.'.txt');
-
-        return unserialize($value);
+        return Cache::get("stache.$key");
     }
 }

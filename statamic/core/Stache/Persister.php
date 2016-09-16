@@ -3,6 +3,7 @@
 namespace Statamic\Stache;
 
 use Illuminate\Support\Collection;
+use Statamic\API\Cache;
 use Statamic\API\File;
 
 class Persister
@@ -21,6 +22,11 @@ class Persister
      * @var Collection
      */
     private $items;
+
+    /**
+     * @var Collection
+     */
+    private $keys;
 
     /**
      * @param \Statamic\Stache\Stache $stache
@@ -57,14 +63,22 @@ class Persister
         // be loaded all the time with minimal overhead.
         $this->store('meta', $this->meta->all());
 
+        // Keep track of the keys that will be persisting.
+        $this->keys = collect(Cache::get('stache.keys', []));
+
         // Loop through all the item objects which each driver has organized
         // into folders. These are separate because it has the potential to
         // be quite large. These will be lazy loaded to prevent overhead.
         $this->items->each(function ($folders, $key) {
             collect($folders)->each(function ($data, $folder) use ($key) {
-                $this->store($key . '/' . $folder, $data);
+                $keyed = $key . '/' . $folder;
+                $this->store($keyed, $data);
+                $this->keys->push($keyed);
             });
         });
+
+        // Persist the keys
+        Cache::put('stache.keys', $this->keys->all());
     }
 
     /**
@@ -75,8 +89,6 @@ class Persister
      */
     private function store($key, $value)
     {
-        $value = serialize($value);
-
-        File::put('local/cache/stache/'.$key.'.txt', $value);
+        Cache::put("stache.$key", $value);
     }
 }

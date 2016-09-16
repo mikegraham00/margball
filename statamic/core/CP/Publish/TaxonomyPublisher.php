@@ -2,6 +2,7 @@
 
 namespace Statamic\CP\Publish;
 
+use Statamic\API\Helper;
 use Statamic\API\Term;
 
 class TaxonomyPublisher extends Publisher
@@ -66,6 +67,8 @@ class TaxonomyPublisher extends Publisher
      */
     private function prepForBrandNewTaxonomy()
     {
+        $this->id = Helper::makeUuid();
+
         $this->content = Term::create($this->slug)
             ->taxonomy($this->group)
             ->published($this->getSubmittedStatus())

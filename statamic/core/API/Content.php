@@ -2,6 +2,9 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\ContentService;
+use Statamic\Data\Services\PageStructureService;
+
 class Content
 {
     /**
@@ -11,7 +14,7 @@ class Content
      */
     public static function all()
     {
-        return app('ContentService')->all();
+        return app(ContentService::class)->all();
     }
 
     /**
@@ -22,7 +25,7 @@ class Content
      */
     public static function find($id)
     {
-        return app('ContentService')->id($id);
+        return app(ContentService::class)->id($id);
     }
 
     /**
@@ -38,7 +41,7 @@ class Content
         $collection = collect_content();
 
         foreach ($uris as $uri) {
-            $collection->push(app('ContentService')->uri($uri));
+            $collection->push(app(ContentService::class)->uri($uri));
         }
 
         return ($is_array) ? $collection : $collection->first();
@@ -52,7 +55,7 @@ class Content
      */
     public static function exists($id)
     {
-        return app('ContentService')->exists($id);
+        return app(ContentService::class)->exists($id);
     }
 
     /**
@@ -63,7 +66,7 @@ class Content
      */
     public static function uriExists($uri)
     {
-        return app('ContentService')->uriExists($uri);
+        return app(ContentService::class)->uriExists($uri);
     }
 
     /**
@@ -85,7 +88,7 @@ class Content
         $exclude = null,
         $locale = null
     ) {
-        return app('PageStructureService')->tree($uri, $depth, $entries, $drafts, $exclude, $locale);
+        return app(PageStructureService::class)->tree($uri, $depth, $entries, $drafts, $exclude, $locale);
     }
 
     /**

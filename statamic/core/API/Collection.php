@@ -2,6 +2,8 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\CollectionsService;
+
 class Collection
 {
     /**
@@ -11,7 +13,7 @@ class Collection
      */
     public static function all()
     {
-        return app('CollectionsService')->all();
+        return app(CollectionsService::class)->all();
     }
 
     /**
@@ -32,7 +34,7 @@ class Collection
      */
     public static function whereHandle($handle)
     {
-        return app('CollectionsService')->handle($handle);
+        return app(CollectionsService::class)->handle($handle);
     }
 
     /**

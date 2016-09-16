@@ -42,10 +42,10 @@ class NavFactory
 
     private function buildContentNav()
     {
-        $nav = $this->item('content');
+        $nav = $this->item('content')->title(t('nav_content'));
 
         if ($this->access('pages:edit')) {
-            $nav->add($this->item('pages')->route('pages'));
+            $nav->add($this->item('pages')->route('pages')->title(t('nav_pages')));
         }
 
         if ($this->access('collections:*:edit')) {
@@ -85,7 +85,7 @@ class NavFactory
             return $this->item('collections')->route('collections')->title($collections->first()->title());
         }
 
-        $nav = $this->item('collections')->route('collections');
+        $nav = $this->item('collections')->route('collections')->title(t('nav_collections'));
 
         foreach ($collections as $slug => $collection) {
             $nav->add(
@@ -100,7 +100,7 @@ class NavFactory
 
     private function buildTaxonomiesNav()
     {
-        $nav = $this->item('taxonomies')->route('taxonomies');
+        $nav = $this->item('taxonomies')->route('taxonomies')->title(t('nav_taxonomies'));
 
         $taxonomies = collect(Taxonomy::all())->filter(function ($taxonomy) {
             return $this->access("taxonomies:{$taxonomy->path()}:edit");
@@ -127,7 +127,7 @@ class NavFactory
 
     private function buildAssetsNav()
     {
-        $nav = $this->item('assets')->route('assets');
+        $nav = $this->item('assets')->route('assets')->title(t('nav_assets'));
 
         $containers = collect(AssetContainer::all())->filter(function ($container) {
             return $this->access("assets:{$container->id()}:edit");
@@ -148,7 +148,7 @@ class NavFactory
 
     private function buildGlobalsNav()
     {
-        $nav = $this->item('globals')->route('globals');
+        $nav = $this->item('globals')->route('globals')->title(t('nav_globals'));
 
         $globals = GlobalSet::all()->filter(function ($set) {
             return $this->access("globals:{$set->slug()}:edit");
@@ -169,18 +169,18 @@ class NavFactory
 
     private function buildToolsNav()
     {
-        $nav = $this->item('tools');
+        $nav = $this->item('tools')->title(t('nav_tools'));
 
         if ($this->access('forms')) {
-            $nav->add($this->item('forms')->route('forms'));
+            $nav->add($this->item('forms')->route('forms')->title(t('nav_forms')));
         }
 
         if ($this->access('updater')) {
-            $nav->add($this->item('updater')->route('updater'));
+            $nav->add($this->item('updater')->route('updater')->title(t('nav_updater')));
         }
 
         if ($this->access('importer')) {
-            $nav->add($this->item('import')->route('import'));
+            $nav->add($this->item('import')->route('import')->title(t('nav_import')));
         }
 
         return $nav;
@@ -191,10 +191,10 @@ class NavFactory
         $nav = $this->item('configure');
 
         if ($this->access('super')) {
-            $nav->add($this->item('addons')->route('addons'));
+            $nav->add($this->item('addons')->route('addons')->title(t('nav_addons')));
             $nav->add($this->buildConfigureContentNav());
-            $nav->add($this->item('fieldsets')->route('fieldsets'));
-            $nav->add($this->item('settings')->route('settings'));
+            $nav->add($this->item('fieldsets')->route('fieldsets')->title(t('nav_fieldsets')));
+            $nav->add($this->item('settings')->route('settings')->title(t('nav_settings')));
         }
 
         if ($this->access('users:edit')) {
@@ -206,23 +206,23 @@ class NavFactory
 
     private function buildConfigureContentNav()
     {
-        $nav = $this->item('config-content')->route('content')->title('Content');
+        $nav = $this->item('config-content')->route('content')->title(t('nav_content'));
 
-        $nav->add($this->item('assets')->route('assets.containers.manage'));
-        $nav->add($this->item('collections')->route('collections.manage'));
-        $nav->add($this->item('taxonomies')->route('taxonomies.manage'));
-        $nav->add($this->item('globals')->route('globals.manage'));
+        $nav->add($this->item('assets')->route('assets.containers.manage')->title(t('nav_assets')));
+        $nav->add($this->item('collections')->route('collections.manage')->title(t('nav_collections')));
+        $nav->add($this->item('taxonomies')->route('taxonomies.manage')->title(t('nav_taxonomies')));
+        $nav->add($this->item('globals')->route('globals.manage')->title(t('nav_globals')));
 
         return $nav;
     }
 
     private function buildUsersNav()
     {
-        $nav = $this->item('users')->route('users');
+        $nav = $this->item('users')->route('users')->title(t('nav_users'));
 
         if ($this->access('super')) {
-            $nav->add($this->item('user-groups')->route('user.groups')->title('Groups'));
-            $nav->add($this->item('user-roles')->route('user.roles')->title('Roles'));
+            $nav->add($this->item('user-groups')->route('user.groups')->title(t('nav_user-groups')));
+            $nav->add($this->item('user-roles')->route('user.roles')->title(t('nav_user-roles')));
         }
 
         return $nav;

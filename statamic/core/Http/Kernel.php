@@ -13,14 +13,13 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-        'Statamic\Http\Middleware\CheckForStaticallyCachedPage',
-        'locale' => 'Statamic\Http\Middleware\CP\DefaultLocale',
+        'Statamic\StaticCaching\Middleware\Retrieve',
+        'Statamic\Http\Middleware\Glide',
         'Illuminate\Cookie\Middleware\EncryptCookies',
         'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
         'Illuminate\Session\Middleware\StartSession',
         'Illuminate\View\Middleware\ShareErrorsFromSession',
-//        'Statamic\Http\Middleware\VerifyCsrfToken',
-        'Statamic\Http\Middleware\Outpost',
+        'Statamic\Http\Middleware\VerifyCsrfToken',
         'Statamic\Http\Middleware\PersistStache',
     ];
 
@@ -34,5 +33,8 @@ class Kernel extends HttpKernel
         'start' => 'Statamic\Http\Middleware\CP\StartPage',
         'configurable' => 'Statamic\Http\Middleware\CP\Configurable',
         'installer' => 'Statamic\Http\Middleware\Installer',
+        'outpost' => 'Statamic\Http\Middleware\Outpost',
+        'locale' => 'Statamic\Http\Middleware\CP\DefaultLocale',
+        'staticcache' => 'Statamic\StaticCaching\Middleware\Cache',
     ];
 }

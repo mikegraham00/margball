@@ -3,6 +3,7 @@
 namespace Statamic\Stache\Drivers;
 
 use Illuminate\Support\Collection;
+use Statamic\API\Config;
 use Statamic\API\Folder;
 use Statamic\Stache\AggregateRepository;
 use Statamic\Stache\Stache;
@@ -115,8 +116,8 @@ abstract class AbstractDriver implements Driver
      * Delete the items from the repo
      *
      * @param \Statamic\Stache\Repository $repo
-     * @param \Illuminate\Support\Collection $deleted
-     * @param \Illuminate\Support\Collection $modified
+     * @param Collection $deleted
+     * @param Collection $modified
      */
     public function deleteItems($repo, $deleted, $modified)
     {
@@ -187,6 +188,10 @@ abstract class AbstractDriver implements Driver
      */
     public function ensureUniqueId($item)
     {
+        if (! Config::get('system.ensure_unique_ids')) {
+            return;
+        }
+
         $id = $item->id();
         $path = $item->path();
 
@@ -244,4 +249,15 @@ abstract class AbstractDriver implements Driver
      * @return array
      */
     abstract public function toPersistentArray($repo);
+
+    /**
+     * Take the persisted items from the cache and return a collection of objects
+     *
+     * @param Collection $collection
+     * @return Collection
+     */
+    public function load($collection)
+    {
+        return $collection;
+    }
 }

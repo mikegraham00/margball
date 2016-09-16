@@ -11,6 +11,7 @@ use Statamic\API\Path;
 use Statamic\API\Str;
 use Statamic\API\URL;
 use Statamic\Data\Content\Content;
+use Statamic\Data\Services\PagesService;
 use Statamic\API\PageFolder as PageFolderAPI;
 use Statamic\Contracts\Data\Pages\Page as PageContract;
 
@@ -55,7 +56,7 @@ class Page extends Content implements PageContract
             return $this->uri();
         }
 
-        return app('PagesService')
+        return app(PagesService::class)
             ->localizedUris($this->locale())
             ->get($this->id(), $this->defaultUri());
     }

@@ -2,16 +2,18 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\EntriesService;
+
 class Entry
 {
     /**
      * The service for interacting with entries
      *
-     * @return \Statamic\Data\Services\EntriesService
+     * @return EntriesService
      */
     private static function service()
     {
-        return app('EntriesService');
+        return app(EntriesService::class);
     }
 
     /**
@@ -90,6 +92,17 @@ class Entry
     public static function slugExists($slug, $collection)
     {
         return self::service()->slugExists($slug, $collection);
+    }
+
+    /**
+     * Get the number of entries in a given collection
+     *
+     * @param string $collection
+     * @return int
+     */
+    public static function countWhereCollection($collection)
+    {
+        return self::service()->countCollection($collection);
     }
 
     /**

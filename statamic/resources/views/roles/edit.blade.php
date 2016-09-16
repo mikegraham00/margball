@@ -3,6 +3,7 @@
 @section('content')
 
     <form method="post" action="{{ route('user.role', $role->uuid()) }}">
+        {!! csrf_field() !!}
 
         <div class="card sticky flat-bottom">
             <div class="head">

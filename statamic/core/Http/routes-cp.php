@@ -35,6 +35,7 @@ Route::group(['prefix' => CP_ROUTE, 'middleware' => ['auth']], function () {
         post('/delete', 'PagesController@delete')->name('page.delete');
         get('create/{url?}', 'PublishController@createPage')->where('url', '.*')->name('page.create');
         get('edit/{url?}', ['uses' => 'PublishController@editPage', 'as' => 'page.edit'])->where('url', '.*');
+        post('mount', ['uses' => 'PagesController@mountCollection', 'as' => 'page.mount']);
     });
 
     // Collections
@@ -104,7 +105,6 @@ Route::group(['prefix' => CP_ROUTE, 'middleware' => ['auth']], function () {
         get('browse/{container}/{folder?}', 'AssetsController@browse')->where('folder',
             '.*')->name('assets.browse');
         post('browse', 'AssetsController@json');
-        get('create/{container}/{folder}', 'AssetsController@create')->name('asset.create');
         post('/', 'AssetsController@store')->name('asset.store');
         get('{uuid}', 'AssetsController@edit')->name('asset.edit');
         post('{uuid}', 'AssetsController@update')->name('asset.update');

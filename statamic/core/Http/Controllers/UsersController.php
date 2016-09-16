@@ -2,6 +2,7 @@
 
 namespace Statamic\Http\Controllers;
 
+use Statamic\API\Config;
 use Statamic\API\URL;
 use Statamic\API\User;
 use Statamic\API\Email;
@@ -107,7 +108,13 @@ class UsersController extends CpController
         }
 
         $data = $this->populateWithBlanks($this->user);
-        $data['username'] = $this->user->username();
+
+        if (Config::get('users.login_type') === 'email') {
+            $data['email'] = $this->user->email();
+        } else {
+            $data['username'] = $this->user->username();
+        }
+
         $data['roles'] = $this->user->roles()->keys();
         $data['user_groups'] = $this->user->groups()->keys();
         $data['status'] = $this->user->status();

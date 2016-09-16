@@ -9,6 +9,7 @@ use Statamic\API\Helper;
 use Statamic\API\URL;
 use Statamic\API\YAML;
 use Statamic\Events\DataIdCreated;
+use Statamic\Events\StacheItemInserted;
 use Statamic\Stache\Drivers\AbstractDriver;
 use Statamic\Stache\Drivers\AggregateDriver;
 use Statamic\Exceptions\DuplicateIdException;

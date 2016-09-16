@@ -31,11 +31,15 @@ class GlobalsDriver extends AbstractDriver
 
     public function toPersistentArray($repo)
     {
+        $globals = $repo->getItems()->map(function ($set) {
+            return $set->shrinkWrap();
+        });
+
         return [
             'meta' => [
                 'paths' => $repo->getPathsForAllLocales()->toArray()
             ],
-            'items' => ['globals' => $repo->getItems()]
+            'items' => compact('globals')
         ];
     }
 
@@ -67,5 +71,33 @@ class GlobalsDriver extends AbstractDriver
     public function getLocalizedUri($locale, $data, $path)
     {
         //
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function load($collection)
+    {
+        return $collection->map(function ($item, $id) {
+            $attr = $item['attributes'];
+
+            // Get the data for the default locale.
+            $data = $item['data'][default_locale()];
+
+            $set = GlobalSet::create($attr['slug'])
+                ->id($id)
+                ->with($data)
+                ->get();
+            // If the set has additional locale data, add them.
+            if (count($item['data']) > 1) {
+                foreach ($item['data'] as $locale => $data) {
+                    $set->dataForLocale($locale, $data);
+                }
+
+                $set->syncOriginal();
+            }
+
+            return $set;
+        });
     }
 }

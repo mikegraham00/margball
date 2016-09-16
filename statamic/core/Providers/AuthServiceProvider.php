@@ -4,12 +4,12 @@ namespace Statamic\Providers;
 
 use Illuminate\Auth\AuthManager;
 use Statamic\Permissions\Permissions;
-use Statamic\Extensions\FileUserProvider;
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
+    protected $defer = true;
     protected $policies = [];
 
     public function register()
@@ -20,7 +20,7 @@ class AuthServiceProvider extends ServiceProvider
         $this->app->alias('permissions', 'Statamic\Permissions\Permissions');
     }
 
-    public function boot(AuthManager $auth, GateContract $gate, Permissions $permissions)
+    public function boot(GateContract $gate, Permissions $permissions)
     {
         parent::registerPolicies($gate);
 
@@ -31,9 +31,19 @@ class AuthServiceProvider extends ServiceProvider
                 return $user->isSuper() || $user->hasPermission($permission);
             });
         }
+    }
 
-        $auth->extend('file', function($app) {
-            return new FileUserProvider();
-        });
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [
+            GateContract::class,
+            'permissions',
+            Permissions::class,
+        ];
     }
 }

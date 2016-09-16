@@ -635,6 +635,19 @@ abstract class Data implements DataContract
     }
 
     /**
+     * Get a representation of the object in its simplest form suitable for serialization
+     *
+     * @return array
+     */
+    public function shrinkWrap()
+    {
+        return [
+            'attributes' => $this->attributes,
+            'data' => $this->store->toArray()
+        ];
+    }
+
+    /**
      * Save the data
      *
      * @return mixed

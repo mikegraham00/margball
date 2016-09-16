@@ -79,6 +79,7 @@
             </div>
 
             <create-page></create-page>
+            <mount-collection></mount-collection>
         </div>
     </page-tree>
 

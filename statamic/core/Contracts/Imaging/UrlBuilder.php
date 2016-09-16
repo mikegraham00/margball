@@ -5,25 +5,12 @@ namespace Statamic\Contracts\Imaging;
 interface UrlBuilder
 {
     /**
-     * Set the ID of the asset
+     * Build the URL
      *
-     * @param string $id
-     * @return mixed
-     */
-    public function id($id);
-
-    /**
-     * Set the path of the asset
-     *
-     * @param string $path
-     * @return mixed
-     */
-    public function path($path);
-
-    /**
-     * Return the complete URL
-     *
+     * @param \Statamic\Contracts\Assets\Asset|string $item
+     * @param array                                   $params
+     * @param string|null                             $filename
      * @return string
      */
-    public function build();
+    public function build($item, $params, $filename = null);
 }

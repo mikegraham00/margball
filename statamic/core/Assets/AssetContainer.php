@@ -2,7 +2,7 @@
 
 namespace Statamic\Assets;
 
-use Statamic\API\Asset;
+use Statamic\API\Asset as AssetAPI;
 use Statamic\API\Folder;
 use Statamic\API\Str;
 use Statamic\API\URL;
@@ -12,6 +12,7 @@ use Statamic\API\YAML;
 use Statamic\API\Parse;
 use Statamic\API\Storage;
 use Statamic\Assets\File\AssetFolder;
+use Statamic\Data\Services\AssetFoldersService;
 use Statamic\Contracts\Assets\AssetContainer as AssetContainerContract;
 
 class AssetContainer implements AssetContainerContract
@@ -150,8 +151,9 @@ class AssetContainer implements AssetContainerContract
     }
 
     /**
-     * Get the URL to this location
+     * Get or set the URL to this location
      *
+     * @param string|null $url
      * @return null|string
      */
     public function url($url = null)
@@ -160,18 +162,7 @@ class AssetContainer implements AssetContainerContract
             $this->url = $url;
         }
 
-        if ($this->driver === 'local') {
-            $path = 'assets/' . $this->uuid . '/container.yaml';
-            $yaml = YAML::parse(Storage::get($path));
-            $url = array_get($yaml, 'url');
-            return $url;
-
-        } elseif ($this->driver === 's3') {
-            $adapter = File::disk("assets:{$this->uuid()}")->filesystem()->getAdapter();
-            return rtrim($adapter->getClient()->getObjectUrl($adapter->getBucket(), '/'), '/');
-        }
-
-        throw new \RuntimeException('This driver does not support retrieving URLs');
+        return $this->url;
     }
 
     /**
@@ -201,7 +192,7 @@ class AssetContainer implements AssetContainerContract
     {
         // We would use ->filter() here but it doesn't pass in keys in Laravel 5.1
         // For now we'll return nulls for any folders that should be filtered out.
-        return app('AssetFoldersService')->all()->map(function ($folder, $key) {
+        return app(AssetFoldersService::class)->all()->map(function ($folder, $key) {
             if (Str::startsWith($key.'/', 'assets/'.$this->id().'/')) {
                 return $folder;
             }
@@ -371,7 +362,7 @@ class AssetContainer implements AssetContainerContract
             $this->addFolder($folder, $this->createFolder($folder));
         }
 
-        $asset = Asset::create()
+        $asset = AssetAPI::create()
                       ->container($this->uuid())
                       ->folder($folder)
                       ->file($pathinfo['basename'])

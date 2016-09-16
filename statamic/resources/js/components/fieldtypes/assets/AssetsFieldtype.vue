@@ -146,7 +146,8 @@ module.exports = {
                 url: cp_url('assets'),
                 extraData: {
                     container: self.container,
-                    folder: self.folder
+                    folder: self.folder,
+                    _token: document.querySelector('#csrf-token').getAttribute('value')
                 },
 
                 // maxFiles: 0,  - we implement our own max file checks through vue

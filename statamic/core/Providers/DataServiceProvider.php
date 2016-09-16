@@ -3,32 +3,6 @@
 namespace Statamic\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Statamic\Data\Content\OrderParser;
-use Statamic\Data\Content\PathBuilder;
-use Statamic\Data\Content\StatusParser;
-use Statamic\Data\Content\UrlBuilder;
-use Statamic\Data\Entries\Collection;
-use Statamic\Data\Entries\EntryFactory;
-use Statamic\Data\Globals\GlobalFactory;
-use Statamic\Data\Pages\PageFactory;
-use Statamic\Data\Pages\PageFolder;
-use Statamic\Data\Pages\PageTreeReorderer;
-use Statamic\Data\Services\PageStructureService;
-use Statamic\Data\Services\UserGroupsService;
-use Statamic\Data\Taxonomies\TermFactory;
-use Statamic\Data\Taxonomies\Taxonomy;
-use Statamic\Data\Services\AssetContainersService;
-use Statamic\Data\Services\AssetFoldersService;
-use Statamic\Data\Services\AssetsService;
-use Statamic\Data\Services\CollectionsService;
-use Statamic\Data\Services\ContentService;
-use Statamic\Data\Services\EntriesService;
-use Statamic\Data\Services\GlobalsService;
-use Statamic\Data\Services\PageFoldersService;
-use Statamic\Data\Services\PagesService;
-use Statamic\Data\Services\TaxonomiesService;
-use Statamic\Data\Services\TermsService;
-use Statamic\Data\Services\UsersService;
 
 class DataServiceProvider extends ServiceProvider
 {
@@ -39,107 +13,139 @@ class DataServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('Statamic\Contracts\Data\Content\OrderParser', function() {
-            return new OrderParser;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Content\OrderParser::class,
+            \Statamic\Data\Content\OrderParser::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Content\StatusParser', function() {
-            return new StatusParser;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Content\StatusParser::class,
+            \Statamic\Data\Content\StatusParser::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Content\PathBuilder', function() {
-            return new PathBuilder;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Content\PathBuilder::class,
+            \Statamic\Data\Content\PathBuilder::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Content\UrlBuilder', function() {
-            return new UrlBuilder;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Content\UrlBuilder::class,
+            \Statamic\Data\Content\UrlBuilder::class
+        );
 
-        $this->app->bind('PagesService', function () {
-            return new PagesService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Pages\PageFactory::class,
+            \Statamic\Data\Pages\PageFactory::class
+        );
 
-        $this->app->bind('EntriesService', function () {
-            return new EntriesService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Pages\PageFolder::class,
+            \Statamic\Data\Pages\PageFolder::class
+        );
 
-        $this->app->bind('CollectionsService', function () {
-            return new CollectionsService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Pages\PageTreeReorderer::class,
+            \Statamic\Data\Pages\PageTreeReorderer::class
+        );
 
-        $this->app->bind('TermsService', function () {
-            return new TermsService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Entries\EntryFactory::class,
+            \Statamic\Data\Entries\EntryFactory::class
+        );
 
-        $this->app->bind('TaxonomiesService', function () {
-            return new TaxonomiesService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Entries\Collection::class,
+            \Statamic\Data\Entries\Collection::class
+        );
 
-        $this->app->bind('PageFoldersService', function () {
-            return new PageFoldersService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Taxonomies\TermFactory::class,
+            \Statamic\Data\Taxonomies\TermFactory::class
+        );
 
-        $this->app->bind('PageStructureService', function () {
-            return new PageStructureService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Taxonomies\Taxonomy::class,
+            \Statamic\Data\Taxonomies\Taxonomy::class
+        );
 
-        $this->app->bind('GlobalsService', function () {
-            return new GlobalsService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Globals\GlobalFactory::class,
+            \Statamic\Data\Globals\GlobalFactory::class
+        );
 
-        $this->app->bind('ContentService', function () {
-            return new ContentService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Assets\AssetContainer::class,
+            \Statamic\Assets\AssetContainer::class
+        );
 
-        $this->app->bind('UsersService', function () {
-            return new UsersService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Assets\AssetFactory::class,
+            \Statamic\Assets\AssetFactory::class
+        );
 
-        $this->app->bind('UserGroupsService', function () {
-            return new UserGroupsService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Assets\AssetContainerFactory::class,
+            \Statamic\Assets\AssetContainerFactory::class
+        );
 
-        $this->app->bind('AssetsService', function () {
-            return new AssetsService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\CP\Fieldset::class,
+            \Statamic\CP\Fieldset::class
+        );
 
-        $this->app->bind('AssetContainersService', function () {
-            return new AssetContainersService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Users\User::class,
+            \Statamic\Data\Users\User::class
+        );
 
-        $this->app->bind('AssetFoldersService', function () {
-            return new AssetFoldersService($this->app->make('stache'));
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Data\Users\UserFactory::class,
+            \Statamic\Data\Users\UserFactory::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Pages\PageFactory', function() {
-            return new PageFactory;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Permissions\Role::class,
+            \Statamic\Permissions\File\Role::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Pages\PageFolder', function() {
-            return new PageFolder;
-        });
+        $this->app->singleton(
+            \Statamic\Contracts\Permissions\RoleFactory::class,
+            \Statamic\Permissions\File\RoleFactory::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Pages\PageTreeReorderer', function() {
-            return new PageTreeReorderer;
-        });
-        $this->app->bind('Statamic\Contracts\Data\Entries\EntryFactory', function() {
-            return new EntryFactory;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Permissions\UserGroup::class,
+            \Statamic\Permissions\File\UserGroup::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Entries\Collection', function() {
-            return new Collection;
-        });
+        $this->app->singleton(
+            \Statamic\Contracts\Permissions\UserGroupFactory::class,
+            \Statamic\Permissions\File\UserGroupFactory::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Taxonomies\TermFactory', function() {
-            return new TermFactory;
-        });
+        $this->app->singleton(
+            \Statamic\CP\Navigation\Nav::class,
+            \Statamic\CP\Navigation\Nav::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Taxonomies\Taxonomy', function() {
-            return new Taxonomy;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Forms\Form::class,
+            \Statamic\Forms\Form::class
+        );
 
-        $this->app->bind('Statamic\Contracts\Data\Globals\GlobalFactory', function() {
-            return new GlobalFactory;
-        });
+        $this->app->bind(
+            \Statamic\Contracts\Forms\Formset::class,
+            \Statamic\Forms\Formset::class
+        );
+
+        $this->app->bind(
+            \Statamic\Contracts\Forms\Submission::class,
+            \Statamic\Forms\Submission::class
+        );
+
+        $this->app->bind(
+            \Statamic\Contracts\Search\Search::class,
+            \Statamic\Search\Search::class
+        );
     }
 }

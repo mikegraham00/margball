@@ -2,6 +2,8 @@
 
 namespace Statamic\API;
 
+use Statamic\Data\Services\PageFoldersService;
+
 class PageFolder
 {
     /**
@@ -11,7 +13,7 @@ class PageFolder
      */
     public static function all()
     {
-        return app('PageFoldersService')->all();
+        return app(PageFoldersService::class)->all();
     }
 
     /**
@@ -22,7 +24,7 @@ class PageFolder
      */
     public static function whereHandle($handle)
     {
-        return app('PageFoldersService')->handle($handle);
+        return app(PageFoldersService::class)->handle($handle);
     }
 
     /**

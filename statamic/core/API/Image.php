@@ -2,32 +2,41 @@
 
 namespace Statamic\API;
 
+use Statamic\Contracts\Imaging\ImageManipulator;
+
 class Image
 {
     /**
-     * Get a URL builder instance to continue chaining, or a URL right away if provided with params.
+     * Get a URL manipulator instance to continue chaining, or a URL right away if provided with params.
      *
-     * @param null|string $item
-     * @param null|array  $params
-     * @return string|\Statamic\Imaging\GlideUrlBuilder
+     * @param null|string $item   An asset, asset ID, /path, or http://external-url
+     * @param null|array  $params Array of manipulation parameters.
+     * @return string|ImageManipulator
      */
     public static function manipulate($item = null, $params = null)
     {
-        /** @var \Statamic\Imaging\GlideUrlBuilder $builder */
-        $builder = app('Statamic\Contracts\Imaging\UrlBuilder');
+        $manipulator = self::manipulator();
 
-        if (Str::startsWith($item, ['http://', 'http://'])) {
-            $builder->url($item);
-        } elseif (Str::startsWith($item, '/')) {
-            $builder->path($item);
-        } else {
-            $builder->id($item);
+        if (! $item) {
+            return $manipulator;
         }
+
+        $manipulator->item($item);
 
         if ($params) {
-            return $builder->params($params)->build();
+            return $manipulator->params($params)->build();
         }
 
-        return $builder;
+        return $manipulator;
+    }
+
+    /**
+     * Get an image manipulator instance
+     *
+     * @return ImageManipulator
+     */
+    public static function manipulator()
+    {
+        return app(ImageManipulator::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace Statamic\Stache\Drivers;
 
 use Statamic\API\AssetContainer;
+use Statamic\API\File;
 use Statamic\API\Folder;
 use Statamic\API\YAML;
 
@@ -24,14 +25,31 @@ class AssetContainersDriver extends AbstractDriver
     {
         $data = YAML::parse($contents);
 
+        $id = explode('/', $path)[1];
+        $driver = array_get($data, 'driver', 'local');
+
         $container = AssetContainer::create();
-        $container->id(explode('/', $path)[1]);
-        $container->driver(array_get($data, 'driver', 'local'));
+        $container->id($id);
+        $container->driver($driver);
         $container->path(array_get($data, 'path'));
         $container->title(array_get($data, 'title'));
         $container->fieldset(array_get($data, 'fieldset'));
+        $container->url($this->getUrl($id, $driver, $data));
 
         return $container;
+    }
+
+    private function getUrl($id, $driver, $data)
+    {
+        switch ($driver) {
+            case 'local':
+                return array_get($data, 'url');
+                break;
+            case 's3':
+                $adapter = File::disk("assets:$id")->filesystem()->getAdapter();
+                return rtrim($adapter->getClient()->getObjectUrl($adapter->getBucket(), '/'), '/');
+                break;
+        }
     }
 
     public function isMatchingFile($file)

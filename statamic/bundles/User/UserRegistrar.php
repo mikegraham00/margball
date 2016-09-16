@@ -53,7 +53,7 @@ class UserRegistrar
     public function create()
     {
         $user = User::create()
-            ->username($this->request->input('username'))
+            ->username($this->request->input(Config::get('users.login_type')))
             ->with($this->userData())
             ->get();
 
@@ -86,10 +86,33 @@ class UserRegistrar
     {
         $fields = $this->fieldset->fields();
 
-        array_set($fields, 'email.validate', 'required|email');
+        $username_rules = array_get($fields, 'username.validate');
 
-        array_set($fields, 'username.validate', 'required');
+        // Get all the usernames so we can prevent a duplicate from being used.
+        $usernames = User::all()->map(function ($user) {
+            return $user->username();
+        });
 
+        $username_rules = ltrim($username_rules . '|not_in:' . $usernames->implode(','), '|');
+
+        // Ensure the username field is required. We'll break it into an array and rejoin it so
+        // we can avoid duplication if the fieldset already contained required validation.
+        $username_rules = $this->appendRule('required', $username_rules);
+        array_set($fields, 'username.validate', $username_rules);
+
+        // If the login type is email, we'll change the "username" field to "email".
+        if (Config::get('users.login_type') === 'email') {
+            $fields['email'] = array_merge($fields['email'], $fields['username']);
+            unset($fields['username']);
+        }
+
+        // If there's an email field, make sure it is validated as one.
+        if (isset($fields['email'])) {
+            $email_rules = $this->appendRule('email', array_get($fields, 'email.validate'));
+            array_set($fields, 'email.validate', $email_rules);
+        }
+
+        // Need to validate a password and make sure it's confirmed.
         array_set($fields, 'password', [
             'display' => trans_choice('cp.passwords', 1),
             'validate' => 'required|confirmed'
@@ -136,5 +159,21 @@ class UserRegistrar
     protected function whitelistedFields()
     {
         return array_diff(array_keys($this->fieldset->fields()), $this->blacklistedFields());
+    }
+
+    /**
+     * Append a validation rule to other validation rules
+     *
+     * @param string $rule
+     * @param string $rules
+     * @return string
+     */
+    private function appendRule($rule, $rules)
+    {
+        $rules = explode('|', $rules);
+        $rules[] = $rule;
+        $rules = join('|', array_values(array_filter(array_unique($rules))));
+
+        return $rules;
     }
 }

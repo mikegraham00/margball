@@ -103,6 +103,8 @@ class AssetFactory
         $asset->folder($this->folder);
         $asset->data($this->data);
 
+        $asset->syncOriginal();
+
         return $asset;
     }
 }

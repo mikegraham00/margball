@@ -9,6 +9,8 @@ use Statamic\API\Parse;
 use Statamic\API\Request;
 use Statamic\Extend\Listener;
 use Illuminate\Http\Response;
+use Illuminate\Support\MessageBag;
+use Illuminate\Http\RedirectResponse;
 use Statamic\Contracts\Forms\Submission;
 use Statamic\Exceptions\PublishException;
 use Statamic\Exceptions\HoneypotException;
@@ -37,18 +39,11 @@ class FormListener extends Listener
 
         $submission = $form->createSubmission();
 
-        // Set up where to be taken in the event of an error.
-        if ($error_redirect = array_get($params, 'error_redirect')) {
-            $error_redirect = redirect($error_redirect);
-        } else {
-            $error_redirect = back();
-        }
-
         try {
             $submission->data($fields);
             $submission->uploadFiles();
         } catch (PublishException $e) {
-            return $error_redirect->withInput()->withErrors($e->getErrors(), 'form.'.$formset);
+            return $this->formFailure($params, $e->getErrors(), $formset);
         } catch (HoneypotException $e) {
             return $this->formSuccess($params, $submission);
         }
@@ -58,7 +53,7 @@ class FormListener extends Listener
         list($errors, $submission) = $this->runCreatingEvent($submission);
 
         if ($errors) {
-            return $error_redirect->withInput()->withErrors($errors, 'form.'.$formset);
+            return $this->formFailure($params, $errors, $formset);
         }
 
         $submission->save();
@@ -80,6 +75,13 @@ class FormListener extends Listener
      */
     private function formSuccess($params, $submission)
     {
+        if (request()->ajax()) {
+            return response([
+                'success' => true,
+                'submission' => $submission->data()
+            ]);
+        }
+
         $redirect = array_get($params, 'redirect');
 
         $response = ($redirect) ? redirect($redirect) : back();
@@ -88,6 +90,32 @@ class FormListener extends Listener
         $this->flash->put('submission', $submission);
 
         return $response;
+    }
+
+    /**
+     * The steps for a failed form submission.
+     *
+     * @param array $params
+     * @param array $submission
+     * @param string $formset
+     * @return Response|RedirectResponse
+     */
+    private function formFailure($params, $errors, $formset)
+    {
+        if (request()->ajax()) {
+            return response([
+                'errors' => (new MessageBag($errors))->all()
+            ], 400);
+        }
+
+        // Set up where to be taken in the event of an error.
+        if ($error_redirect = array_get($params, 'error_redirect')) {
+            $error_redirect = redirect($error_redirect);
+        } else {
+            $error_redirect = back();
+        }
+
+        return $error_redirect->withInput()->withErrors($errors, 'form.'.$formset);
     }
 
     /**

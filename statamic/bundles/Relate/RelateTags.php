@@ -37,7 +37,7 @@ class RelateTags extends CollectionTags
         $this->filter();
 
         if ($this->collection->isEmpty()) {
-            return $this->parse(['no_results' => true]);
+            return $this->parseNoResults();
         }
 
         return $this->output();

@@ -7,15 +7,37 @@ use Statamic\API\File;
 use Statamic\API\Path;
 use Statamic\API\YAML;
 use Statamic\API\Str;
+use Statamic\Repositories\AddonRepository;
+use Illuminate\Routing\Router as LaravelRouter;
 
 class Router
 {
+    /**
+     * @var LaravelRouter
+     */
+    private $router;
+
+    /**
+     * @var AddonRepository
+     */
+    private $repo;
+
+    /**
+     * @param LaravelRouter   $router
+     * @param AddonRepository $repo
+     */
+    public function __construct(LaravelRouter $router, AddonRepository $repo)
+    {
+        $this->router = $router;
+        $this->repo = $repo;
+    }
+
     /**
      * Merge all addon routes into the Laravel router
      */
     public function bindAddonRoutes()
     {
-        $files = addon_repo()->filter('routes.yaml')->getFiles();
+        $files = $this->repo->filter('routes.yaml')->getFiles();
 
         // Register all the routes in each yaml file
         foreach ($files as $path) {
@@ -36,7 +58,7 @@ class Router
 
                 $action['uses'] = $this->getController($path) . '@' . $action['uses'];
 
-                $verb($route, $action);
+                $this->router->$verb($route, $action)->middleware(cp_middleware());
             }
         }
     }
