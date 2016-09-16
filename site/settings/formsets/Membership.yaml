@@ -27,7 +27,7 @@ fields:
     validate: string
   email_address:
     display: Email Address
-    validate: required | string
+    validate: required | email
   home_phone:
     display: Home Phone
     validate: string

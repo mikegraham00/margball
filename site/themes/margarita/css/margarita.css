@@ -1325,9 +1325,7 @@ p.cta {
               justify-content: center; } }
   .image-grid img {
     padding: 20px;
-    height: auto;
-    -webkit-filter: saturate(0%);
-            filter: saturate(0%); }
+    height: auto; }
   .image-grid.platinum img {
     width: 100%; }
     @media screen and (min-width: 801px) {

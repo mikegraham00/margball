@@ -30,7 +30,7 @@
             	{{ collection:events featured_event:is="true" }}
             	{{ if !event_date | is_past }}
                 <div class="event-slide">
-                    <a href="/events">
+                    <a href="{{ url }}">
                         {{ asset:event_background }}<img src="{{ url }}">{{ /asset:event_background }}
                         <div class="slide-content">
                             <span class="top-text">{{ title }}</span>
