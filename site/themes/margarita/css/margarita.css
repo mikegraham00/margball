@@ -2156,9 +2156,6 @@ select {
   text-align: center;
   margin: 2% 0; }
 
-.req {
-  color: #e74c3c; }
-
 @media (max-width: 600px) {
   .form-container label {
     width: 99%;
@@ -2168,4 +2165,14 @@ select {
   .form-container {
     width: 95%;
     margin: 3% auto; } }
+
+.req {
+      color: #e74c3c;
+}
+.success{
+  color:#71C534;
+}
+.error {
+  color: #e74c3c;
+}
 /*# sourceMappingURL=margarita.css.map */
