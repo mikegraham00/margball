@@ -5,12 +5,12 @@
         <div class="hero-content-wrap">
             <h1>{{ title }}</h1>
             <div class="frame">
-                
+
                 <div class="frame-int">
                     <div class="img-wrap">
                         {{ asset:image }}<img src="{{ glide:id width="450" height="325" }}" alt="{{ alt }}">{{ /asset:image }}
                     </div>
-                    
+
                     <p>{{ text }}</p>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 {{ collection:events id:is="{event_selection}"}}
                 <div class="frame-int event">
                     <div class="img-back" style="background-image: url({{ asset:event_logo }}{{ url }}{{ /asset:event_logo }});">
-                        
+
                     </div>
                     <div class="details">
                         <span>{{ event_venue}}</span>
@@ -44,9 +44,9 @@
         <div class="hero-content-wrap">
             <h1>{{ title }}</h1>
             <div class="frame">
-                
+
                 <div class="frame-int no-pic">
-                    
+
                     <p>{{ text }}</p>
                     <div class="list-table-wrap">
                         {{ table | table }}
@@ -63,9 +63,10 @@
             {{ asset:event_logo }}<img src="{{ url }}" alt="{{ alt }}">{{ /asset:event_logo }}
             <h4>{{ event_venue }} {{ event_city }}</h4>
             <h4>{{ event_date format="F d, Y" }} | {{ event_start format="g:iA" }}</h4>
-            <a href="{{ tickets_url }}" class="button fancy">Tickets</a>
+            <a href="{{ tickets_url }}" class="button fancy" target="_blank">Tickets</a> <br>
+            <a href="{{ hotel_url }}" class="button fancy" target="_blank">Hotel Reservation</a>
             {{ event_description }}
-        
+
             {{ /collection:events }}
         </div>
     </div>
@@ -74,7 +75,7 @@
         <div class="{{ switch between='left|right' }}">
             <a href="{{ link_url }}"{{ if link_new_window }}target="_blank"{{ /if }}>{{ link_text }}</a>
         </div>
-            
+
         {{ /links_bar }}
     </section>
 
