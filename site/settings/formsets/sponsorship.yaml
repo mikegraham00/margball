@@ -1,0 +1,81 @@
+title: Sponsorship Form
+honeypot: user-email
+fields:
+  contact_name:
+    display: Contact Name
+    validate: required | string
+  phone:
+    display: Phone
+    validate: required | string
+  sponsor_name:
+    display: Sponsor Name (for printed materials)
+    validate: required | string
+  sponsor_address:
+    display: Sponsor Address
+    validate: required | string
+  city:
+    display: City
+    validate: required | string
+  state:
+    display: State
+    validate: required | string
+  zip:
+    display: Zip
+    validate: required | string
+  sponsorship_level:
+    display: Sponsorship Level
+    validate: string
+  email_address:
+    display: Email Address
+    validate: required | email
+  guest1:
+    display: Guest Name
+    validate: string
+  guest2:
+    display: Guest Name
+    validate: string
+  guest3:
+    display: Guest Name
+    validate: string
+  guest4:
+    display: Guest Name
+    validate: string
+  guest5:
+    display: Guest Name
+    validate: string
+  guest6:
+    display: Guest Name
+    validate: string
+  guest7:
+    display: Guest Name
+    validate: string
+  guest8:
+    display: Guest Name
+    validate: string
+  guest9:
+    display: Guest Name
+    validate: string
+  guest10:
+    display: Guest Name
+    validate: string
+
+columns:
+  - contact_name
+  - phone
+  - sponsor_name
+  - sponsor_address
+  - city
+  - state
+  - zip
+  - sponsorship_level
+  - email_address
+  - guest1
+  - guest2
+  - guest3
+  - guest4
+  - guest5
+  - guest6
+  - guest7
+  - guest8
+  - guest9
+  - guest10

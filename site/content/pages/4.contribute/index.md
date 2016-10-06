@@ -1,7 +1,7 @@
 in_main_nav: true
 nav_title: Get Involved
 page_header:
-  - 
+  -
     type: image_and_text_set
     image: ecc4806f-ab1c-43b4-b226-2ea6cf74dfd1
     text: |
@@ -9,33 +9,33 @@ page_header:
       You can help the underprivileged children of Tarrant County by helping us meet our goals of collecting toys at our Annual Margarita Ball.  We have several capacities you can help in such as sponsorship, monetary donations, and membership.
 background_image: c43a013b-3452-4a4e-8c4f-c06189f4e7e6
 content_section:
-  - 
+  -
     section_content_blocks:
-      - 
+      -
         type: deco_grid_set
         heading: Ways to Get Involved
         grid_items:
-          - 
+          -
             heading: Sponsorship
             content: "Becoming a sponsor helps us put on our many  year-round fundraisers, including the Margarita Ball, that benefit many local children's charities."
-            call_to_action_url: assets/2016%20SPONSORSHIP%20FORM.pdf
+            call_to_action_url: /sponsorship
             call_to_action_text: Become a Sponsor
-            cta_new_window: true
-          - 
+            cta_new_window: false
+          -
             heading: Donation
             content: "Your donations enable us to give to many local children's organizations and assist local families with food and basic needs."
             call_to_action_url: /contact
             call_to_action_text: Request Info
-          - 
+          -
             heading: Membership
             content: 'Please note the "Membership Application Form" is non-fillable format.  You will have to print out the application and email or bring it to  one of our events. Thank you for joining! '
-            cta_new_window: true
-            call_to_action_url: '/assets/2016%20Director%20Application[1].pdf'
+            cta_new_window: false
+            call_to_action_url: '/membership'
             call_to_action_text: Apply Now
-  - 
+  -
     background_style: light
     section_content_blocks:
-      - 
+      -
         type: simple_content_set
         heading: Sponsorship Levels
         content: |
@@ -87,12 +87,12 @@ content_section:
           </ul>
           <hr>
         cta: Become a Sponsor
-        cta_url: /assets/2016%20SPONSORSHIP%20FORM.pdf
-        cta_new_window: true
-  - 
+        cta_url: /sponsorship
+        cta_new_window: false
+  -
     background_style: dark
     section_content_blocks:
-      - 
+      -
         type: simple_content_set
         content: |
           <p><strong>Privacy Policy </strong>

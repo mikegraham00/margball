@@ -79,6 +79,21 @@ fields:
   if_yes_explain:
     display: If yes, Explain
     validate: required_if:convicted_of_a_felony,yes | string
+  how_did_you_hear_about_our_cause:
+    display: How did you hear about our cause?
+    validate: string
+  do_you_have_experience_in_fundraising:
+    display: Do you have experience in fundraising?
+    validate: string
+  other_organization_affiliation:
+    display: What other organizations are you affiliated with? What is your role?
+    validate: string
+  what_draws_you:
+    display: What draws you to our organization?
+    validate: string
+  what_value_can_you_bring_to_the_organization:
+    display: What value can you bring to the organization?
+    validate: string
 columns:
   - application_date
   - date_of_birth
@@ -106,3 +121,8 @@ columns:
   - community_outreach
   - other
   - other_committee
+  - how_did_you_hear_about_our_cause
+  - do_you_have_experience_in_fundraising
+  - other_organization_affiliation
+  - what_draws_you
+  - what_value_can_you_bring_to_the_organization

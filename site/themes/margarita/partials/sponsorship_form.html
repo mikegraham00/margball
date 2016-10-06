@@ -1,0 +1,179 @@
+<section class="light">
+  <div class="row">
+  {{ form:create in="sponsorship" }}
+    {{ if errors }}
+      <p class="error">Something went wrong...</p>
+      <ul class="error-list">
+          {{ errors }}
+              <li>{{ value }}</li>
+          {{ /errors }}
+      </ul>
+
+  {{ /if }}
+  {{ if success }}
+
+
+          <p class="success"> Thanks for contacting us. We'll be in touch soon.</p>
+
+
+
+  {{ /if }}
+
+  <h2 class="become-member">Become a Sponsor</h2>
+  <div class="form-container" id="membership_form">
+  <fieldset>
+    <legend>Choose Sponsorship Level <span class="req">*</span> </legend>
+      <div class="formrow">
+        <!-- <label for="membership_level">Choose Membership Level</label> -->
+          <select name="sponsorship_level" id="membership_level" required>
+            <option value="-1" >Please Select</option>
+            <option value="platinum" {{ if {old:sponsorship_level} == 'platinum' }} selected{{ /if }}>Platinum Margarita - $15,000</option>
+            <option value="gold" {{ if {old:sponsorship_level} == 'gold'}} selected{{ /if }}>Gold Margarita - $10,000</option>
+            <option value="silver" {{ if {old:sponsorship_level} == 'silver'}} selected{{ /if }}>Silver Margarita - $5,000</option>
+            <option value="premium" {{ if {old:sponsorship_level} == 'premium'}} selected{{ /if }}>Premium Margarita - $1000</option>
+          </select>
+      </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Applicant Information </legend>
+    <div class="formrow">
+      <label for="contact_name" required> Contact Name <span class="req">*</span>
+          <input type="text" name="contact_name" class="half" value="{{ old:contact_name }}" required />
+      </label>
+      <label for="phone" required> Phone <span class="req">*</span>
+          <input type="text" name="phone" class="half" value="{{ old:phone }}" required />
+      </label>
+    </div>
+
+
+    <div class="formrow">
+      <label for="sponsor_name" required> Sponsor Name (for Printed Materials) <span class="req">*</span>
+        <input type="text" name="sponsor_name" required class="half" value="{{ old:sponsor_name }}" />
+      </label>
+      <label for="sponsor_address" required> Sponsor Address <span class="req">*</span>
+        <input type="text" name="sponsor_address" class="half" value="{{ old:sponsor_address }}" required/>
+      </label>
+    </div>
+
+    <div class="formrow" required>
+      <label for="city"> City <span class="req">*</span>
+        <input type="text" name="city" class="half" value="{{ old:city }}" required/>
+      </label>
+      <label for="state"> State <span class="req">*</span>
+  									<select name="state" value="TX" id="state">
+  										<option value="TX">Texas</option>
+  										<option value="AL">Alabama</option>
+  										<option value="AK">Alaska</option>
+  										<option value="AZ">Arizona</option>
+  										<option value="AR">Arkansas</option>
+  										<option value="CA">California</option>
+  										<option value="CO">Colorado</option>
+  										<option value="CT">Connecticut</option>
+  										<option value="DE">Delaware</option>
+  										<option value="DC">District Of Columbia</option>
+  										<option value="FL">Florida</option>
+  										<option value="GA">Georgia</option>
+  										<option value="HI">Hawaii</option>
+  										<option value="ID">Idaho</option>
+  										<option value="IL">Illinois</option>
+  										<option value="IN">Indiana</option>
+  										<option value="IA">Iowa</option>
+  										<option value="KS">Kansas</option>
+  										<option value="KY">Kentucky</option>
+  										<option value="LA">Louisiana</option>
+  										<option value="ME">Maine</option>
+  										<option value="MD">Maryland</option>
+  										<option value="MA">Massachusetts</option>
+  										<option value="MI">Michigan</option>
+  										<option value="MN">Minnesota</option>
+  										<option value="MS">Mississippi</option>
+  										<option value="MO">Missouri</option>
+  										<option value="MT">Montana</option>
+  										<option value="NE">Nebraska</option>
+  										<option value="NV">Nevada</option>
+  										<option value="NH">New Hampshire</option>
+  										<option value="NJ">New Jersey</option>
+  										<option value="NM">New Mexico</option>
+  										<option value="NY">New York</option>
+  										<option value="NC">North Carolina</option>
+  										<option value="ND">North Dakota</option>
+  										<option value="OH">Ohio</option>
+  										<option value="OK">Oklahoma</option>
+  										<option value="OR">Oregon</option>
+  										<option value="PA">Pennsylvania</option>
+  										<option value="RI">Rhode Island</option>
+  										<option value="SC">South Carolina</option>
+  										<option value="SD">South Dakota</option>
+  										<option value="TN">Tennessee</option>
+  										<option value="UT">Utah</option>
+  										<option value="VT">Vermont</option>
+  										<option value="VA">Virginia</option>
+  										<option value="WA">Washington</option>
+  										<option value="WV">West Virginia</option>
+  										<option value="WI">Wisconsin</option>
+  										<option value="WY">Wyoming</option>
+  										</div>
+  									</select>
+      </label>
+
+    <div class="formrow">
+      <label for="zip"> Zip <span class="req">*</span>
+        <input type="text" name="zip" class="half" value="{{ old:zip }}" required/>
+      </label>
+      <label for="email_address"> Email <span class="req">*</span>
+        <input type="text" name="email_address" class="half" value="{{ old:email_address }}" />
+      </label>
+    </div>
+
+  </fieldset>
+  <fieldset>
+    <legend>Guest Information</legend>
+    <div class="formrow">
+      <label for="guest1"> Guest Name
+        <input type="text" name="guest1" class="half" value="{{ old:guest1 }}" />
+      </label>
+      <label for="guest2"> Guest Name
+        <input type="text" name="guest2" class="half" value="{{ old:guest2 }}" />
+      </label>
+    </div>
+    <div class="formrow">
+      <label for="guest3"> Guest Name
+        <input type="text" name="guest3" class="half" value="{{ old:guest3 }}" />
+      </label>
+      <label for="guest4"> Guest Name
+        <input type="text" name="guest4" class="half" value="{{ old:guest4 }}" />
+      </label>
+    </div>
+    <div class="formrow">
+      <label for="guest5"> Guest Name
+        <input type="text" name="guest5" class="half" value="{{ old:guest5 }}" />
+      </label>
+      <label for="guest6"> Guest Name
+        <input type="text" name="guest6" class="half" value="{{ old:guest6 }}" />
+      </label>
+    </div>
+    <div class="formrow">
+      <label for="guest7"> Guest Name
+        <input type="text" name="guest7" class="half" value="{{ old:guest7 }}" />
+      </label>
+      <label for="guest8"> Guest Name
+        <input type="text" name="guest8" class="half" value="{{ old:guest8 }}" />
+      </label>
+    </div>
+    <div class="formrow">
+      <label for="guest9"> Guest Name
+        <input type="text" name="guest9" class="half" value="{{ old:guest9 }}" />
+      </label>
+      <label for="guest10"> Guest Name
+        <input type="text" name="guest10" class="half" value="{{ old:guest10 }}" />
+      </label>
+    </div>
+  </fieldset>
+ <br>
+  <button class="sub-button">Submit</button>
+</div>
+</div>
+{{ /form:create }}
+</div>
+</section>

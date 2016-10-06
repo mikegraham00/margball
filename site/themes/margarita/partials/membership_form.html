@@ -153,20 +153,24 @@
       </label>
     </div>
   </fieldset>
-  <!-- <fieldset id="membership-level">
-      <div class="formrow">
-        <legend>Choose a Membership Level</legend>
-        <label for="Director_1000">
-         <input type="radio" name="membership_level" value="Director_1000" id="Director_1000"> Director ($1,000 – Table)<br>
-        </label>
-        <label for="Director_2_500">
-         <input type="radio" name="membership_level" value="Director_2_500" id="Director_2_500"> Director Level 2 ($500 – 2 VIP Seats)<br>
-        </label>
-        <label for="Member_250">
-         <input type="radio" name="membership_level" value="old:Member_250" id="Member_250"> Member ($250 – 1 Ticket)
-        </label>
-      </div>
-  </fieldset> -->
+
+  <fieldset id="about-you">
+    <legend>About You</legend>
+    <label for="how_did_you_hear_about_our_cause" class="full">How did you hear about our cause?</label>
+    <input type="text" id="how_did_you_hear_about_our_cause" name="how_did_you_hear_about_our_cause" value="{{ old:how_did_you_hear_about_our_cause }}">
+
+    <label for="do_you_have_experience_in_fundraising" class="full">Do you have experience in fundraising?</label>
+    <input type="text" id="do_you_have_experience_in_fundraising" name="do_you_have_experience_in_fundraising" value="{{ old:do_you_have_experience_in_fundraising }}">
+
+    <label for="other_organization_affiliation" class="full">What other organizations are you affiliated with? What is your role?</label>
+    <input type="text" id="other_organization_affiliation" name="other_organization_affiliation" value="{{ old:other_organization_affiliation }}">
+
+    <label for="what_draws_you" class="full">What draws you to our organization?</label>
+    <input type="text" id="what_draws_you" name="what_draws_you" value="{{ old:what_draws_you }}">
+
+    <label for="what_value_can_you_bring_to_the_organization" class="full">What value can you bring to the organization?</label>
+    <input type="text" id="what_value_can_you_bring_to_the_organization" name="what_value_can_you_bring_to_the_organization" value="{{ old:what_value_can_you_bring_to_the_organization }}">
+  </fieldset>
 
 
   <fieldset id="committees">
@@ -225,9 +229,6 @@
      </div>
      <input type="text" name="if_yes_explain" id="if_yes_explain" placeholder="If yes, please explain">
      </fieldset>
-      <!-- <label for="name_on_roster">Please do not place my information on the Children’s Charities of Fort Worth roster
-        <input type="checkbox" name="name_on_roster" id="name_on_roster" value="yes" {{ if {old:name_on_roster} == 'yes' }}checked{{ /if }}>
-      </label> -->
  <br>
   <button class="sub-button">Submit</button>
 </div>

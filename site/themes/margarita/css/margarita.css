@@ -2168,11 +2168,19 @@ select {
     margin: 3% auto; } }
 
 .req {
-  color: #e74c3c; }
+  color: #e74c3c;
+}
 
 .success {
-  color: #71C534; }
+  color: #71C534;
+ }
 
 .error {
-  color: #e74c3c; }
+  color: #e74c3c;
+}
+
+label.full {
+  margin-left: 0 !important;
+  width:100%;
+}
 /*# sourceMappingURL=margarita.css.map */
