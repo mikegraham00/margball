@@ -53,6 +53,12 @@ fields:
     type: redactor
     display: Event Description
     settings: Basic
+  more_info_page:
+    type: pages
+    display: More Info Page
+    instructions: If this event has a special detail page, i.e. Margarita Ball, select it here.
+    max_items: 1
+    mode: tags
   cta_url:
     type: text
     display: Call to Action URL

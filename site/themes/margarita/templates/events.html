@@ -13,9 +13,16 @@
 	                <span class="date">{{ event_date format="F d" }}</span>
 	                <h3>{{ event_venue }}</h3>
 	                <span class="time">{{ event_start format="g:i"}}|{{ event_end format="g:iA" }}</span>
-	                {{ event_description }}
+	                <p>{{ event_address }}<br>
+	                {{ event_city }}</p>
 	                {{ if has_detail_page }}
 	                <div style="margin-top:12px;"><a href="{{ url }}" class="button">More Info</a></div>
+	                {{ elseif more_info_page }}
+	                <div style="margin-top:12px;">
+	                	{{ relate:more_info_page }}
+	                		<a href="{{ url}}" class="button">More Info</a>
+	                	{{ /relate:more_info_page }}
+	                </div>
 	                {{/if}}
 	                {{ if cta_url }}
 	                <div style="margin-top:12px;"><a href="{{ cta_url }}" class="button" {{if cta_new_window }}target="_blank"{{/if}}>{{ cta_text }}</a></div>
