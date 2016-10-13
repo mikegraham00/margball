@@ -1,4 +1,6 @@
 collections:
   events: '/events/{ slug }'
-taxonomies: [ ]
+  galleries: 'galleries/{slug}/'
+taxonomies:
+  album_year: 'albums/{slug}'
 routes: [ ]

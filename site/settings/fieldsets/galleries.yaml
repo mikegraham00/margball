@@ -1,0 +1,22 @@
+title: Galleries
+fields:
+  title:
+    type: text
+    display: Title
+    instructions: Please input the name of the photo gallery.
+    default: Amazing People Talking
+  gallery_photos:
+    type: assets
+    display: Gallery Photos
+    instructions: Add and Select which photos belong to this gallery.
+    container: images
+    folder: /
+  select_a_year:
+    type: taxonomy
+    display: Select a Year
+    instructions: Pick the year that this gallery belongs to.
+    max_items: 1
+    label: '{{title}}'
+    taxonomy: album_year
+    mode: tags
+    default: 2016-albums
