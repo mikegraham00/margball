@@ -3,17 +3,19 @@
 <section class="main">
 
     <div class="row">
+
         <h1>{{ title }}</h1>
 
-        {{ taxonomy:album_year }}
-          <h2>{{ title }}</h2>
-          <ul>
+          <!-- <ul>
             {{ collection:galleries }}
               <li><a href="{{ url }}">{{ title }}</a></li>
             {{ /collection:galleries }}
           </ul>
-        {{ /taxonomy:album_year }}
-
+          <ul>
+            {{ taxonomy:album_year }}
+              <li><a href="{{ url }}">{{ title }}</a></li>
+            {{ /taxonomy:album_year }}
+          </ul> -->
         <div class="gallery-grid">
         	{{ assets:gallery }}
             <a href="{{ url }}" class="modal" rel="g"><img src="{{ glide:id square='400' }}" alt="{{ alt }}"></a>

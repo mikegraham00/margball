@@ -11,7 +11,7 @@ fields:
     instructions: Add and Select which photos belong to this gallery.
     container: images
     folder: /
-  select_a_year:
+  album_year:
     type: taxonomy
     display: Select a Year
     instructions: Pick the year that this gallery belongs to.

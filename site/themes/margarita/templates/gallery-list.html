@@ -1,0 +1,16 @@
+{{ partial:page_header }}
+
+<section class="main">
+
+    <div class="row">
+
+        <h1>{{ title }}</h1>
+          <h1>BOB.</h1>
+        <ul>
+          {{ collection:galleries taxonomy="true" }}
+            <li> {{ gallery_photos }} </li>
+          {{ /collection:galleries }}
+        </ul>
+
+    </div>
+</section>
