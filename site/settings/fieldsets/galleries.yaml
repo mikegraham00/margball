@@ -11,12 +11,12 @@ fields:
     instructions: Add and Select which photos belong to this gallery.
     container: images
     folder: /
-  album_year:
+  album:
     type: taxonomy
     display: Select a Year
     instructions: Pick the year that this gallery belongs to.
     max_items: 1
     label: '{{title}}'
-    taxonomy: album_year
+    taxonomy: album
     mode: tags
-    default: 2016-albums
+    default: photos-2016

@@ -1,7 +1,0 @@
-title: Album Year
-fields:
-  album:
-    type: text
-    display: Album
-    instructions: State the year of this photo album.
-    default: 2016

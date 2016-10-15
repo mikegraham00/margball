@@ -1,4 +1,4 @@
 title: Galleries
-order: date
+order: number
 fieldset: galleries
-template: gallery.html
+template: gallery

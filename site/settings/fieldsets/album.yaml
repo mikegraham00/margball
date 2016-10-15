@@ -1,0 +1,7 @@
+title: Album
+fields:
+  album:
+    type: text
+    display: Album
+    instructions: Select a photo album.
+    default: 2016
