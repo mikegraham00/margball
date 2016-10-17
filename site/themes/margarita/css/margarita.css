@@ -2185,6 +2185,10 @@ label.full {
 }
 /*# sourceMappingURL=margarita.css.map */
 
+section.main {
+  min-height: calc(100vh - 306px);
+}
+
 /*New Photo Albums*/
 .album-block{
   background-size: cover !important;
