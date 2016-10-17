@@ -2193,6 +2193,10 @@ section.main {
 .album-block{
   background-size: cover !important;
   background-position: 50% 10% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:1% 3%;
 }
 
 .album-block h3 {
@@ -2212,7 +2216,6 @@ section.main {
       filter: saturate(10%) hue-rotate(40deg);
       transition: all .5s;
       transition-timing-function: ease;
-      padding:19% 0;
       text-shadow: 3px 3px #252525;
     }
 
@@ -2226,7 +2229,6 @@ section.main {
        -webkit-filter: saturate(100%);
        filter: saturate(100%);
        transition: all .7s;
-       padding:1% 0;
        transition-timing-function: ease;
     }
 }
@@ -2273,7 +2275,10 @@ section.main {
   float:left;
   color:#f7e7ce;
   text-align:center;
-  padding:1% 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding:1% 3%;
   text-shadow: 2px 2px #252525;
 }
 
