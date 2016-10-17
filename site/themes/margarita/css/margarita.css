@@ -2184,3 +2184,116 @@ label.full {
   width:100%;
 }
 /*# sourceMappingURL=margarita.css.map */
+
+/*New Photo Albums*/
+.album-block{
+  background-size: cover !important;
+  background-position: 50% 10% !important;
+}
+
+.album-block h3 {
+  padding: 3% 0;
+  font-size:300%;
+}
+
+
+@media screen and (min-width: 801px){
+    .album-block{
+      height:400px;
+      width:100%;
+      margin:3% 0%;
+      color:#f7e7ce;
+      text-align:center;
+      -webkit-filter: saturate(10%) hue-rotate(90deg);
+      filter: saturate(10%) hue-rotate(40deg);
+      transition: all .5s;
+      transition-timing-function: ease;
+      padding:19% 0;
+      text-shadow: 3px 3px #252525;
+    }
+
+    .album-block h3 {
+      padding: 3% 0;
+      font-size:300% !important;
+    }
+
+
+    .album-block:hover {
+       -webkit-filter: saturate(100%);
+       filter: saturate(100%);
+       transition: all .7s;
+       padding:1% 0;
+       transition-timing-function: ease;
+    }
+}
+
+@media screen and (max-width: 800px){
+  div.album-block{
+    height:400px;
+    width:100%;
+    background-size: cover !important;
+    background-position: 50% 10% !important;
+    margin:3% 0%;
+    color:#f7e7ce;
+    text-align:center;
+    padding:1% 0;
+    text-shadow: 3px 3px #252525;
+  }
+
+  .album-block h3 {
+    padding: 3% 0;
+    font-size:300% !important;
+  }
+}
+
+@media screen and (max-width: 580px){
+  div.album-block{
+    background-size:contain;
+    background-repeat:no-repeat;
+    height:300px;
+  }
+
+  .album-block h3 {
+    font-size:200% !important;
+  }
+}
+
+.image-gallery {
+  height:250px;
+  width:46%;
+  margin:2%;
+  background-size:cover !important;
+  background-position: 50% 50%;
+  background-repeat:no-repeat !important;
+  display:inline-block;
+  float:left;
+  color:#f7e7ce;
+  text-align:center;
+  padding:1% 0;
+  text-shadow: 2px 2px #252525;
+}
+
+.image-gallery h3 {
+  font-size:200%;
+}
+
+@media screen and (max-width: 800px){
+  .image-gallery{
+    width:100%;
+  }
+}
+
+@media screen and (min-width: 801px){
+  .image-gallery {
+    -webkit-filter: saturate(10%) hue-rotate(40deg);
+    filter: saturate(10%) hue-rotate(40deg);
+    transition: all .5s;
+    transition-timing-function: ease;
+  }
+
+  .image-gallery:hover {
+    -webkit-filter: saturate(100%);
+    filter: saturate(100%);
+    transition: all .7s;
+  }
+}

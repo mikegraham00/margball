@@ -5,3 +5,10 @@ fields:
     display: Album
     instructions: Select a photo album.
     default: 2016
+  poster_image:
+    type: assets
+    display: Poster Image
+    instructions: Select the image you want to display to represent this photo album.
+    container: images
+    folder: /
+    max_files: 1

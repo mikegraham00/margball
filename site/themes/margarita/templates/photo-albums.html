@@ -5,11 +5,22 @@
     <div class="row">
 
         <h1>{{ title }}</h1>
-          <ul>
+
+
             {{ taxonomy:album }}
-              <li><a href="{{ url }}">{{ title }}</a></li>
+      
+                <a href="{{ url }}">
+
+                {{ assets:poster_image }}
+                <div class="album-block" style="background:url({{ url }});">
+                  {{ /assets:poster_image }}
+                    <h3>{{ title }}</h3>
+                </div>
+                </a>
+
             {{ /taxonomy:album }}
-          </ul>
+
+
 
     </div>
 </section>
