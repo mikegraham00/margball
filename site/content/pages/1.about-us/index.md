@@ -4,7 +4,7 @@ page_header:
   - 
     type: image_and_text_set
     text: "The Fort Worth Margarita Society was formed in 1989, by local businessmen as a 501(c)(3) charitable organization. We raise funds to assist our local community and various children's organizations with donations for underprivileged children. Our organization operates solely by generous contributions from membership dues, fundraisers, sponsors and guest who attend our events.  The Fort Worth Margarita Society has no paid salaries, as our staff consists of volunteers only. "
-    image: 9e401c9a-7dad-4177-b538-a366397e97a0
+    image: fc9c9e89-58d4-4ad1-a01f-46d462f2a404
 background_image: c43a013b-3452-4a4e-8c4f-c06189f4e7e6
 content_section:
   - 
