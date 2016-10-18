@@ -1,12 +1,6 @@
 title: Membership Form
 honeypot: user-email
 fields:
-  application_date:
-    display: Application Date
-    validate: required | date
-  date_of_birth:
-    display: Date of Birth
-    validate: required | date
   applicant_name:
     display: Applicant Name
     validate: required | string
@@ -95,8 +89,6 @@ fields:
     display: What value can you bring to the organization?
     validate: string
 columns:
-  - application_date
-  - date_of_birth
   - applicant_name
   - applicant_address
   - city
@@ -126,3 +118,7 @@ columns:
   - other_organization_affiliation
   - what_draws_you
   - what_value_can_you_bring_to_the_organization
+email:
+  - 
+    to: fwmball@gmail.com
+    subject: A membership form has been submitted.

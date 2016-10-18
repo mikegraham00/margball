@@ -58,7 +58,6 @@ fields:
   guest10:
     display: Guest Name
     validate: string
-
 columns:
   - contact_name
   - phone
@@ -79,3 +78,7 @@ columns:
   - guest8
   - guest9
   - guest10
+email:
+  - 
+    to: fwmball@gmail.com
+    subject: A sponsorship form has been submitted
