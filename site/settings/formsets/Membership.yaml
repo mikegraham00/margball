@@ -95,8 +95,6 @@ fields:
     display: What value can you bring to the organization?
     validate: string
 columns:
-  - application_date
-  - date_of_birth
   - applicant_name
   - applicant_address
   - city
@@ -126,3 +124,7 @@ columns:
   - other_organization_affiliation
   - what_draws_you
   - what_value_can_you_bring_to_the_organization
+email:
+  - 
+    to: fwmball@gmail.com
+    subject: Membership Form Submission
